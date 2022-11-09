@@ -1,0 +1,52 @@
+﻿@model SignUp
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+
+@*-------------------------------*@
+
+<form method="post">
+    <div class="border p-3 mt-4 container  align-self-center " style="width:40%">
+
+        <div class="p-3 mt-4 container align-self-center">
+            @if(ViewBag.UserName == "UserName already Exist")
+            {
+                <p class="text-danger">UserName already exist</p>
+            }
+            @if(ViewBag.Email == "Email already Exist")
+            {
+                <p class="text-danger">Email already exist</p>
+            }
+            <h3>Sign up</h3>
+            <br />
+            <div class="mb-3">
+                @*<label asp-for="UserName"></label>*@
+                <input asp-for="UserName" placeholder="User Name" class="form-control" style="width:100%"/>
+            </div>
+
+             <div class="mb-3">
+                @*<label asp-for="Email"></label>*@
+                <input asp-for="Email" placeholder="Email" class="form-control" style="width:100%"/>
+            </div>
+
+             <div class="mb-3">
+                @*<label asp-for="Password"></label>*@
+                <input asp-for="Password" placeholder="Password" class="form-control" style="width:100%"/>
+            </div>
+
+            <button type="submit" class="btn btn-outline-primary" style="width:100% ">Create</button>
+
+            <p>Already have an account ?<a asp-controller="FoodSite" asp-action="Login" class="text-danger"> Login</a></p>
+
+        </div>
+
+      
+        
+    </div>
+
+</form>

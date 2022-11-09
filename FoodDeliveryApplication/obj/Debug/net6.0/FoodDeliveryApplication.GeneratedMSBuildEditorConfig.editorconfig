@@ -1,0 +1,76 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = FoodDeliveryApplication
+build_property.RootNamespace = FoodDeliveryApplication
+build_property.ProjectDir = C:\Users\raksha_ganyarpawar\source\repos\FoodDeliveryApplication\FoodDeliveryApplication\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\raksha_ganyarpawar\source\repos\FoodDeliveryApplication\FoodDeliveryApplication
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/raksha_ganyarpawar/source/repos/FoodDeliveryApplication/FoodDeliveryApplication/Views/FoodSite/CancelOrder.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9vZFNpdGVcQ2FuY2VsT3JkZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/raksha_ganyarpawar/source/repos/FoodDeliveryApplication/FoodDeliveryApplication/Views/FoodSite/Cart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9vZFNpdGVcQ2FydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/raksha_ganyarpawar/source/repos/FoodDeliveryApplication/FoodDeliveryApplication/Views/FoodSite/CreateAccount.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9vZFNpdGVcQ3JlYXRlQWNjb3VudC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/raksha_ganyarpawar/source/repos/FoodDeliveryApplication/FoodDeliveryApplication/Views/FoodSite/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9vZFNpdGVcTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/raksha_ganyarpawar/source/repos/FoodDeliveryApplication/FoodDeliveryApplication/Views/FoodSite/Menu.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9vZFNpdGVcTWVudS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/raksha_ganyarpawar/source/repos/FoodDeliveryApplication/FoodDeliveryApplication/Views/FoodSite/OrderStatus.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9vZFNpdGVcT3JkZXJTdGF0dXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/raksha_ganyarpawar/source/repos/FoodDeliveryApplication/FoodDeliveryApplication/Views/FoodSite/PlaceOrder.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9vZFNpdGVcUGxhY2VPcmRlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/raksha_ganyarpawar/source/repos/FoodDeliveryApplication/FoodDeliveryApplication/Views/FoodSite/Restaurants.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9vZFNpdGVcUmVzdGF1cmFudHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/raksha_ganyarpawar/source/repos/FoodDeliveryApplication/FoodDeliveryApplication/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/raksha_ganyarpawar/source/repos/FoodDeliveryApplication/FoodDeliveryApplication/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/raksha_ganyarpawar/source/repos/FoodDeliveryApplication/FoodDeliveryApplication/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/raksha_ganyarpawar/source/repos/FoodDeliveryApplication/FoodDeliveryApplication/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/raksha_ganyarpawar/source/repos/FoodDeliveryApplication/FoodDeliveryApplication/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/raksha_ganyarpawar/source/repos/FoodDeliveryApplication/FoodDeliveryApplication/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/raksha_ganyarpawar/source/repos/FoodDeliveryApplication/FoodDeliveryApplication/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-ufkla2vgwk

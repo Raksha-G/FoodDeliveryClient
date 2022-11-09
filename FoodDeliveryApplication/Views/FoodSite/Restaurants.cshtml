@@ -1,0 +1,54 @@
+﻿@model List<Restaurants>
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@*<h1>Restaurants</h1>*@
+
+
+
+<div class="d-flex justify-content-between">
+    <h2 class="text-success">
+        Restaurants
+    </h2>
+    <table>
+        
+        <tr><td><p style="font-size:15px">@Html.ActionLink("Log Out","Login")</p></td></tr>
+        <tr> <td><p style="font-size:15px">@Html.ActionLink("Order History","OrderStatus")</p></td></tr>
+        <tr> <td><p style="font-size:15px">@Html.ActionLink("Cart","Cart")</p></td></tr>
+        
+    </table>
+    </div>
+    
+
+     
+
+
+<div style="display: flex;justify-content: flex-start;align-items: center;">
+
+
+@foreach(var obj in Model)
+{  
+    <table>
+        <tr>
+            <td>
+                <a asp-controller="FoodSite" asp-action="RestaurantMenu" asp-route-id="@obj.RestaurantId"><img src="@obj.RestaurantImage" style="width:250px; height:250px; margin-left:30px;margin-right:30px;margin-top:30px"/></a>
+   
+            </td>
+           
+        </tr>
+        <tr>
+             <td>
+                 <p style="margin-left:30px">@obj.RestaurantName</p>
+            </td>
+        </tr>
+    </table>
+    
+   
+   
+
+    
+} </div>

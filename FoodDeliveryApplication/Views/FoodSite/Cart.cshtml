@@ -1,0 +1,65 @@
+﻿@using System.Data.SqlClient
+@model List<Cart>
+
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+@{
+    int Total_Price = 0;
+    int Id = 0;
+}
+
+
+
+@if(ViewBag.Cart=="Empty"){
+    <h4 class="text-danger">Your Cart is Empty</h4>
+    <a asp-controller="FoodSite" asp-action="Restaurants" class="btn btn-primary">Add Item To Cart</a>
+}
+else
+{
+
+@using(Html.BeginForm("ConfirmOrder","FoodSite",FormMethod.Post))
+{
+<table>
+    @foreach(var obj in Model)
+    {
+      
+
+         <tr>
+              <th><img src="@obj.FoodImage" style="width:250px; height:250px ; margin-left:30px;margin-right:30px;margin-top:30px" /></th>
+              <td>@obj.FoodItem
+              <br/>
+              Price : @obj.Price
+              <br/>
+              Quantity : @obj.Quantity
+              <br/>
+              </td>
+                </tr>
+                Total_Price = Total_Price + @obj.Price * obj.Quantity;
+
+                {
+                   @* SqlConnection conn = new SqlConnection("Data Source = PSL-28MH6Q3 ; Initial Catalog = FoodDeliveryApplication; Integrated Security = True;");
+                    SqlCommand cmd = new SqlCommand(String.Format("insert into ConfirmOrder(UserName,FoodItem,Price,Quantity,RestaurantId) values('{0}','{1}','{2}','{3}','{4}')",@obj.UserName, @obj.FoodItem, @obj.Price,@obj.Quantity,@obj.RestaurantId), conn);
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();*@
+                }
+                Id = @obj.RestaurantId;
+               
+            }
+
+</table>
+<br/>
+<h4>Total Price : @Total_Price</h4>
+<br/>
+Console.WriteLine("RestaurantId:"+Id);
+<a class="btn btn-primary" asp-controller="FoodSite" asp-action="PlaceOrder" type="submit" >Place Order</a>
+<a class="btn btn-primary" asp-controller="FoodSite" asp-action="Restaurants">Add Items</a>  
+}
+ 
+}
