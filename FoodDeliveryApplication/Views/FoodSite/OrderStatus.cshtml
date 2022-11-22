@@ -1,4 +1,4 @@
-﻿@model List<Order>
+﻿@model List<OrderDetails>
 
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -12,7 +12,7 @@
     </h2>
     <table>
         
-        <tr><td><p style="font-size:15px">@Html.ActionLink("Log Out","Login")</p></td></tr>
+        <tr><td><p style="font-size:15px">@Html.ActionLink("Log Out","Logout")</p></td></tr>
         <tr> <td><p style="font-size:15px">@Html.ActionLink("Back","Restaurants")</p></td></tr>
 
         
@@ -22,42 +22,103 @@
  
 
 <a asp-controller="Foodsite" asp-action="Status" asp-route-id="1" class="btn btn-primary">Pending Orders</a>
-<a asp-controller="Foodsite" asp-action="Status"  asp-route-id="2" class="btn btn-primary">Cancelled Orders</a>
+@*<a asp-controller="Foodsite" asp-action="Status"  asp-route-id="2" class="btn btn-primary">Cancelled Orders</a>*@
 <a asp-controller="Foodsite" asp-action="Status"  asp-route-id="3" class="btn btn-primary">Completed Orders</a>
 
 <br/>
 <br/>
 <br/>
 
-@if(ViewBag.ObjectPassed == "True")
+@if (ViewBag.ObjectPassed == "Pending")
 {
 
-    <table  class="table table-striped">
+        List<OrderDetails> sorted = Model.OrderBy(x => x.OrderTime).ToList();
+
+        int count = Model.Count;
+        int tempInvoiceNo = 0;
+        @foreach (var obj in sorted)
+        {
+             
+            @if (tempInvoiceNo == @obj.InVoiceNo)
+            {
+                <h6>Food Item : @obj.FoodItem</h6>
+                <p>Quantity : @obj.Quantity</p>
+                <p>Price : @obj.Price</p>
+            }
+            else
+            {
+                <br/>
+                <br/>
+                tempInvoiceNo = @obj.InVoiceNo;
+                <h4>Order : @obj.InVoiceNo</h4>
+                <h5>Order Time : @obj.OrderTime</h5>
+                <h6>Food Item : @obj.FoodItem</h6>
+                <p>Quantity : @obj.Quantity</p>
+                <p>Price : @obj.Price</p>
+            }
+           
+        }
+}
+
+@if(ViewBag.ObjectPassed=="Completed")
+{
+
+     List<OrderDetails> sorted = Model.OrderBy(x => x.OrderTime).ToList();
+         int tempInvoiceNo = 0;
+         foreach (var obj in sorted)
+        {
+            
+            if (tempInvoiceNo == @obj.InVoiceNo)
+            {
+                <h6>Food Item : @obj.FoodItem</h6>
+                <p>Quantity : @obj.Quantity</p>
+                <p>Price : @obj.Price</p>
+            }
+            else
+            {
+                <p>-----------------------------</p>
+                tempInvoiceNo = @obj.InVoiceNo;
+                <h4>Order : @obj.InVoiceNo</h4>
+                <h5>Order Delivered on : @obj.OrderTime</h5>
+                <h6>Food Item : @obj.FoodItem</h6>
+                <p>Quantity : @obj.Quantity</p>
+                <p>Price : @obj.Price</p>
+            }
+        }
+
+    
+}
+
+
+
+
+
+
+
+
+
+ @*<table  class="table table-striped">
         <tr>
-              
+
                 <th>Food Item</th>
                 <th>Quantity</th>
                 <th>Price</th>
-                <th>Status</th>
         </tr>
         @foreach(var obj in Model)
         {
-        
+
             <tr>
-            
-                 
+
+
                 <td>@obj.FoodItem</td>
-                
+
                 <td>@obj.Quantity</td>
-                 
+
                 <td>@obj.Price</td>
 
-                <td>@obj.Status</td>
 
             </tr>
         }
 </table>
-
-
-}
+*@
 

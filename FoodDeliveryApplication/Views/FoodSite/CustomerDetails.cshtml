@@ -1,0 +1,30 @@
+﻿@model CustomerDetails
+
+<form method="post">
+    <div class="border p-3 mt-4 container  align-self-center align-items-center" style="width:40%">
+
+        <div style="vertical-align:middle" class="align-items-center">
+           
+            <h3>Enter Details</h3>
+            <br />
+            <div class="mb-3">
+                <input asp-for="Address" placeholder="Address" class="form-control" style="width:100%"/>
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+
+             <div class="mb-3">
+                <input asp-for="PhoneNo" placeholder="Phone number" class="form-control" style="width:100%"/>
+            </div>
+            
+            <button type="submit" class="btn btn-outline-primary" style="width : 100%" asp-controller="FoodSite" asp-action="PlaceOrder">Place Order</button>
+
+           
+
+        </div>
+
+      
+        
+    </div>
+
+</form>
+

@@ -1,12 +1,21 @@
-﻿@model ErrorViewModel
+﻿@using Serilog
+@model ErrorViewModel
 @{
     ViewData["Title"] = "Error";
 }
 
-<h1 class="text-danger">Error.</h1>
-<h2 class="text-danger">An error occurred while processing your request.</h2>
+<h2 class="text-danger">Error.</h2>
+<h3 class="text-danger">An error occurred while processing your request.</h3>
 
-@if (Model.ShowRequestId)
+@{ 
+    Log.Error("An error encountered while processing the request");
+}
+
+@* <h2>Controller Name: @Model.ControllerName</h2>
+        <h2>Action Name:  @Model.ActionName</h2>
+        <h2>Exception Details: @Model.Exception</h2>*@
+
+@*if (Model.ShowRequestId)
 {
     <p>
         <strong>Request ID:</strong> <code>@Model.RequestId</code>
@@ -23,3 +32,4 @@
     For local debugging, enable the <strong>Development</strong> environment by setting the <strong>ASPNETCORE_ENVIRONMENT</strong> environment variable to <strong>Development</strong>
     and restarting the app.
 </p>
+*@

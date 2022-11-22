@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -7,6 +9,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/FoodDeliveryApplication.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"/>
 </head>
 <body>
     <header>
@@ -22,15 +25,17 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item">
+
+                       
+                            <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="FoodSite" asp-action="CreateAccount">Sign up</a>
-                        </li>
-                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="FoodSite" asp-action="Login">Log in</a>
-                        </li>
-                        @* <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="FoodSite" asp-action="Cart">Cart</a>
-                        </li>*@
+                            </li>
+                             <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="FoodSite" asp-action="Login">Log in</a>
+                            </li>
+                           
+                      
+                       
                     </ul>
                 </div>
             </div>
@@ -38,6 +43,7 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
+             <partial name = "_Notification" />
             @RenderBody()
         </main>
     </div>

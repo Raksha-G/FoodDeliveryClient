@@ -23,8 +23,11 @@
 else
 {
 
-@using(Html.BeginForm("ConfirmOrder","FoodSite",FormMethod.Post))
+@using(@Html.BeginForm("DeleteItemFromCart","FoodSite",FormMethod.Post))
+@*<form method="post">*@
 {
+
+    
 <table>
     @foreach(var obj in Model)
     {
@@ -38,6 +41,11 @@ else
               <br/>
               Quantity : @obj.Quantity
               <br/>
+              <br/>
+                <div class="d-none">
+                    <input name="FoodItem" value="@obj.FoodItem"/>
+                </div>
+              <button class="btn btn-primary" >Remove</button>
               </td>
                 </tr>
                 Total_Price = Total_Price + @obj.Price * obj.Quantity;
@@ -57,9 +65,11 @@ else
 <br/>
 <h4>Total Price : @Total_Price</h4>
 <br/>
-Console.WriteLine("RestaurantId:"+Id);
-<a class="btn btn-primary" asp-controller="FoodSite" asp-action="PlaceOrder" type="submit" >Place Order</a>
+ Console.WriteLine("RestaurantId:"+Id);
+<a class="btn btn-primary" asp-controller="FoodSite" asp-action="CustomerDetails" type="submit" >Add Details</a>
 <a class="btn btn-primary" asp-controller="FoodSite" asp-action="Restaurants">Add Items</a>  
+
+
 }
  
 }

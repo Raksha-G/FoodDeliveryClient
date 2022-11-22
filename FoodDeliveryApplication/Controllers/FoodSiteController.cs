@@ -1,4 +1,5 @@
-﻿using FoodDeliveryApplication.Models;
+﻿
+using FoodDeliveryApplication.Models;
 using FoodDeliveryApplication.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
@@ -7,6 +8,7 @@ using System.Data.SqlClient;
 
 namespace FoodDeliveryApplication.Controllers
 {
+    [CustomExceptionFilter]
     public class FoodSiteController : Controller
     {
 
@@ -94,6 +96,8 @@ namespace FoodDeliveryApplication.Controllers
 
         public IActionResult Logout()
         {
+
+            Log.Information(String.Format("{0} Logged out", HttpContext.Session.GetString("UserName")));
             return View("Login");
         }
 
@@ -105,14 +109,7 @@ namespace FoodDeliveryApplication.Controllers
             return View();
         }
 
-        
        
-
-
-
-      
-
-        //[HttpPost]
         public IActionResult Restaurants()
         {
             if (HttpContext.Session.GetString("UserName") == null)
@@ -201,12 +198,30 @@ namespace FoodDeliveryApplication.Controllers
             cmd.ExecuteNonQuery();
             conn.Close();
 
-
+            //Tempdata["success"] = "Item Added to Cart";
+            TempData["success"] = "Item Added to Cart";
 
             return RedirectToAction("RestaurantMenu",new { Id = Restaurant_Id });
 
           
 
+        }
+
+       
+        public IActionResult DeleteItemFromCart(IFormCollection col)
+        {
+            string FoodItem = col["FoodItem"];
+
+            Console.WriteLine("FoodItem = " + FoodItem);
+           
+            SqlConnection conn = new SqlConnection("Data Source = PSL-28MH6Q3; Initial Catalog = FoodDeliveryApplication; Integrated Security = True;");
+            SqlCommand cmd = new SqlCommand(String.Format("delete from AddItemToCart where FoodItem = '{0}'", FoodItem), conn);
+            conn.Open();
+            cmd.ExecuteNonQuery();
+            conn.Close();
+
+            TempData["success"] = "Item Removed From Cart";
+            return RedirectToAction("Cart");
         }
 
 
@@ -237,45 +252,79 @@ namespace FoodDeliveryApplication.Controllers
             return View("Cart",cart);
         }
 
-
-        public IActionResult PlaceOrder()
+        [HttpPost]
+        public IActionResult PlaceOrder(CustomerDetails details)
         {
             if (HttpContext.Session.GetString("UserName") == null)
             {
                 return RedirectToAction("Login");
             }
-            SqlConnection conn = new SqlConnection("Data Source = PSL-28MH6Q3 ; Initial Catalog = FoodDeliveryApplication; Integrated Security = True;");
-            SqlCommand cmd = new SqlCommand(String.Format("select * from AddItemToCart where UserName = '{0}'", HttpContext.Session.GetString("UserName")), conn);
-            conn.Open();
-            SqlDataReader sr = cmd.ExecuteReader();
            
-            var orderList = new List<Order>();
-            while(sr.Read())
+
+            
+
+            Random rnd = new Random();
+            int inVoiceNo = rnd.Next(10000, 10000000);
+
+            DateTime OrderTime = DateTime.Now;
+        
+
+            string address = details.Address;
+            string phoneNo = details.PhoneNo;
+
+            Console.WriteLine(OrderTime);
+
+            SqlConnection conn = new SqlConnection("Data Source = PSL-28MH6Q3 ; Initial Catalog = FoodDeliveryApplication; Integrated Security = True;");
+            SqlCommand cmd = new SqlCommand(String.Format("insert into Orders values('{0}','{1}','{2}','{3}','{4}')",inVoiceNo, HttpContext.Session.GetString("UserName"),address,phoneNo,OrderTime), conn);
+            conn.Open();
+            cmd.ExecuteNonQuery();
+            conn.Close();
+
+           
+
+            SqlConnection conn1 = new SqlConnection("Data Source = PSL-28MH6Q3 ; Initial Catalog = FoodDeliveryApplication; Integrated Security = True;");
+            SqlCommand sqlcmd = new SqlCommand(String.Format("select * from AddItemToCart where UserName = '{0}'", HttpContext.Session.GetString("UserName")), conn);
+            conn.Open();
+            SqlDataReader sr = sqlcmd.ExecuteReader();
+
+            var orderList = new List<OrderDetails>();
+            while (sr.Read())
             {
-                Order order = new Order(sr["UserName"].ToString(), sr["FoodItem"].ToString(), (int)sr["Price"], (int)sr["Quantity"], (int)sr["RestaurantId"]);
-                orderList.Add(order);
+                OrderDetails orderDetails = new OrderDetails(inVoiceNo, sr["UserName"].ToString(), (int)sr["RestaurantId"], sr["FoodItem"].ToString(), (int)sr["Quantity"], (int)sr["Price"],OrderTime);
+                orderList.Add(orderDetails);
             }
             conn.Close();
 
-            foreach(var obj in orderList)
+           
+
+
+            foreach (var obj in orderList)
             {
-                SqlCommand sqlCommand = new SqlCommand(String.Format("insert into ConfirmOrder values('{0}','{1}','{2}','{3}','{4}')",obj.UserName,obj.FoodItem,obj.Price,obj.Quantity,obj.RestaurantId), conn);
+                SqlCommand sqlCommand = new SqlCommand(String.Format("insert into PlacedOrderDetail values('{0}','{1}','{2}','{3}','{4}','{5}','{6}')",obj.InVoiceNo,obj.UserName,obj.RestaurantId,obj.FoodItem,obj.Quantity,obj.Price,obj.OrderTime), conn);
                 conn.Open();
                 sqlCommand.ExecuteNonQuery();
                 conn.Close();
             }
 
-            Log.Information(String.Format("Order placed with username {0} ",HttpContext.Session.GetString("UserName")));
+           
+
 
             SqlCommand cmd1 = new SqlCommand(String.Format("delete from AddItemToCart where UserName = '{0}'", HttpContext.Session.GetString("UserName")), conn);
             conn.Open();
             cmd1.ExecuteNonQuery();
             conn.Close();
+
+
+            return View();
+        
+        }
+
+        public IActionResult CustomerDetails()
+        {
             return View();
         }
 
-
-       public IActionResult CancelOrder()
+        public IActionResult CancelOrder()
         {
             if (HttpContext.Session.GetString("UserName") == null)
             {
@@ -317,7 +366,6 @@ namespace FoodDeliveryApplication.Controllers
             return View();
         }
 
-        //[HttpPost]
         public IActionResult Status(int Id)
         {
             Console.WriteLine("Id : " + Id);
@@ -330,24 +378,31 @@ namespace FoodDeliveryApplication.Controllers
 
             ViewBag.ObjectPassed = "True";
             var OrderList = new List<Order>();
+            var orderlist = new List<OrderDetails>();
+
             
-            if(Id == 1)
+
+            if (Id == 1)
             {
-                SqlCommand cmd = new SqlCommand(String.Format("Select * from ConfirmOrder where UserName = '{0}'", HttpContext.Session.GetString("UserName")), conn);
+               
+
+                ViewBag.ObjectPassed = "Pending";
+                SqlCommand cmd = new SqlCommand(String.Format("Select * from PlacedOrderDetail where UserName = '{0}'", HttpContext.Session.GetString("UserName")), conn);
                 conn.Open();
                 SqlDataReader sr = cmd.ExecuteReader();
 
-
                 while (sr.Read())
                 {
-                    Order order = new Order(sr["FoodItem"].ToString(), (int)sr["Price"], (int)sr["Quantity"], "Pending");
-                    OrderList.Add(order);
+                    string time = sr["OrderTime"].ToString();
+                    DateTime orderTime = Convert.ToDateTime(time);
+                    OrderDetails orderDetails = new OrderDetails((int)sr["InVoiceNo"], sr["UserName"].ToString(), (int)sr["RestaurantId"], sr["FoodItem"].ToString(), (int)sr["Quantity"], (int)sr["Price"],orderTime);
+                    orderlist.Add(orderDetails);
                 }
                 conn.Close();
-                return View("OrderStatus",OrderList);
+                return View("OrderStatus",orderlist);
             }
 
-            if(Id==2)
+            /*if(Id==2)
             {
                 SqlCommand cmd2 = new SqlCommand(String.Format("Select * from CancelOrder where UserName = '{0}'", HttpContext.Session.GetString("UserName")), conn);
                 conn.Open();
@@ -362,20 +417,21 @@ namespace FoodDeliveryApplication.Controllers
                 conn.Close();
                 return View("OrderStatus", OrderList);
 
-            }
+            }*/
 
             if(Id==3)
             {
-                SqlCommand cmd1 = new SqlCommand(String.Format("Select * from CompletedOrders where CustomerName = '{0}'", HttpContext.Session.GetString("UserName")), conn);
+                ViewBag.ObjectPassed = "Completed";
+                SqlCommand cmd1 = new SqlCommand(String.Format("Select * from CompletedOrder where UserName = '{0}'", HttpContext.Session.GetString("UserName")), conn);
                 conn.Open();
                 SqlDataReader sr1 = cmd1.ExecuteReader();
                 while (sr1.Read())
                 {
-                    Order order = new Order(sr1["FoodItem"].ToString(), (int)sr1["Price"], (int)sr1["Quantity"], "Delivered");
-                    OrderList.Add(order);
+                    OrderDetails order = new OrderDetails((int)sr1["InVoiceNo"], sr1["UserName"].ToString(),sr1["FoodItem"].ToString(), (int)sr1["Quantity"], (int)sr1["Price"], (DateTime)sr1["OrderCompletionTime"]);
+                    orderlist.Add(order);
                 }
                 conn.Close();
-                return View("OrderStatus", OrderList);
+                return View("OrderStatus", orderlist);
 
             }
 
