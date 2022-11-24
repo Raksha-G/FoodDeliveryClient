@@ -14,10 +14,14 @@ namespace FoodDeliveryApplication.Controllers
 
         public List<SignUp> userList = new List<SignUp>();
         public string NotExist = "User Not Exist";
+        static string CurrUser;
         public List<FoodItems> FoodItemsSelected =  new List<FoodItems>();
-       
-        public FoodSiteController()
+        private readonly ILogger<FoodSiteController> _logger;
+
+
+        public FoodSiteController(ILogger<FoodSiteController> logger)
         {
+            _logger = logger;
 
             SqlConnection conn = new SqlConnection("Data Source = PSL-28MH6Q3 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=True;");
             SqlCommand cmd = new SqlCommand("select * from Users", conn);
@@ -48,6 +52,7 @@ namespace FoodDeliveryApplication.Controllers
                 if (user != null)
                 {
                     ViewBag.UserName = "UserName already Exist";
+                        _logger.LogInformation("User:{0} already Exist, unable to create new Account", signup.UserName);
                     return View();
                 }
 
@@ -57,13 +62,22 @@ namespace FoodDeliveryApplication.Controllers
                 cmd.ExecuteNonQuery();
                 conn.Close();
                 Log.Information(String.Format("A new Account Created with UserName {0}", signup.UserName));
+
+
+
             
-            return View("Login");
+
+
+            _logger.LogInformation(String.Format("A new Account Created with UserName {0}", signup.UserName));
+            
+
+            return View("AccountCreated");
 
         }
 
         public IActionResult Login()
         {
+                        _logger.LogInformation("Login Triggered");
             return View();
         }
         
@@ -76,20 +90,24 @@ namespace FoodDeliveryApplication.Controllers
                 if (user == null)
                 {
                     ViewBag.NotExist = NotExist;
-                    return View();
+                           _logger.LogInformation("User does not Exist");
+                return View();
                 }
                 foreach (var i in userList)
                 {
                     if (i.UserName == login.UserName && i.Password == login.Password)
                     {
-                        Log.Information(String.Format("{0} Logged in", login.UserName));
-                        HttpContext.Session.SetString("UserName", login.UserName);
+                    //Log.Information(String.Format("{0} Logged in", login.UserName));
+                    _logger.LogInformation(String.Format("{0} Logged in", login.UserName));
+                    CurrUser = i.UserName;
+                    HttpContext.Session.SetString("UserName", login.UserName);
                         return RedirectToAction("Restaurants");
                     }
                 }
 
                 ViewBag.IncorrectPassword = "Incorrect Password";
-       
+                 _logger.LogError("Invalid User Details Entered");
+
             return View();
 
         }
@@ -97,7 +115,8 @@ namespace FoodDeliveryApplication.Controllers
         public IActionResult Logout()
         {
 
-            Log.Information(String.Format("{0} Logged out", HttpContext.Session.GetString("UserName")));
+            //Log.Information(String.Format("{0} Logged out", HttpContext.Session.GetString("UserName")));
+            _logger.LogInformation("{0} Logged Out", HttpContext.Session.GetString("UserName"));
             return View("Login");
         }
 
@@ -114,6 +133,7 @@ namespace FoodDeliveryApplication.Controllers
         {
             if (HttpContext.Session.GetString("UserName") == null)
             {
+                _logger.LogInformation("{0} Logged Out", CurrUser);
                 return RedirectToAction("Login");
             }
             SqlConnection conn = new SqlConnection("Data Source = PSL-28MH6Q3 ; Initial Catalog = FoodDeliveryApplication; Integrated Security = True; ");
@@ -137,6 +157,7 @@ namespace FoodDeliveryApplication.Controllers
         {
             if (HttpContext.Session.GetString("UserName") == null)
             {
+                _logger.LogInformation("{0} Logged Out", CurrUser);
                 return RedirectToAction("Login");
             }
             Console.WriteLine("ResId" + Id);
@@ -181,6 +202,7 @@ namespace FoodDeliveryApplication.Controllers
 
             if (HttpContext.Session.GetString("UserName") == null)
             {
+                _logger.LogInformation("{0} Logged Out", CurrUser);
                 return RedirectToAction("Login");
             }
             Console.WriteLine(col["Food_Item"]);
@@ -190,7 +212,9 @@ namespace FoodDeliveryApplication.Controllers
             var Restaurant_Id = col["RestaurantId"];
             var Food_Id = Convert.ToInt32(col["Food_Id"]);
             var Price = Convert.ToInt32(col["Price"]);
-            
+
+            _logger.LogInformation("Item:{0} added to cart by the user:{1} of Quantity:{2}", Food_Item, HttpContext.Session.GetString("UserName"), Quantity);
+
 
             SqlConnection conn = new SqlConnection("Data Source = PSL-28MH6Q3 ; Initial Catalog = FoodDeliveryApplication; Integrated Security = True;");
             SqlCommand cmd = new SqlCommand(String.Format("insert into AddItemToCart values('{0}','{1}','{2}','{3}','{4}')", HttpContext.Session.GetString("UserName"), Food_Item, Quantity,Restaurant_Id,Price), conn);
@@ -208,14 +232,16 @@ namespace FoodDeliveryApplication.Controllers
         }
 
        
-        public IActionResult DeleteItemFromCart(IFormCollection col)
-        {
+        public IActionResult DeleteItemFromCart(/*IFormCollection col,*/int Id)
+        {/*
             string FoodItem = col["FoodItem"];
 
-            Console.WriteLine("FoodItem = " + FoodItem);
+            int ItemNo = Convert.ToInt32(col["ItemNo"]);*/
+
+          /*  Console.WriteLine("FoodItem = " + FoodItem);*/
            
             SqlConnection conn = new SqlConnection("Data Source = PSL-28MH6Q3; Initial Catalog = FoodDeliveryApplication; Integrated Security = True;");
-            SqlCommand cmd = new SqlCommand(String.Format("delete from AddItemToCart where FoodItem = '{0}'", FoodItem), conn);
+            SqlCommand cmd = new SqlCommand(String.Format("delete from AddItemToCart where ItemNo = '{0}'", Id), conn);
             conn.Open();
             cmd.ExecuteNonQuery();
             conn.Close();
@@ -229,10 +255,11 @@ namespace FoodDeliveryApplication.Controllers
         {
             if(HttpContext.Session.GetString("UserName")==null)
             {
+                _logger.LogInformation("{0} Logged Out", CurrUser);
                 return RedirectToAction("Login");
             }
             SqlConnection conn = new SqlConnection("Data Source = PSL-28MH6Q3 ; Initial Catalog = FoodDeliveryApplication; Integrated Security = True;");
-            SqlCommand cmd = new SqlCommand(String.Format("select A.FoodItem, A.Quantity, F.Food_Image,F.Price,F.Id,F.Restaurant_Id from AddItemToCart A inner join Food F on F.Food_Item = A.FoodItem where A.UserName = '{0}'", HttpContext.Session.GetString("UserName")), conn);
+            SqlCommand cmd = new SqlCommand(String.Format("select A.FoodItem, A.Quantity,A.ItemNo, F.Food_Image,F.Price,F.Id,F.Restaurant_Id from AddItemToCart A inner join Food F on F.Food_Item = A.FoodItem where A.UserName = '{0}'", HttpContext.Session.GetString("UserName")), conn);
             conn.Open();
             SqlDataReader sr = cmd.ExecuteReader();
 
@@ -240,7 +267,7 @@ namespace FoodDeliveryApplication.Controllers
 
             while(sr.Read())
             {
-                Cart cartItem = new Cart(HttpContext.Session.GetString("UserName"), sr["FoodItem"].ToString(), (int)sr["Quantity"], sr["Food_Image"].ToString(), (int)sr["Price"], (int)sr["Id"], (int)sr["Restaurant_Id"]);
+                Cart cartItem = new Cart(HttpContext.Session.GetString("UserName"), sr["FoodItem"].ToString(), (int)sr["Quantity"], sr["Food_Image"].ToString(), (int)sr["Price"], (int)sr["Id"], (int)sr["Restaurant_Id"], (int)sr["ItemNo"]);
                 cart.Add(cartItem);
             }
             if(cart.Count == 0)
@@ -257,6 +284,7 @@ namespace FoodDeliveryApplication.Controllers
         {
             if (HttpContext.Session.GetString("UserName") == null)
             {
+                _logger.LogInformation("{0} Logged Out", CurrUser);
                 return RedirectToAction("Login");
             }
            
@@ -295,19 +323,23 @@ namespace FoodDeliveryApplication.Controllers
             }
             conn.Close();
 
-           
+            string items = "";
+            string resId = "";
+
 
 
             foreach (var obj in orderList)
             {
                 SqlCommand sqlCommand = new SqlCommand(String.Format("insert into PlacedOrderDetail values('{0}','{1}','{2}','{3}','{4}','{5}','{6}')",obj.InVoiceNo,obj.UserName,obj.RestaurantId,obj.FoodItem,obj.Quantity,obj.Price,obj.OrderTime), conn);
+                items += obj.FoodItem + ",";
+                resId = obj.RestaurantId.ToString();
                 conn.Open();
                 sqlCommand.ExecuteNonQuery();
                 conn.Close();
             }
 
-           
 
+            _logger.LogDebug(String.Format("Order placed by user {0} of Items: {1} from restaurant Id : {2}", HttpContext.Session.GetString("UserName"), items, resId));
 
             SqlCommand cmd1 = new SqlCommand(String.Format("delete from AddItemToCart where UserName = '{0}'", HttpContext.Session.GetString("UserName")), conn);
             conn.Open();
@@ -371,6 +403,7 @@ namespace FoodDeliveryApplication.Controllers
             Console.WriteLine("Id : " + Id);
             if (HttpContext.Session.GetString("UserName") == null)
             {
+                _logger.LogInformation("{0} Logged Out", CurrUser);
                 return RedirectToAction("Login");
             }
 

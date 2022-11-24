@@ -23,9 +23,9 @@
 else
 {
 
-@using(@Html.BeginForm("DeleteItemFromCart","FoodSite",FormMethod.Post))
+@*@using(@Html.BeginForm("DeleteItemFromCart","FoodSite",FormMethod.Post))
 @*<form method="post">*@
-{
+//{
 
     
 <table>
@@ -42,10 +42,10 @@ else
               Quantity : @obj.Quantity
               <br/>
               <br/>
-                <div class="d-none">
+               @* <div class="d-none">
                     <input name="FoodItem" value="@obj.FoodItem"/>
-                </div>
-              <button class="btn btn-primary" >Remove</button>
+                </div>*@
+              <a class="btn btn-primary" asp-controller="FoodSite" asp-action="DeleteItemFromCart" asp-route-Id="@obj.ItemNo">Remove</a>
               </td>
                 </tr>
                 Total_Price = Total_Price + @obj.Price * obj.Quantity;
@@ -70,6 +70,6 @@ else
 <a class="btn btn-primary" asp-controller="FoodSite" asp-action="Restaurants">Add Items</a>  
 
 
-}
+    //}
  
 }

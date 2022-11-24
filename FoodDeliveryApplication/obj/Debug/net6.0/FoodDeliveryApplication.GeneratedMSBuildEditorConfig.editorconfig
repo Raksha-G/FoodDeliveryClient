@@ -15,6 +15,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\raksha_ganyarpawar\source\repos\FoodDeliveryApplication\FoodDeliveryApplication
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/raksha_ganyarpawar/source/repos/FoodDeliveryApplication/FoodDeliveryApplication/Views/FoodSite/AccountCreated.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9vZFNpdGVcQWNjb3VudENyZWF0ZWQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/raksha_ganyarpawar/source/repos/FoodDeliveryApplication/FoodDeliveryApplication/Views/FoodSite/CancelOrder.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9vZFNpdGVcQ2FuY2VsT3JkZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
