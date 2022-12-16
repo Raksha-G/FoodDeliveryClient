@@ -4,63 +4,65 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    //Console.WriteLine(Model.Count());
 }
 
-<div class="d-flex justify-content-between">
-    <h2 class="text-success">
-        OrderStatus
-    </h2>
-    <table>
-        
-        <tr><td><p style="font-size:15px">@Html.ActionLink("Log Out","Logout")</p></td></tr>
-        <tr> <td><p style="font-size:15px">@Html.ActionLink("Back","Restaurants")</p></td></tr>
-
-        
-    </table>
+    <div class="d-flex justify-content-between">
+        <h2 class="text-success">
+            OrderStatus
+        </h2>
+      <table>
+       
+                    <tr><td><p style="font-size:15px">@Html.ActionLink("Log Out","Logout")</p></td></tr>
+                    <tr> <td><p style="font-size:15px">@Html.ActionLink("Back","Restaurants")</p></td></tr>
+           
+            
+            </table>
     </div>
+        
 
  
 
-<a asp-controller="Foodsite" asp-action="Status" asp-route-id="1" class="btn btn-primary">Pending Orders</a>
-@*<a asp-controller="Foodsite" asp-action="Status"  asp-route-id="2" class="btn btn-primary">Cancelled Orders</a>*@
-<a asp-controller="Foodsite" asp-action="Status"  asp-route-id="3" class="btn btn-primary">Completed Orders</a>
+    <a asp-controller="Foodsite" asp-action="Status" asp-route-id="1" class="btn btn-primary">Pending Orders</a>
+    @*<a asp-controller="Foodsite" asp-action="Status"  asp-route-id="2" class="btn btn-primary">Cancelled Orders</a>*@
+    <a asp-controller="Foodsite" asp-action="Status"  asp-route-id="3" class="btn btn-primary">Completed Orders</a>
 
-<br/>
-<br/>
-<br/>
+    <br/>
+    <br/>
+    <br/>
 
-@if (ViewBag.ObjectPassed == "Pending")
+    @if (ViewBag.ObjectPassed == "Pending")
 {
 
         List<OrderDetails> sorted = Model.OrderBy(x => x.OrderTime).ToList();
 
         int count = Model.Count;
         int tempInvoiceNo = 0;
-        @foreach (var obj in sorted)
+            @foreach (var obj in sorted)
         {
              
-            @if (tempInvoiceNo == @obj.InVoiceNo)
+                @if (tempInvoiceNo == @obj.InVoiceNo)
             {
-                <h6>Food Item : @obj.FoodItem</h6>
-                <p>Quantity : @obj.Quantity</p>
-                <p>Price : @obj.Price</p>
+                    <h6>Food Item : @obj.FoodItem</h6>
+                    <p>Quantity : @obj.Quantity</p>
+                    <p>Price : @obj.Price</p>
             }
             else
             {
-                <br/>
-                <br/>
+                    <br/>
+                    <br/>
                 tempInvoiceNo = @obj.InVoiceNo;
-                <h4>Order : @obj.InVoiceNo</h4>
-                <h5>Order Time : @obj.OrderTime</h5>
-                <h6>Food Item : @obj.FoodItem</h6>
-                <p>Quantity : @obj.Quantity</p>
-                <p>Price : @obj.Price</p>
+                    <h4>Order : @obj.InVoiceNo</h4>
+                    <h5>Order Time : @obj.OrderTime</h5>
+                    <h6>Food Item : @obj.FoodItem</h6>
+                    <p>Quantity : @obj.Quantity</p>
+                    <p>Price : @obj.Price</p>
             }
            
         }
 }
 
-@if(ViewBag.ObjectPassed=="Completed")
+    @if(ViewBag.ObjectPassed=="Completed")
 {
 
      List<OrderDetails> sorted = Model.OrderBy(x => x.OrderTime).ToList();
@@ -70,19 +72,19 @@
             
             if (tempInvoiceNo == @obj.InVoiceNo)
             {
-                <h6>Food Item : @obj.FoodItem</h6>
-                <p>Quantity : @obj.Quantity</p>
-                <p>Price : @obj.Price</p>
+                    <h6>Food Item : @obj.FoodItem</h6>
+                    <p>Quantity : @obj.Quantity</p>
+                    <p>Price : @obj.Price</p>
             }
             else
             {
-                <p>-----------------------------</p>
+                    <p>-----------------------------</p>
                 tempInvoiceNo = @obj.InVoiceNo;
-                <h4>Order : @obj.InVoiceNo</h4>
-                <h5>Order Delivered on : @obj.OrderTime</h5>
-                <h6>Food Item : @obj.FoodItem</h6>
-                <p>Quantity : @obj.Quantity</p>
-                <p>Price : @obj.Price</p>
+                    <h4>Order : @obj.InVoiceNo</h4>
+                    <h5>Order Delivered on : @obj.OrderTime</h5>
+                    <h6>Food Item : @obj.FoodItem</h6>
+                    <p>Quantity : @obj.Quantity</p>
+                    <p>Price : @obj.Price</p>
             }
         }
 
@@ -97,7 +99,7 @@
 
 
 
- @*<table  class="table table-striped">
+     @*<table  class="table table-striped">
         <tr>
 
                 <th>Food Item</th>

@@ -25,6 +25,7 @@ builder.Logging.AddSerilog(logger);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddAuthentication();
 
 builder.Services.AddDistributedMemoryCache();
 
@@ -51,6 +52,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseSession();

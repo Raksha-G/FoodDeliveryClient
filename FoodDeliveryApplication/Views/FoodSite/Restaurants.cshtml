@@ -15,7 +15,10 @@
         Restaurants
     </h2>
     <table>
-        
+        <form method="post">
+        <tr> <td><input  name="SearchedfoodItem"  placeholder="Search by dish" class="form-control" style="width:100%" id="fooditem"/></td>
+        <td><button type="submit" class="btn btn-primary" asp-controller="FoodSite" asp-action="Search">Search</button></td></tr>
+        </form>
         <tr><td><p style="font-size:15px">@Html.ActionLink("Log Out","Logout")</p></td></tr>
         <tr> <td><p style="font-size:15px">@Html.ActionLink("Order History","OrderStatus")</p></td></tr>
         <tr> <td><p style="font-size:15px">@Html.ActionLink("Cart","Cart")</p></td></tr>

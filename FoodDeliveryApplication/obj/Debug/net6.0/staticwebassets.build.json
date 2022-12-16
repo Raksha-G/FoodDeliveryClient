@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "79kYme81WdtBduvQ9J4pH8Ttzi2GaOqhgx0DI7U2GYE=",
+  "Hash": "Y0E52jSxjKvFH3QI8W8xtT19SirywyxDwcmEo8RazMA=",
   "Source": "FoodDeliveryApplication",
   "BasePath": "_content/FoodDeliveryApplication",
   "Mode": "Default",
@@ -1069,6 +1069,57 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "C:\\Users\\raksha_ganyarpawar\\source\\repos\\FoodDeliveryApplication\\FoodDeliveryApplication\\wwwroot\\scss\\index.css",
+      "SourceId": "FoodDeliveryApplication",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\raksha_ganyarpawar\\source\\repos\\FoodDeliveryApplication\\FoodDeliveryApplication\\wwwroot\\",
+      "BasePath": "_content/FoodDeliveryApplication",
+      "RelativePath": "scss/index.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\scss\\index.css"
+    },
+    {
+      "Identity": "C:\\Users\\raksha_ganyarpawar\\source\\repos\\FoodDeliveryApplication\\FoodDeliveryApplication\\wwwroot\\scss\\index.min.css",
+      "SourceId": "FoodDeliveryApplication",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\raksha_ganyarpawar\\source\\repos\\FoodDeliveryApplication\\FoodDeliveryApplication\\wwwroot\\",
+      "BasePath": "_content/FoodDeliveryApplication",
+      "RelativePath": "scss/index.min.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\scss\\index.min.css"
+    },
+    {
+      "Identity": "C:\\Users\\raksha_ganyarpawar\\source\\repos\\FoodDeliveryApplication\\FoodDeliveryApplication\\wwwroot\\scss\\index.scss",
+      "SourceId": "FoodDeliveryApplication",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\raksha_ganyarpawar\\source\\repos\\FoodDeliveryApplication\\FoodDeliveryApplication\\wwwroot\\",
+      "BasePath": "_content/FoodDeliveryApplication",
+      "RelativePath": "scss/index.scss",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\scss\\index.scss"
     }
   ]
 }

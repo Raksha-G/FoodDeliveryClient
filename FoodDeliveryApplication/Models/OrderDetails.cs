@@ -5,7 +5,10 @@ namespace FoodDeliveryApplication.Models
 {
     public class OrderDetails
     {
-       
+        public OrderDetails()
+        {
+
+        }
         public int InVoiceNo { get; set; }
 
         public string UserName { get; set; }

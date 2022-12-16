@@ -1,7 +1,7 @@
-﻿
-using FoodDeliveryApplication.Models;
+﻿using FoodDeliveryApplication.Models;
 using FoodDeliveryApplication.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using Serilog;
 using System.Data.SqlClient;
 
@@ -15,7 +15,7 @@ namespace FoodDeliveryApplication.Controllers
         public List<SignUp> userList = new List<SignUp>();
         public string NotExist = "User Not Exist";
         static string CurrUser;
-        public List<FoodItems> FoodItemsSelected =  new List<FoodItems>();
+        public List<FoodItems> FoodItemsSelected = new List<FoodItems>();
         private readonly ILogger<FoodSiteController> _logger;
 
 
@@ -35,7 +35,7 @@ namespace FoodDeliveryApplication.Controllers
         }
         public IActionResult Index()
         {
-    
+
             return View();
         }
 
@@ -46,71 +46,112 @@ namespace FoodDeliveryApplication.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateAccount(SignUp signup)
+        public async Task<IActionResult> CreateAccount(SignUp signup)
         {
-                var user = userList.Find(e => e.UserName == signup.UserName);
-                if (user != null)
+            var user = userList.Find(e => e.UserName == signup.UserName);
+            if (user != null)
+            {
+                ViewBag.UserName = "UserName already Exist";
+                _logger.LogInformation("User:{0} already Exist, unable to create new Account", signup.UserName);
+                return View();
+            }
+
+            /*SqlConnection conn = new SqlConnection("Data Source = PSL-28MH6Q3 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=True;");
+            SqlCommand cmd = new SqlCommand(String.Format("insert into Users values('{0}','{1}','{2}')", signup.UserName, signup.Email, signup.Password), conn);
+            conn.Open();
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            Log.Information(String.Format("A new Account Created with UserName {0}", signup.UserName));*/
+
+
+            var httpClient = new HttpClient();
+
+            JsonContent content = JsonContent.Create(signup);
+            using (var apiRespoce = await httpClient.PostAsync("https://localhost:7021/api/Food/SignUp", content))
+            {
+                if (apiRespoce.StatusCode == System.Net.HttpStatusCode.OK)
                 {
-                    ViewBag.UserName = "UserName already Exist";
-                        _logger.LogInformation("User:{0} already Exist, unable to create new Account", signup.UserName);
-                    return View();
+
+                    _logger.LogInformation(String.Format("A new Account Created with UserName {0}", signup.UserName));
+                    return RedirectToAction("Login");
+
                 }
+                else
+                {
+                    return Content("Error: " + await apiRespoce.Content.ReadAsStringAsync());
+                }
+            }
 
-                SqlConnection conn = new SqlConnection("Data Source = PSL-28MH6Q3 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=True;");
-                SqlCommand cmd = new SqlCommand(String.Format("insert into Users values('{0}','{1}','{2}')", signup.UserName, signup.Email, signup.Password), conn);
-                conn.Open();
-                cmd.ExecuteNonQuery();
-                conn.Close();
-                Log.Information(String.Format("A new Account Created with UserName {0}", signup.UserName));
-
-
-
-            
-
-
-            _logger.LogInformation(String.Format("A new Account Created with UserName {0}", signup.UserName));
-            
-
-            return View("AccountCreated");
 
         }
 
         public IActionResult Login()
         {
-                        _logger.LogInformation("Login Triggered");
+            _logger.LogInformation("Login Triggered");
             return View();
         }
-        
-        
+
+
+        //[HttpPost]
+        //public IActionResult Login(LoginDetails login)
+        //{
+
+        //        var user = userList.Find(e => e.UserName == login.UserName);
+        //        if (user == null)
+        //        {
+        //            ViewBag.NotExist = NotExist;
+        //                   _logger.LogInformation("User does not Exist");
+        //        return View();
+        //        }
+        //        foreach (var i in userList)
+        //        {
+        //            if (i.UserName == login.UserName && i.Password == login.Password)
+        //            {
+        //            //Log.Information(String.Format("{0} Logged in", login.UserName));
+        //            _logger.LogInformation(String.Format("{0} Logged in", login.UserName));
+        //            CurrUser = i.UserName;
+        //            HttpContext.Session.SetString("UserName", login.UserName);
+        //                return RedirectToAction("Restaurants");
+        //            }
+        //        }
+
+        //        ViewBag.IncorrectPassword = "Incorrect Password";
+        //         _logger.LogError("Invalid User Details Entered");
+
+        //    return View();
+
+        //}
+
+
         [HttpPost]
-        public IActionResult Login(LoginDetails login)
+        public async Task<IActionResult> Login(LoginDetails login)
         {
-           
-                var user = userList.Find(e => e.UserName == login.UserName);
-                if (user == null)
+            var httpClient = new HttpClient();
+
+            JsonContent content = JsonContent.Create(login);
+            using (var apiRespoce = await httpClient.PostAsync("https://localhost:7021/api/NewAuthentication/login", content))
+            {
+                if (apiRespoce.StatusCode == System.Net.HttpStatusCode.OK)
                 {
-                    ViewBag.NotExist = NotExist;
-                           _logger.LogInformation("User does not Exist");
-                return View();
-                }
-                foreach (var i in userList)
-                {
-                    if (i.UserName == login.UserName && i.Password == login.Password)
-                    {
-                    //Log.Information(String.Format("{0} Logged in", login.UserName));
-                    _logger.LogInformation(String.Format("{0} Logged in", login.UserName));
-                    CurrUser = i.UserName;
+                    string res = await apiRespoce.Content.ReadAsStringAsync();
+                    Console.WriteLine(res);
+                    var userRes = JsonConvert.DeserializeObject<SuccessfullAuthenticationResponce>(res);
+
                     HttpContext.Session.SetString("UserName", login.UserName);
-                        return RedirectToAction("Restaurants");
-                    }
+                    HttpContext.Session.SetString("AccessToken", userRes.AccessToken);
+                    HttpContext.Session.SetString("RefreshToken", userRes.RefreshToken);
+
+                    return RedirectToAction("Restaurants");
+
+                }
+                else
+                {
+                    return Content("Error: " + await apiRespoce.Content.ReadAsStringAsync());
                 }
 
-                ViewBag.IncorrectPassword = "Incorrect Password";
-                 _logger.LogError("Invalid User Details Entered");
-
-            return View();
-
+            }
         }
+
 
         public IActionResult Logout()
         {
@@ -120,42 +161,93 @@ namespace FoodDeliveryApplication.Controllers
             return View("Login");
         }
 
-     
+
 
         public IActionResult Menu()
         {
-            
+
             return View();
         }
 
-       
-        public IActionResult Restaurants()
+
+        public async Task<IActionResult> Restaurants()
         {
-            if (HttpContext.Session.GetString("UserName") == null)
+            /*
+             if (HttpContext.Session.GetString("UserName") == null)
             {
                 _logger.LogInformation("{0} Logged Out", CurrUser);
                 return RedirectToAction("Login");
             }
+            var t = HttpContext.Session.GetString("Tokens");
+            Console.WriteLine("Tokens "+t);
+
             SqlConnection conn = new SqlConnection("Data Source = PSL-28MH6Q3 ; Initial Catalog = FoodDeliveryApplication; Integrated Security = True; ");
             SqlCommand cmd = new SqlCommand("select * from Restaurants", conn);
             conn.Open();
             SqlDataReader sr = cmd.ExecuteReader();
             List<Restaurants> res = new List<Restaurants>();
-            while(sr.Read())
+            while (sr.Read())
             {
-               Restaurants restaurant = new Restaurants((int)sr["Restaurant_Id"], sr["Restaurant_Name"].ToString(), sr["Restaurant_Image"].ToString());
+                Restaurants restaurant = new Restaurants((int)sr["Restaurant_Id"], sr["Restaurant_Name"].ToString(), sr["Restaurant_Image"].ToString());
                 res.Add(restaurant);
+            }*/
+
+            string? AccessToken = HttpContext.Session.GetString("AccessToken");
+
+            if (HttpContext.Session.GetString("UserName") == null)
+            {
+                _logger.LogInformation("{0} Logged Out", CurrUser);
+                Console.WriteLine("Logout");
+                return RedirectToAction("Login");
             }
-           
-            return View("Restaurants",res);
+
+            HttpClient httpClient = new HttpClient();
+            JsonContent content = JsonContent.Create  (new TokenDto()
+            {
+                Token = AccessToken,
+            });
+
+            
+            using(var validationResponce = await httpClient.PostAsync("https://localhost:7021/api/NewAuthentication/validate", content))
+            {
+                if(validationResponce.StatusCode== System.Net.HttpStatusCode.BadRequest)
+                {
+                    //handle invalid token
+                    _logger.LogInformation("Invalid Token");
+                    Console.WriteLine("Invalid Token");
+                    return RedirectToAction("Login");
+                }
+                
+            }
+
+            List<Restaurants> res = new List<Restaurants>();
+            httpClient.DefaultRequestHeaders.Authorization =
+                new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", AccessToken);
+
+            using (var apiResponce = await httpClient.GetAsync("https://localhost:7021/api/Food/GetAllRestaurants"))
+            {
+
+                if (apiResponce.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    string res1 = await apiResponce.Content.ReadAsStringAsync();
+                    res = JsonConvert.DeserializeObject<List<Restaurants>>(res1);
+                    return View("Restaurants", res);
+                }
+                else
+                {
+                    return Content("Api error" + apiResponce.StatusCode);
+                }
+
+            }
+
         }
 
 
 
 
-        public IActionResult RestaurantMenu(int Id)
+        public async Task<IActionResult> RestaurantMenu(int Id)
         {
-            if (HttpContext.Session.GetString("UserName") == null)
+            /*if (HttpContext.Session.GetString("UserName") == null)
             {
                 _logger.LogInformation("{0} Logged Out", CurrUser);
                 return RedirectToAction("Login");
@@ -170,7 +262,7 @@ namespace FoodDeliveryApplication.Controllers
 
             //string str;
             HttpContext.Session.SetInt32("ResId", Id);
-         
+
             var model = new List<Menu>();
 
             while (sr.Read())
@@ -180,15 +272,37 @@ namespace FoodDeliveryApplication.Controllers
                 Console.WriteLine(id);
                 model.Add(menu);
             }
-           
-           
+*/
 
-           
+            /////////////////////
+            ///
 
-            return View("Menu", model);
+
+            if (HttpContext.Session.GetString("UserName") == null)
+            {
+                _logger.LogInformation("{0} Logged Out", CurrUser);
+                return RedirectToAction("Login");
+            }
+
+            /////----------------------------------------------------------------------
+
+
+            List<Menu> res = new List<Menu>();
+            HttpClient httpClient = new HttpClient();
+            var apiResponce = await httpClient.GetAsync("https://localhost:7021/api/Food/GetRestaurantMenuById/" + Id);
+
+            if (apiResponce.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                string res1 = await apiResponce.Content.ReadAsStringAsync();
+                res = JsonConvert.DeserializeObject<List<Menu>>(res1);
+                return View("Menu", res);
+            }
+            else
+            {
+                return Content("Api error" + apiResponce.StatusCode);
+            }
+
         }
-
-
 
         public IActionResult Order()
         {
@@ -197,67 +311,120 @@ namespace FoodDeliveryApplication.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddToCart(IFormCollection col)
+        public async Task<IActionResult> AddToCart(IFormCollection col)
         {
 
+            string? UserName = HttpContext.Session.GetString("UserName");
+            if (UserName == null)
+            {
+                _logger.LogInformation("{0} Logged Out", CurrUser);
+                return RedirectToAction("Login");
+                //UserName = "Raksha";
+            }
+            Console.WriteLine(col["Food_Item"]);
+            //Console.WriteLine("Food Id :" +col["Food_Id"]);
+            var Food_Item = col["Food_Item"];
+            int Quantity = Convert.ToInt32(col["Quantity"]);
+            int Restaurant_Id = Convert.ToInt32(col["RestaurantId"]);
+            var Food_Id = Convert.ToInt32(col["Food_Id"]);
+            int Price = Convert.ToInt32(col["Price"]);
+
+            CartItems cart = new CartItems();
+            cart.UserName = UserName;
+            cart.FoodItem = Food_Item;
+            cart.RestaurantId = Restaurant_Id;
+            cart.Quantity = Quantity;
+            cart.Price = Price;
+
+            _logger.LogInformation("Item:{0} added to cart by the user:{1} of Quantity:{2}", Food_Item, HttpContext.Session.GetString("UserName"), Quantity);
+
+
+            /* SqlConnection conn = new SqlConnection("Data Source = PSL-28MH6Q3 ; Initial Catalog = FoodDeliveryApplication; Integrated Security = True;");
+             SqlCommand cmd = new SqlCommand(String.Format("insert into AddItemToCart values('{0}','{1}','{2}','{3}','{4}')", HttpContext.Session.GetString("UserName"), Food_Item, Quantity, Restaurant_Id, Price), conn);
+             conn.Open();
+             cmd.ExecuteNonQuery();
+             conn.Close();*/
+
+            //Tempdata["success"] = "Item Added to Cart";
+
+
+
+
+            var httpClient = new HttpClient();
+
+            JsonContent content = JsonContent.Create(cart);
+            using (var apiRespoce = await httpClient.PostAsync("https://localhost:7021/api/Food/AddToCart", content))
+            {
+                if (apiRespoce.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    TempData["success"] = "Item Added to Cart ";
+
+                    return RedirectToAction("RestaurantMenu", new { Id = Restaurant_Id });
+
+                }
+                else
+                {
+                    return Content("Error: " + apiRespoce.StatusCode);
+                }
+
+
+
+
+
+                ////            return RedirectToAction("RestaurantMenu", new { Id = Restaurant_Id });
+
+
+
+
+
+            }
+        }
+
+
+        public async Task<IActionResult> DeleteItemFromCart(int Id)
+        {
             if (HttpContext.Session.GetString("UserName") == null)
             {
                 _logger.LogInformation("{0} Logged Out", CurrUser);
                 return RedirectToAction("Login");
             }
-            Console.WriteLine(col["Food_Item"]);
-            //Console.WriteLine("Food Id :" +col["Food_Id"]);
-            var Food_Item = col["Food_Item"];
-            var Quantity = col["Quantity"];
-            var Restaurant_Id = col["RestaurantId"];
-            var Food_Id = Convert.ToInt32(col["Food_Id"]);
-            var Price = Convert.ToInt32(col["Price"]);
+            Console.WriteLine("Idddd" + Id);
 
-            _logger.LogInformation("Item:{0} added to cart by the user:{1} of Quantity:{2}", Food_Item, HttpContext.Session.GetString("UserName"), Quantity);
-
-
-            SqlConnection conn = new SqlConnection("Data Source = PSL-28MH6Q3 ; Initial Catalog = FoodDeliveryApplication; Integrated Security = True;");
-            SqlCommand cmd = new SqlCommand(String.Format("insert into AddItemToCart values('{0}','{1}','{2}','{3}','{4}')", HttpContext.Session.GetString("UserName"), Food_Item, Quantity,Restaurant_Id,Price), conn);
-            conn.Open();
-            cmd.ExecuteNonQuery();
-            conn.Close();
-
-            //Tempdata["success"] = "Item Added to Cart";
-            TempData["success"] = "Item Added to Cart";
-
-            return RedirectToAction("RestaurantMenu",new { Id = Restaurant_Id });
-
-          
-
-        }
-
-       
-        public IActionResult DeleteItemFromCart(/*IFormCollection col,*/int Id)
-        {/*
-            string FoodItem = col["FoodItem"];
-
-            int ItemNo = Convert.ToInt32(col["ItemNo"]);*/
-
-          /*  Console.WriteLine("FoodItem = " + FoodItem);*/
-           
-            SqlConnection conn = new SqlConnection("Data Source = PSL-28MH6Q3; Initial Catalog = FoodDeliveryApplication; Integrated Security = True;");
+            /*SqlConnection conn = new SqlConnection("Data Source = PSL-28MH6Q3; Initial Catalog = FoodDeliveryApplication; Integrated Security = True;");
             SqlCommand cmd = new SqlCommand(String.Format("delete from AddItemToCart where ItemNo = '{0}'", Id), conn);
             conn.Open();
             cmd.ExecuteNonQuery();
             conn.Close();
 
             TempData["success"] = "Item Removed From Cart";
-            return RedirectToAction("Cart");
+            return RedirectToAction("Cart");*/
+
+
+            HttpClient httpClient = new HttpClient();
+            var apiResponce = await httpClient.DeleteAsync("https://localhost:7021/api/Food/DeleteCartItemById/" + Id);
+
+            if (apiResponce.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                TempData["success"] = "Item Removed From Cart";
+                return RedirectToAction("Cart");
+            }
+            else
+            {
+                return Content("Api error " + apiResponce.StatusCode);
+            }
+
         }
 
 
-        public IActionResult Cart()
+        public async Task<IActionResult> Cart()
         {
-            if(HttpContext.Session.GetString("UserName")==null)
+            string? UserName = HttpContext.Session.GetString("UserName");
+            if (UserName == null)
             {
                 _logger.LogInformation("{0} Logged Out", CurrUser);
                 return RedirectToAction("Login");
-            }
+                //UserName = "Raksha";
+            }/*
             SqlConnection conn = new SqlConnection("Data Source = PSL-28MH6Q3 ; Initial Catalog = FoodDeliveryApplication; Integrated Security = True;");
             SqlCommand cmd = new SqlCommand(String.Format("select A.FoodItem, A.Quantity,A.ItemNo, F.Food_Image,F.Price,F.Id,F.Restaurant_Id from AddItemToCart A inner join Food F on F.Food_Item = A.FoodItem where A.UserName = '{0}'", HttpContext.Session.GetString("UserName")), conn);
             conn.Open();
@@ -265,37 +432,54 @@ namespace FoodDeliveryApplication.Controllers
 
             List<Cart> cart = new List<Cart>();
 
-            while(sr.Read())
+            while (sr.Read())
             {
                 Cart cartItem = new Cart(HttpContext.Session.GetString("UserName"), sr["FoodItem"].ToString(), (int)sr["Quantity"], sr["Food_Image"].ToString(), (int)sr["Price"], (int)sr["Id"], (int)sr["Restaurant_Id"], (int)sr["ItemNo"]);
                 cart.Add(cartItem);
             }
-            if(cart.Count == 0)
+            if (cart.Count == 0)
             {
                 ViewBag.Cart = "Empty";
+            }*/
+
+
+
+
+            List<Cart> res = new List<Cart>();
+            HttpClient httpClient = new HttpClient();
+            var apiResponce = await httpClient.GetAsync("https://localhost:7021/api/Food/GetCartByUserName?UserName=" + UserName);
+
+            if (apiResponce.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                string res1 = await apiResponce.Content.ReadAsStringAsync();
+                res = JsonConvert.DeserializeObject<List<Cart>>(res1);
+
+                return View("Cart", res);
+            }
+            else
+            {
+                ViewBag.Cart = "Empty";
+                return View("Cart", null);
+                //return Content("Api error" + apiResponce.StatusCode);
             }
 
-
-            return View("Cart",cart);
         }
 
         [HttpPost]
-        public IActionResult PlaceOrder(CustomerDetails details)
+        public async Task<IActionResult> PlaceOrder(CustomerDetails details)
         {
-            if (HttpContext.Session.GetString("UserName") == null)
+            string? UserName = HttpContext.Session.GetString("UserName");
+            if (UserName == null)
             {
                 _logger.LogInformation("{0} Logged Out", CurrUser);
                 return RedirectToAction("Login");
             }
-           
-
-            
 
             Random rnd = new Random();
             int inVoiceNo = rnd.Next(10000, 10000000);
 
             DateTime OrderTime = DateTime.Now;
-        
+
 
             string address = details.Address;
             string phoneNo = details.PhoneNo;
@@ -303,22 +487,55 @@ namespace FoodDeliveryApplication.Controllers
             Console.WriteLine(OrderTime);
 
             SqlConnection conn = new SqlConnection("Data Source = PSL-28MH6Q3 ; Initial Catalog = FoodDeliveryApplication; Integrated Security = True;");
-            SqlCommand cmd = new SqlCommand(String.Format("insert into Orders values('{0}','{1}','{2}','{3}','{4}')",inVoiceNo, HttpContext.Session.GetString("UserName"),address,phoneNo,OrderTime), conn);
+            /*SqlCommand cmd = new SqlCommand(String.Format(
+                "insert into Orders values('{0}','{1}','{2}','{3}','{4}')",
+                inVoiceNo,
+                HttpContext.Session.GetString("UserName"),
+                address,
+                phoneNo,
+                OrderTime), conn);
             conn.Open();
             cmd.ExecuteNonQuery();
-            conn.Close();
+            conn.Close();*/
 
-           
+            OrderPlaced order = new OrderPlaced();
+            order.Address = address;
+            order.InVoiceNo = inVoiceNo;
+            order.PhoneNo = phoneNo;
+            order.UserName = UserName;
+            order.OrderTime = OrderTime;
+
+            var httpClient = new HttpClient();
+
+            JsonContent content = JsonContent.Create(order);
+            using (var apiRespoce = await httpClient.PostAsync("https://localhost:7021/api/Food/Orders", content))
+            {
+                if (apiRespoce.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+
+                }
+                else
+                {
+                    return Content("Error: " + apiRespoce.StatusCode);
+                }
+
+
+            }
+
+
+
 
             SqlConnection conn1 = new SqlConnection("Data Source = PSL-28MH6Q3 ; Initial Catalog = FoodDeliveryApplication; Integrated Security = True;");
-            SqlCommand sqlcmd = new SqlCommand(String.Format("select * from AddItemToCart where UserName = '{0}'", HttpContext.Session.GetString("UserName")), conn);
+            SqlCommand sqlcmd = new SqlCommand(String.Format(
+                "select * from AddItemToCart where UserName = '{0}'",
+                HttpContext.Session.GetString("UserName")), conn);
             conn.Open();
             SqlDataReader sr = sqlcmd.ExecuteReader();
 
             var orderList = new List<OrderDetails>();
             while (sr.Read())
             {
-                OrderDetails orderDetails = new OrderDetails(inVoiceNo, sr["UserName"].ToString(), (int)sr["RestaurantId"], sr["FoodItem"].ToString(), (int)sr["Quantity"], (int)sr["Price"],OrderTime);
+                OrderDetails orderDetails = new OrderDetails(inVoiceNo, sr["UserName"].ToString(), (int)sr["RestaurantId"], sr["FoodItem"].ToString(), (int)sr["Quantity"], (int)sr["Price"], OrderTime);
                 orderList.Add(orderDetails);
             }
             conn.Close();
@@ -326,29 +543,69 @@ namespace FoodDeliveryApplication.Controllers
             string items = "";
             string resId = "";
 
+            var httpClient1 = new HttpClient();
 
-
-            foreach (var obj in orderList)
+            JsonContent content1 = JsonContent.Create(orderList);
+            using (var apiRespoce = await httpClient1.PostAsync("https://localhost:7021/api/Food/OrderDetails", content1))
             {
-                SqlCommand sqlCommand = new SqlCommand(String.Format("insert into PlacedOrderDetail values('{0}','{1}','{2}','{3}','{4}','{5}','{6}')",obj.InVoiceNo,obj.UserName,obj.RestaurantId,obj.FoodItem,obj.Quantity,obj.Price,obj.OrderTime), conn);
-                items += obj.FoodItem + ",";
-                resId = obj.RestaurantId.ToString();
-                conn.Open();
-                sqlCommand.ExecuteNonQuery();
-                conn.Close();
+                if (apiRespoce.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+
+                }
+                else
+                {
+                    return Content("Error: " + apiRespoce.StatusCode);
+                }
+
+
             }
 
 
+
+            /* foreach (var obj in orderList)
+             {
+                 SqlCommand sqlCommand = new SqlCommand(String.Format(
+                     "insert into PlacedOrderDetail values('{0}','{1}','{2}','{3}','{4}','{5}','{6}')",
+                     obj.InVoiceNo,
+                     obj.UserName,
+                     obj.RestaurantId,
+                     obj.FoodItem,
+                     obj.Quantity,
+                     obj.Price,
+                     obj.OrderTime), conn);
+                 items += obj.FoodItem + ",";
+                 resId = obj.RestaurantId.ToString();
+                 conn.Open();
+                 sqlCommand.ExecuteNonQuery();
+                 conn.Close();
+             }*/
+
+
+
+
+
             _logger.LogDebug(String.Format("Order placed by user {0} of Items: {1} from restaurant Id : {2}", HttpContext.Session.GetString("UserName"), items, resId));
+            /*
+                        SqlCommand cmd1 = new SqlCommand(String.Format("delete from AddItemToCart where UserName = '{0}'", HttpContext.Session.GetString("UserName")), conn);
+                        conn.Open();
+                        cmd1.ExecuteNonQuery();
+                        conn.Close();*/
 
-            SqlCommand cmd1 = new SqlCommand(String.Format("delete from AddItemToCart where UserName = '{0}'", HttpContext.Session.GetString("UserName")), conn);
-            conn.Open();
-            cmd1.ExecuteNonQuery();
-            conn.Close();
 
 
-            return View();
-        
+            HttpClient httpClient2 = new HttpClient();
+            var apiResponce = await httpClient.DeleteAsync("https://localhost:7021/api/Food/DeleteCartItemsByUserName/" + UserName);
+
+            if (apiResponce.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                return View();
+            }
+            else
+            {
+                return Content("Api error " + apiResponce.StatusCode);
+            }
+
+
         }
 
         public IActionResult CustomerDetails()
@@ -367,16 +624,16 @@ namespace FoodDeliveryApplication.Controllers
             conn.Open();
             SqlDataReader sr = cmd.ExecuteReader();
             List<Order> CancelOrderList = new List<Order>();
-            while(sr.Read())
+            while (sr.Read())
             {
-                Order order = new Order(sr["UserName"].ToString(), sr["FoodItem"].ToString(),(int)sr["Price"], (int)sr["Quantity"], (int)sr["RestaurantId"]);
+                Order order = new Order(sr["UserName"].ToString(), sr["FoodItem"].ToString(), (int)sr["Price"], (int)sr["Quantity"], (int)sr["RestaurantId"]);
                 CancelOrderList.Add(order);
             }
             conn.Close();
 
-           foreach(var obj in CancelOrderList)
+            foreach (var obj in CancelOrderList)
             {
-                SqlCommand cmd1 = new SqlCommand(String.Format("insert into CancelOrder values('{0}','{1}','{2}','{3}','{4}')", obj.UserName,obj.FoodItem,obj.Price,obj.Quantity,obj.RestaurantId), conn);
+                SqlCommand cmd1 = new SqlCommand(String.Format("insert into CancelOrder values('{0}','{1}','{2}','{3}','{4}')", obj.UserName, obj.FoodItem, obj.Price, obj.Quantity, obj.RestaurantId), conn);
                 conn.Open();
                 cmd1.ExecuteNonQuery();
                 conn.Close();
@@ -398,26 +655,28 @@ namespace FoodDeliveryApplication.Controllers
             return View();
         }
 
-        public IActionResult Status(int Id)
+        public async Task<IActionResult> Status(int Id)
         {
-            Console.WriteLine("Id : " + Id);
-            if (HttpContext.Session.GetString("UserName") == null)
+            string? UserName = HttpContext.Session.GetString("UserName");
+            if (UserName == null)
             {
                 _logger.LogInformation("{0} Logged Out", CurrUser);
                 return RedirectToAction("Login");
+                //UserName = "Raksha";
             }
 
-            SqlConnection conn = new SqlConnection("Data Source = PSL-28MH6Q3 ; Initial Catalog = FoodDeliveryApplication; Integrated Security = True;");
+            Console.WriteLine("Id : " + Id);
+            /*SqlConnection conn = new SqlConnection("Data Source = PSL-28MH6Q3 ; Initial Catalog = FoodDeliveryApplication; Integrated Security = True;");
 
             ViewBag.ObjectPassed = "True";
             var OrderList = new List<Order>();
             var orderlist = new List<OrderDetails>();
 
-            
+
 
             if (Id == 1)
             {
-               
+
 
                 ViewBag.ObjectPassed = "Pending";
                 SqlCommand cmd = new SqlCommand(String.Format("Select * from PlacedOrderDetail where UserName = '{0}'", HttpContext.Session.GetString("UserName")), conn);
@@ -428,14 +687,14 @@ namespace FoodDeliveryApplication.Controllers
                 {
                     string time = sr["OrderTime"].ToString();
                     DateTime orderTime = Convert.ToDateTime(time);
-                    OrderDetails orderDetails = new OrderDetails((int)sr["InVoiceNo"], sr["UserName"].ToString(), (int)sr["RestaurantId"], sr["FoodItem"].ToString(), (int)sr["Quantity"], (int)sr["Price"],orderTime);
+                    OrderDetails orderDetails = new OrderDetails((int)sr["InVoiceNo"], sr["UserName"].ToString(), (int)sr["RestaurantId"], sr["FoodItem"].ToString(), (int)sr["Quantity"], (int)sr["Price"], orderTime);
                     orderlist.Add(orderDetails);
                 }
                 conn.Close();
-                return View("OrderStatus",orderlist);
+                return View("OrderStatus", orderlist);
             }
 
-            /*if(Id==2)
+            *//*if(Id==2)
             {
                 SqlCommand cmd2 = new SqlCommand(String.Format("Select * from CancelOrder where UserName = '{0}'", HttpContext.Session.GetString("UserName")), conn);
                 conn.Open();
@@ -450,9 +709,9 @@ namespace FoodDeliveryApplication.Controllers
                 conn.Close();
                 return View("OrderStatus", OrderList);
 
-            }*/
+            }*//*
 
-            if(Id==3)
+            if (Id == 3)
             {
                 ViewBag.ObjectPassed = "Completed";
                 SqlCommand cmd1 = new SqlCommand(String.Format("Select * from CompletedOrder where UserName = '{0}'", HttpContext.Session.GetString("UserName")), conn);
@@ -460,21 +719,85 @@ namespace FoodDeliveryApplication.Controllers
                 SqlDataReader sr1 = cmd1.ExecuteReader();
                 while (sr1.Read())
                 {
-                    OrderDetails order = new OrderDetails((int)sr1["InVoiceNo"], sr1["UserName"].ToString(),sr1["FoodItem"].ToString(), (int)sr1["Quantity"], (int)sr1["Price"], (DateTime)sr1["OrderCompletionTime"]);
+                    OrderDetails order = new OrderDetails((int)sr1["InVoiceNo"], sr1["UserName"].ToString(), sr1["FoodItem"].ToString(), (int)sr1["Quantity"], (int)sr1["Price"], (DateTime)sr1["OrderCompletionTime"]);
                     orderlist.Add(order);
                 }
                 conn.Close();
                 return View("OrderStatus", orderlist);
 
             }
+            
+*/
 
-           
 
 
-            return View("OrderStatus", OrderList);
+            if (Id == 1)
+            {
+                ViewBag.ObjectPassed = "Pending";
+            }
+            else if (Id == 3)
+            {
+                ViewBag.ObjectPassed = "Completed";
+            }
+
+            List<OrderDetails> res = new List<OrderDetails>();
+            HttpClient httpClient = new HttpClient();
+            var apiResponce = await httpClient.GetAsync("https://localhost:7021/api/Food/OrderStatus/" + Id + "/" + UserName);
+
+            if (apiResponce.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                string res1 = await apiResponce.Content.ReadAsStringAsync();
+                try
+                {
+                    res = JsonConvert.DeserializeObject<List<OrderDetails>>(res1);
+
+                }
+                catch (Exception e)
+                {
+                    return Content(e.Message);
+                };
+                Console.WriteLine(res.Count);
+                return View("OrderStatus", res);
+            }
+            else
+            {
+                return Content("Api error" + apiResponce.Content.ToString);
+            }
+
+
+
+
+            /* return View("OrderStatus", OrderList);*/
 
 
         }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Search(IFormCollection col)
+        {
+            if (HttpContext.Session.GetString("UserName") == null)
+            {
+                _logger.LogInformation("{0} Logged Out", CurrUser);
+                return RedirectToAction("Login");
+            }
+            string FoodItem = col["SearchedfoodItem"];
+            List<Menu> res = new List<Menu>();
+            HttpClient httpClient = new HttpClient();
+            var apiResponce = await httpClient.GetAsync("https://localhost:7021/api/Food/SearchMenuByName/" + FoodItem);
+
+            if (apiResponce.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                string res1 = await apiResponce.Content.ReadAsStringAsync();
+                res = JsonConvert.DeserializeObject<List<Menu>>(res1);
+                return View("Menu", res);
+            }
+            else
+            {
+                return Content("Api error" + apiResponce.StatusCode);
+            }
+        }
+
 
 
     }
