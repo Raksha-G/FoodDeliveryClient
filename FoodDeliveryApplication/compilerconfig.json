@@ -2,5 +2,21 @@
   {
     "outputFile": "wwwroot/scss/index.css",
     "inputFile": "wwwroot/scss/index.scss"
+  },
+  {
+    "outputFile": "wwwroot/scss/RestaurantStyle.css",
+    "inputFile": "wwwroot/scss/RestaurantStyle.scss"
+  },
+  {
+    "outputFile": "wwwroot/scss/MenuStyle.css",
+    "inputFile": "wwwroot/scss/MenuStyle.scss"
+  },
+  {
+    "outputFile": "wwwroot/scss/HomePage.css",
+    "inputFile": "wwwroot/scss/HomePage.scss"
+  },
+  {
+    "outputFile": "wwwroot/scss/Dummy.css",
+    "inputFile": "wwwroot/scss/Dummy.scss"
   }
 ]

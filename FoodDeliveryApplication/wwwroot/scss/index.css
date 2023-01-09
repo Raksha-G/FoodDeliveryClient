@@ -4,3 +4,6 @@
 body .container {
   background-color: aliceblue;
 }
+body .container .display-4 {
+  color: cornflowerblue;
+}

@@ -2,9 +2,56 @@
     ViewData["Title"] = "Home Page";
 }
 
-<link rel="stylesheet" href="~/scss/index.css"/>
+<link rel="stylesheet" href="~/scss/HomePage.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> 
+<script>
+       $(function () { 
+      count = 0; 
+      wordsArray = ["Hungry?", "Cooking gone wrong?", "Unexpected Guests!","Movie Marathon?","Game Night?","Late night at office?"]; 
+      setInterval(function () { 
+        count++; 
+        $("#word").fadeOut(500, function () { 
+          $(this).text(wordsArray[count % wordsArray.length]).fadeIn(500); 
+        }); 
+      }, 3500); 
+        }); 
+</script>
 
-<div class="text-center container">
-    <h1 class="display-4">Welcome</h1>
-    
-</div>
+
+
+        <body>
+
+
+            <div class="split right">
+            <img src="https://www.bing.com/th?id=OIP.Cl_5Jp99SFiVcA2qRrghbAHaFt&w=284&h=219&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2"/>
+        </div>
+
+        <div class="split left" onload="changeText('Hungry?')">
+            <div class="text1" style="margin-top:70px;margin-left:50px">
+                <div style="display: flex; justify-content: flex-start; flex-direction:row; align-items: center; margin-bottom:70px">
+                    <h1 style="color:orange">SWIGGY</h1>
+                    <a  asp-controller="FoodSite" asp-action="Login" style="right:140px;color:black;text-decoration:none;font-weight:600">Login</a>
+                    <a  asp-controller="FoodSite" asp-action="CreateAccount" style="right:40px;background-color:black;color:white" class="btn ">Sign up</a>
+                 
+                </div>
+                <div>
+                    <h2 id="word">Hungry?</h2>
+                </div>
+                <p>Order food from favorite restaurants near you.</p>
+           </div>
+        </div>
+
+        </body>
+
+
+
+                           
+
+            
+
+
+
+            
+   
+
+

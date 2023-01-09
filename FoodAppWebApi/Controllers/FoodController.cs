@@ -6,10 +6,12 @@ using System.Data.SqlClient;
 namespace FoodAppWebApi.Controllers
 {
     [Route("api/[controller]/[action]")]
+    [CustomAttribute.TokenValidator]
     [ApiController]
     public class FoodController : ControllerBase
     {
         [HttpGet]
+       
         public IActionResult GetAllRestaurants()
         {
             SqlConnection conn = new SqlConnection("Data Source = PSL-28MH6Q3 ; Initial Catalog = FoodDeliveryApplication; Integrated Security = True; ");

@@ -8,19 +8,36 @@ namespace FoodDeliveryApplication.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-       
-
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IHttpContextAccessor httpContextAccessor)
         {
             _logger = logger;
-
-            //Insert UserDetails in List
-
+            _httpContextAccessor = httpContextAccessor;
         }
+
+
+
+        //public HomeController(ILogger<HomeController> logger)
+        //{
+        //    _logger = logger;
+
+        //    //Insert UserDetails in List
+
+        //}
 
         public IActionResult Index()
         {
+            if (String.IsNullOrEmpty(_httpContextAccessor.HttpContext.Session.GetString("UserName"))){
+                //return RedirectToAction("Login", "FoodSite");
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Restaurants", "FoodSite");
+
+            }
+
             return View();
         }
 

@@ -1,4 +1,4 @@
-﻿@model List<Menu> 
+﻿@model List<Menu>
 
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -6,69 +6,66 @@
 
 <script>
     function increaseCount(a, b) {
-  var input = b.previousElementSibling;
-  var value = parseInt(input.value, 10);
-  value = isNaN(value) ? 0 : value;
-  value++;
-  input.value = value;
-}
+        var input = b.previousElementSibling;
+        var value = parseInt(input.value, 10);
+        value = isNaN(value) ? 0 : value;
+        value++;
+        input.value = value;
+    }
 
-function decreaseCount(a, b) {
-  var input = b.nextElementSibling;
-  var value = parseInt(input.value, 10);
-  if (value > 1) {
-    value = isNaN(value) ? 0 : value;
-    value--;
-    input.value = value;
-  }
-}
+    function decreaseCount(a, b) {
+        var input = b.nextElementSibling;
+        var value = parseInt(input.value, 10);
+        if (value > 1) {
+            value = isNaN(value) ? 0 : value;
+            value--;
+            input.value = value;
+        }
+    }
 </script>
 
 
 
 
-<div class="d-flex justify-content-between">
-    <h2 class="text-success">
-        Menu
+<div class="d-flex justify-content-between" style="margin-top:10px">
+    <h2 style="font-family:'Roboto Black', sans-serif;color:orange;font-weight:bold;">
+        MENU
     </h2>
-  @*  <p style="font-size:20px" class="btn btn-primary text-black ">@Html.ActionLink("Cart","Cart")</p>*@
+    @*  <p style="font-size:20px" class="btn btn-primary text-black ">@Html.ActionLink("Cart","Cart")</p>*@
     <table>
-        
-        <tr><td><p style="font-size:15px">@Html.ActionLink("Log Out","Logout")</p></td></tr>
-        <tr> <td><p style="font-size:15px">@Html.ActionLink("Order History","OrderStatus")</p></td></tr>
-        <tr> <td><p style="font-size:15px">@Html.ActionLink("Cart","Cart")</p></td></tr>
-        
+
+        @* <tr><td><p style="font-size:15px">@Html.ActionLink("Log Out","Logout")</p></td></tr>*@
+        @*  <tr> <td><p style="font-size:15px">@Html.ActionLink("Order History","OrderStatus")</p></td></tr>
+        <tr> <td><p style="font-size:15px">@Html.ActionLink("Cart","Cart")</p></td></tr>*@
+
     </table>
-</div> 
+</div>
 
 
 
-<table>
- 
+@*<table>
+
         @foreach(var obj in Model)
         {
         @using (@Html.BeginForm("AddToCart","FoodSite",FormMethod.Post))
         {
-          @*  <input type="hidden" value="@obj.Id" name="Food_Id"/>*@
+
          <tr>
-                       
+
                      <th><img src="@obj.food_img" style="width:250px; height:250px ; margin-left:30px;margin-right:30px;margin-top:30px" /></th>
                      <td ><div  readonly>@obj.food_item</div>
                          <div class="d-none">
                              <input name="Food_Item" value="@obj.food_item"/>
                          </div>
-                         
-                       @*  <div class="d-none">
-                             <input name="Food_Id" value="@obj.Id"/>
-                         </div>*@
+
 
                          <div class="d-none">
                              <input name="RestaurantId" value="@obj.RestaurantId"/>
                          </div>
-                        
+
                          <br/>
                          Price : @obj.price
-                         
+
                          <div class="d-none">
                              <input name="Price" value="@obj.price"/>
                          </div>
@@ -80,19 +77,82 @@ function decreaseCount(a, b) {
                               <span class="up" onClick='increaseCount(event, this)'>+</span>
                          </div>
                          <br/>
-                         
+
                          <button class="btn btn-primary" type="submit">Add to Cart</button>
                      </td>
                 </tr>
 
 
         }
-       
-          
-           
-            
+
+
+
+
         }
-        
-  
+
+
 </table>
+*@
+
+
+<link rel="stylesheet" href="~/scss/RestaurantStyle.css">
+    
+         
+
+
+
+
+     <div id="cards_landscape_wrap-2">
+        <div class="container">
+            <div class="row">
+                                @foreach(var obj in Model)
+                                {
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                    @*<a href="">*@
+                        <div class="card-flyer">
+                            <div class="text-box">
+                                 @using (@Html.BeginForm("AddToCart", "FoodSite", FormMethod.Post))
+                                 {
+                                     <div class="image-box">
+                                        <img src="@obj.food_img" alt="" />
+                                        </div>
+                                        <div class="text-container">
+                                            <h6>@obj.food_item</h6>
+                                                <div class="d-none">
+                                                <input name="Food_Item" value="@obj.food_item" />
+                                                </div>
+                                                <div class="d-none">
+                                                    <input name="RestaurantId" value="@obj.RestaurantId" />
+                                                </div>
+
+                                                <p>Price : @obj.price</p>
+                                                <div class="d-none">
+                                                    <input name="Price" value="@obj.price" />
+                                                </div>
+
+                                                <div class="counter">
+                                                    <span class="down" onClick='decreaseCount(event, this)'>-</span>
+                                                    <input type="text" readonly value="1" style="width:50px" class="text-center" name="Quantity">
+                                                    <span class="up" onClick='increaseCount(event, this)'>+</span>
+                                                </div>
+                                                <br />
+                                                <button class="btn btn-primary" type="submit" style="background-color:orange">Add to Cart</button>
+                                        </div>
+                                 }
+                                   
+                            </div>
+                        </div>
+                  @*  </a>*@
+                </div>
+               }
+            </div>
+        </div>
+    </div>   
+
+
+
+
+
+
+
 

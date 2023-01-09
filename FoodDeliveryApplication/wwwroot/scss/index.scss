@@ -1,9 +1,11 @@
-﻿body{
+﻿body {
     width: 100%;
-    
-    .container{
-        background-color: aliceblue;
-    }
 
+    .container {
+        background-color: aliceblue;
+        .display-4{
+            color: cornflowerblue;
+        }
+    }
 }
 

@@ -11,7 +11,7 @@
 @*-------------------------------*@
 
 <form method="post">
-    <div class="border p-3 mt-4 container  align-self-center " style="width:40%">
+    <div class="border p-3 mt-4 container  align-self-center " style="width:40%; border-color:orange">
 
         <div class="p-3 mt-4 container align-self-center">
             @if(ViewBag.UserName == "UserName already Exist")
@@ -22,7 +22,10 @@
             {
                 <p class="text-danger">Email already exist</p>
             }
-            <h3>Sign up</h3>
+             <div style="display: flex; justify-content: flex-start; flex-direction:row; align-items: center">
+                    <h3 style="margin-right:220px">Sign up</h3>
+                     <img src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/Image-login_btpq7r" style="left:50px ; height:60px;width:60px"/>
+                 </div>
             <br />
             <div class="mb-3">
                 @*<label asp-for="UserName"></label>*@
@@ -36,10 +39,10 @@
 
              <div class="mb-3">
                 @*<label asp-for="Password"></label>*@
-                <input asp-for="Password" placeholder="Password" class="form-control" style="width:100%"/>
+                <input asp-for="Password" placeholder="Password" class="form-control" type="password" style="width:100%"/>
             </div>
 
-            <button type="submit" class="btn btn-outline-primary" style="width:100% ">Create</button>
+            <button type="submit" class="btn" style="width:100%;background-color:orange ">Create</button>
 
             <p>Already have an account ?<a asp-controller="FoodSite" asp-action="Login" class="text-danger"> Login</a></p>
 

@@ -112,7 +112,7 @@ namespace FoodAppWebApi.Services
                 audience: _config.Audience,
                 claims: claims,
                 notBefore: DateTime.UtcNow,
-                expires: DateTime.Now.AddSeconds(3000),
+                expires: DateTime.Now.AddSeconds(1000),
                 signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler().WriteToken(token);

@@ -1,6 +1,8 @@
 ﻿@using System.Data.SqlClient
 @model List<Cart>
 
+<link rel="stylesheet" href="~/scss/RestaurantStyle.css">
+
 
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -12,6 +14,10 @@
 @{
     int Total_Price = 0;
     int Id = 0;
+
+    
+    int Total_Price1 = 0;
+    int Id1 = 0;
 }
 
 
@@ -26,50 +32,53 @@ else
 @*@using(@Html.BeginForm("DeleteItemFromCart","FoodSite",FormMethod.Post))
 @*<form method="post">*@
 //{
-
+<h2  style="font-family:'Roboto Black', sans-serif;color:orange;font-weight:bold;">CART</h2>
     
-<table>
-    @foreach(var obj in Model)
-    {
-      
 
-         <tr>
-              <th><img src="@obj.FoodImage" style="width:250px; height:250px ; margin-left:30px;margin-right:30px;margin-top:30px" /></th>
-              <td>@obj.FoodItem
-              <br/>
-              Price : @obj.Price
-              <br/>
-              Quantity : @obj.Quantity
-              <br/>
-              <br/>
-               @* <div class="d-none">
-                    <input name="FoodItem" value="@obj.FoodItem"/>
-                </div>*@
-              <a class="btn btn-primary" asp-controller="FoodSite" asp-action="DeleteItemFromCart" asp-route-Id="@obj.ItemNo">Remove</a>
-              </td>
-                </tr>
-                Total_Price = Total_Price + @obj.Price * obj.Quantity;
 
+
+
+
+
+
+
+
+  <div id="cards_landscape_wrap-2">
+        <div class="container">
+            <div class="row">
+                @foreach(var obj1 in Model)
                 {
-                   @* SqlConnection conn = new SqlConnection("Data Source = PSL-28MH6Q3 ; Initial Catalog = FoodDeliveryApplication; Integrated Security = True;");
-                    SqlCommand cmd = new SqlCommand(String.Format("insert into ConfirmOrder(UserName,FoodItem,Price,Quantity,RestaurantId) values('{0}','{1}','{2}','{3}','{4}')",@obj.UserName, @obj.FoodItem, @obj.Price,@obj.Quantity,@obj.RestaurantId), conn);
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                    conn.Close();*@
-                }
-                Id = @obj.RestaurantId;
-               
-            }
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                    @*<a href="">*@
+                        <div class="card-flyer">
+                            <div class="text-box">
+                                     <div class="image-box">
+                                        <img src="@obj1.FoodImage" alt="" />
+                                        </div>
+                                        <div class="text-container">
+                                            <h6>@obj1.FoodItem</h6>
+                                            <p>Price : @obj1.Price</p>
+                                            <p>Quantity : @obj1.Quantity</p>
+                                            <a class="btn btn-primary" asp-controller="FoodSite" asp-action="DeleteItemFromCart" asp-route-Id="@obj1.ItemNo" style="background-color:orange">Remove</a>
+                                            
+                                            @{
+                                                Total_Price1 = Total_Price1 + obj1.Price * obj1.Quantity;
+                                                Id1 = obj1.RestaurantId;
+                                            }
+                                        </div>
+                                   
+                            </div>
+                        </div>
+                   @* </a>*@
+                </div>
+                 }
+            </div>
+        </div>
+    </div>   
 
-</table>
+<h4>Total Price : @Total_Price1</h4>
 <br/>
-<h4>Total Price : @Total_Price</h4>
-<br/>
- Console.WriteLine("RestaurantId:"+Id);
-<a class="btn btn-primary" asp-controller="FoodSite" asp-action="CustomerDetails" type="submit" >Add Details</a>
-<a class="btn btn-primary" asp-controller="FoodSite" asp-action="Restaurants">Add Items</a>  
 
-
-    //}
- 
+<a class="btn btn-primary" asp-controller="FoodSite" asp-action="CustomerDetails" type="submit" style="background-color:orange" >Add Details</a>
+<a class="btn btn-primary" asp-controller="FoodSite" asp-action="Restaurants" style="background-color:orange">Add Items</a> 
 }

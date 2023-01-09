@@ -12,6 +12,8 @@
 
   <ItemGroup>
     <_ContentIncludedByDefault Remove="compilerconfig.json" />
+    <_ContentIncludedByDefault Remove="wwwroot\scss\Dummy.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\scss\HomePage.css" />
   </ItemGroup>
 
   <ItemGroup>

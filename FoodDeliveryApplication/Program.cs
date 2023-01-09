@@ -28,6 +28,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddAuthentication();
 
 builder.Services.AddDistributedMemoryCache();
+builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddSession(options =>
 {
