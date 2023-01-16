@@ -1,0 +1,142 @@
+﻿@model CustomerDetails
+<link rel="stylesheet" href="~/scss/Payment.css">
+
+
+
+<form method="post">
+    <div class="container">
+        <div class="box">
+            <div class="left">
+                <h3>BILLING ADDRESS</h3>
+            
+                    <div class="form1">
+
+                    Full name
+                    <input type="text" asp-for="UserName" placeholder="Enter name" />
+                    Phone No
+                    <input type="text"  asp-for="PhoneNo" placeholder="Enter Phone No" />
+                    Address
+                    <input type="text" asp-for="Address" placeholder="Enter Address" />
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                    City
+                    <input type="text"  asp-for="City" placeholder="City" />
+                    <div id="states">
+                        <label>
+                            State
+                            <select asp-for="State">
+                                <option value="AN">Andaman and Nicobar Islands</option>
+                                <option value="AP">Andhra Pradesh</option>
+                                <option value="AR">Arunachal Pradesh</option>
+                                <option value="AS">Assam</option>
+                                <option value="BR">Bihar</option>
+                                <option value="CH">Chandigarh</option>
+                                <option value="CT">Chhattisgarh</option>
+                                <option value="DN">Dadra and Nagar Haveli</option>
+                                <option value="DD">Daman and Diu</option>
+                                <option value="DL">Delhi</option>
+                                <option value="GA">Goa</option>
+                                <option value="GJ">Gujarat</option>
+                                <option value="HR">Haryana</option>
+                                <option value="HP">Himachal Pradesh</option>
+                                <option value="JK">Jammu and Kashmir</option>
+                                <option value="JH">Jharkhand</option>
+                                <option value="KA">Karnataka</option>
+                                <option value="KL">Kerala</option>
+                                <option value="LA">Ladakh</option>
+                                <option value="LD">Lakshadweep</option>
+                                <option value="MP">Madhya Pradesh</option>
+                                <option value="MH">Maharashtra</option>
+                                <option value="MN">Manipur</option>
+                                <option value="ML">Meghalaya</option>
+                                <option value="MZ">Mizoram</option>
+                                <option value="NL">Nagaland</option>
+                                <option value="OR">Odisha</option>
+                                <option value="PY">Puducherry</option>
+                                <option value="PB">Punjab</option>
+                                <option value="RJ">Rajasthan</option>
+                                <option value="SK">Sikkim</option>
+                                <option value="TN">Tamil Nadu</option>
+                                <option value="TG">Telangana</option>
+                                <option value="TR">Tripura</option>
+                                <option value="UP">Uttar Pradesh</option>
+                                <option value="UT">Uttarakhand</option>
+                                <option value="WB">West Bengal</option>
+                            </select>
+                        </label>
+
+                    <label>
+                        Zipcode
+                        <input type="number"  asp-for="Zipcode" placeholder="Enter Zipcode" />
+                    </label>
+                    </div>
+           
+                    </div>
+
+            </div>
+            <div class="right">
+                <h3>PAYMENT</h3>
+            
+                    <div class="form1">
+
+                    Accepted Cards
+                    <br />
+
+                    <div class="images">
+
+                    <div><img src="https://th.bing.com/th/id/R.16dbc44d8d44fd6157f722a9674e7b07?rik=Us1kmY7Dub3wRQ&riu=http%3a%2f%2fwww.pngall.com%2fwp-content%2fuploads%2f2016%2f07%2fMastercard-Download-PNG.png&ehk=j8swbECt%2f%2f%2bT0KJGslF5ZNtn6SLSvlMLsIGEDZogxNE%3d&risl=&pid=ImgRaw&r=0" /></div>
+
+                    <div><img src="https://www.mycollection.in/public/images/rupay_card.png"/></div>
+                    </div>
+
+             
+                    <br /> <br />
+                    Credit card number
+                    <input type="text" asp-for="CardNo" placeholder="Enter Credit Card" />
+                    Exp month
+                    <input type="text"  asp-for="ExpMonth" placeholder="Enter Expiry Month" />
+
+                    <div id="states">
+                        <label>
+                            Exp year
+                            <select asp-for="ExpYear">
+                                <option>Choose year</option>
+                                <option>2023</option>
+                                <option>2024</option>
+                                <option>2025</option>
+                                <option>2026</option>
+                                <option>2027</option>
+                                <option>2028</option>
+                            </select>
+                        </label>
+
+                    <label>
+                        CVV
+                        <input type="number" name="" asp-for="CVV" placeholder="Enter CVV" />
+                    </label>
+                    </div>
+                    <button class="btn btn-primary" type="submit" asp-controller="FoodSite" asp-action="PlaceOrder" style="background-color:orange;color:white;font-weight:bold;border-color:orange">Proceed to Checkout</button>
+                    </div>
+            
+            </div>
+
+        </div>
+    </div>
+    @*
+    <a class="btn btn-primary" type="submit" asp-controller="FoodSite" asp-action="PlaceOrder">Proceed to Checkout</a>
+    *@
+</form>
+
+
+
+
+@*<div class="container2">
+
+     <div class="footer_icons">
+                          <div><a href="#"><img src="https://img.icons8.com/ios/2x/instagram-new.png" style=" width:30px;height:30px;position:absolute;"/></a></div>
+                          <div><a href="#"><img src="https://img.icons8.com/ios/2x/twitter--v3.png" style=" width:30px;height:30px;position:absolute;"/></a></div>
+                          <div><a href="#"><img src="https://img.icons8.com/ios/2x/youtube-play.png" style=" width:30px;height:30px;position:absolute;"/></a></div>
+                          <div><a href="#"><img src="https://img.icons8.com/ios/2x/linkedin-circled--v2.png" style=" width:30px;height:30px;position:absolute;"/></a></div>
+                          <div><a href="#"><img src="https://img.icons8.com/ios/2x/facebook-circled--v4.png" style=" width:30px;height:30px;position:absolute;"/></a></div>
+     </div>
+
+</div>*@

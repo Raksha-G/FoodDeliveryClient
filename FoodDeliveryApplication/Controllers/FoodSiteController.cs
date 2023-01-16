@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Serilog;
 using System.Data.SqlClient;
-
+using System.Linq;
 
 namespace FoodDeliveryApplication.Controllers
 {
@@ -14,6 +14,7 @@ namespace FoodDeliveryApplication.Controllers
 
         public List<SignUp> userList = new List<SignUp>();
         public string NotExist = "User Not Exist";
+        public string NoUser = "NoUser";
         static string CurrUser;
         public List<FoodItems> FoodItemsSelected = new List<FoodItems>();
         private readonly ILogger<FoodSiteController> _logger;
@@ -91,6 +92,13 @@ namespace FoodDeliveryApplication.Controllers
         public async Task<IActionResult> Login(LoginDetails login)
         {
             var httpClient = new HttpClient();
+            /*
+                        var user = userList.Find(e => e.UserName == login.UserName);
+                        if (user==null)
+                        {
+                            ViewBag.NotExist = "User Not Exist";
+                            return View();
+                        }*/
 
             JsonContent content = JsonContent.Create(login);
             using (var apiRespoce = await httpClient.PostAsync("https://localhost:7021/api/NewAuthentication/login", content))
@@ -112,10 +120,27 @@ namespace FoodDeliveryApplication.Controllers
                     return RedirectToAction("Restaurants");
 
                 }
+                else if(apiRespoce.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+                {
+                    ViewBag.NotExist = "User Not Exist";
+                    return View();
+                    //return Content("Error: " + await apiRespoce.Content.ReadAsStringAsync());
+                }
+                else if(apiRespoce.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                {
+                    ViewBag.EmptyCredential = "Empty Credential";
+                    return View();
+                }
+                else if(apiRespoce.StatusCode == System.Net.HttpStatusCode.NotFound)
+                {
+                    ViewBag.IncorrectPassword = "Incorrect Password";
+                    return View();
+                }
                 else
                 {
                     return Content("Error: " + await apiRespoce.Content.ReadAsStringAsync());
                 }
+
 
             }
         }
@@ -202,6 +227,10 @@ namespace FoodDeliveryApplication.Controllers
                     string res1 = await apiResponce.Content.ReadAsStringAsync();
                     res = JsonConvert.DeserializeObject<List<Restaurants>>(res1);
                     return View("Restaurants", res);
+                }
+                else if(apiResponce.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+                {
+                    return RedirectToAction("Login");
                 }
                 else
                 {
@@ -452,17 +481,25 @@ namespace FoodDeliveryApplication.Controllers
             order.PhoneNo = phoneNo;
             order.UserName = UserName;
             order.OrderTime = OrderTime;
+            order.City = details.City;
+            order.State = details.State;
+            order.Zipcode = details.Zipcode;
+            order.CardNo = details.CardNo;
+            order.ExpMonth = details.ExpMonth;
+            order.ExpYear = details.ExpYear;
+            order.CVV = details.CVV;
+
 
             JsonContent content1 = JsonContent.Create(order);
             using (var apiRespoce = await httpClient.PostAsync("https://localhost:7021/api/Food/Orders", content1))
             {
                 if (apiRespoce.StatusCode == System.Net.HttpStatusCode.OK)
                 {
-
+                    TempData["success"] = "Payment done successfully";
                 }
                 else
                 {
-                    return Content("Error: " + apiRespoce.StatusCode);
+                    return Content("Error:kk " + apiRespoce.StatusCode);
                 }
 
 
@@ -517,7 +554,12 @@ namespace FoodDeliveryApplication.Controllers
 
             if (apiResponce.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                return View();
+
+               
+                return View(orderList);
+
+
+               
             }
             else
             {
@@ -527,9 +569,12 @@ namespace FoodDeliveryApplication.Controllers
 
         }
 
+
+   
+
         public IActionResult CustomerDetails()
         {
-            return View();
+            return View("Payment");
         }
 
         public IActionResult CancelOrder()
@@ -571,6 +616,14 @@ namespace FoodDeliveryApplication.Controllers
 
         public IActionResult OrderStatus()
         {
+            string? UserName = _httpContextAccessor.HttpContext.Session.GetString("UserName");
+            if (_httpContextAccessor.HttpContext.Session.GetString("UserName") == null)
+            {
+                _logger.LogInformation("{0} Logged Out", CurrUser);
+                Console.WriteLine("Logout");
+                return RedirectToAction("Login");
+            }
+
             return View();
         }
 
@@ -640,6 +693,7 @@ namespace FoodDeliveryApplication.Controllers
                 };
                 Console.WriteLine(res.Count);
                 return View("OrderStatus", res);
+                //return View("Dummy", res);
             }
             else
             {
@@ -658,6 +712,7 @@ namespace FoodDeliveryApplication.Controllers
             {
                 _logger.LogInformation("{0} Logged Out", CurrUser);
                 Console.WriteLine("Logout");
+                ViewBag.NoUser = "NoUser";
                 return RedirectToAction("Login");
             }
 

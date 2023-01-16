@@ -13,27 +13,32 @@
     <link rel="stylesheet" href="~/scss/HomePage.css"/>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+     
+                             
 </head>
 <body>
  
     
 
+    @if (!String.IsNullOrEmpty(_httpContextAccessor.HttpContext.Session.GetString("UserName")))
+    {
 
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-0">
-            <div class="container-fluid">
-                @*<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">FoodDeliveryApplication</a>*@
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+
+        <header>
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-0">
+                <div class="container-fluid">
+                    @*<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">FoodDeliveryApplication</a>*@
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
 
-                       @* @if(String.IsNullOrEmpty(_httpContextAccessor.HttpContext.Session.GetString("UserName")))
+                            @* @if(String.IsNullOrEmpty(_httpContextAccessor.HttpContext.Session.GetString("UserName")))
                         {
                             <div class="action-2">
 
@@ -42,11 +47,11 @@
                             </li>
                             </div>
                         }
-                       
+
 
                         @if (String.IsNullOrEmpty(_httpContextAccessor.HttpContext.Session.GetString("UserName")))
                         {
-                            
+
                              <link rel="stylesheet" href="~/css/style.css">
                             <div class="action-1">
                             <li class="nav-item">
@@ -55,7 +60,7 @@
                             </div>
 
                         }*@
-                        @*else
+                            @*else
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="FoodSite" asp-action="Logout">Log out</a>
@@ -64,82 +69,83 @@
 
                         }*@
 
-                        @if (String.IsNullOrEmpty(_httpContextAccessor.HttpContext.Session.GetString("UserName")))
-                        {
-                            
-                             <link rel="stylesheet" href="~/css/style.css">
-                            <div class="action-1">
-                            <li class="nav-item">
-                                @using (@Html.BeginForm("Search","FoodSite",FormMethod.Post))
-                                {
-                                <input name="SearchedfoodItem"  placeholder="Search by dish" class="form-control" style="width:200px; height:35px;border-color:orange" id="fooditem"/>
-                                <input type="submit" style="position:absolute; left:-9999px;width:1px;height:1px;" tabindex="-1"/>
-                                    
-                                }
-                            </li>
-                            </div>
-                        }
-                        else
-                        {
-                              
-                             <link rel="stylesheet" href="~/css/style.css">
-                            <div class="action-2">
-                            <li class="nav-item">
-                                @using (@Html.BeginForm("Search","FoodSite",FormMethod.Post))
-                                {
-                                <input name="SearchedfoodItem"  placeholder="Search by dish" class="form-control" style="width:200px; height:35px;border-color:orange" id="fooditem"/>
-                                <input type="submit" style="position:absolute; left:-9999px;width:1px;height:1px;" tabindex="-1"/>
-                                    
-                                }
-                            </li>
-                            </div>
-                            
-                        }
+                            @if (String.IsNullOrEmpty(_httpContextAccessor.HttpContext.Session.GetString("UserName")))
+                            {
 
-                        @if(!String.IsNullOrEmpty(_httpContextAccessor.HttpContext.Session.GetString("UserName")))
-                        {
-                             <link rel="stylesheet" href="~/css/style.css">
-                                <div class="action" style="position:absolute">
-                                        <div class="profile" onclick="menuToggle();">
-                                           @{string str= _httpContextAccessor.HttpContext.Session.GetString("UserName");
-                                            }
-                                            <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
-                                            <ul>
-                                                <li>
-                                                     <span class="material-icons icons-size">person</span>
-                                                     <p>@str</p>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                <link rel="stylesheet" href="~/css/style.css">
+                                <div class="action-1">
+                                    <li class="nav-item">
+                                        @using (@Html.BeginForm("Search", "FoodSite", FormMethod.Post))
+                                        {
+                                            <input name="SearchedfoodItem"  placeholder="Search by dish" class="form-control" style="width:200px; height:35px;border-color:orange" id="fooditem"/>
+                                            <input type="submit" style="position:absolute; left:-9999px;width:1px;height:1px;" tabindex="-1"/>
 
-                                        <div class="menu">
-           
-                                            <ul>
-                                                <li>
-                                                    <span class="material-icons icons-size"></span>
-                                                    <a asp-controller="FoodSite" asp-action="OrderStatus">Order History</a>
-                                                </li>
-                                                <li>
-                                                    <span class="material-icons icons-size"></span>
-                                                    <a asp-controller="FoodSite" asp-action="Cart">Cart</a>
-                                                </li>
-                                                 <li>
-                                                    <span class="material-icons icons-size"></span>
-                                                    <a asp-area="" asp-controller="FoodSite" asp-action="Logout">Log out</a>
-                                                </li>
-                
-                
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <script>
-                                        function menuToggle(){
-                                            const toggleMenu = document.querySelector('.menu');
-                                            toggleMenu.classList.toggle('active')
                                         }
-                                    </script>
+                                    </li>
+                                </div>
+                            }
+                            else
+                            {
 
-                        }
+                                <link rel="stylesheet" href="~/css/style.css">
+                                <div class="action-2">
+                                    <li class="nav-item">
+                                        @using (@Html.BeginForm("Search", "FoodSite", FormMethod.Post))
+                                        {
+                                            <input name="SearchedfoodItem"  placeholder="Search by dish" class="form-control" style="width:200px; height:35px;border-color:orange" id="fooditem"/>
+                                            <input type="submit" style="position:absolute; left:-9999px;width:1px;height:1px;" tabindex="-1"/>
+
+                                        }
+                                    </li>
+                                </div>
+
+                            }
+
+                            @if (!String.IsNullOrEmpty(_httpContextAccessor.HttpContext.Session.GetString("UserName")))
+                            {
+                                <link rel="stylesheet" href="~/css/style.css">
+                                <div class="action" style="position:absolute">
+                                    <div class="profile" onclick="menuToggle();">
+                                        @{
+                                            string str = _httpContextAccessor.HttpContext.Session.GetString("UserName");
+                                        }
+                                        <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+                                        <ul>
+                                            <li>
+                                                <span class="material-icons icons-size">person</span>
+                                                <p>@str</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="menu">
+
+                                        <ul>
+                                            <li>
+                                                <span class="material-icons icons-size"></span>
+                                                <a asp-controller="FoodSite" asp-action="OrderStatus">Order History</a>
+                                            </li>
+                                            <li>
+                                                <span class="material-icons icons-size"></span>
+                                                <a asp-controller="FoodSite" asp-action="Cart">Cart</a>
+                                            </li>
+                                            <li>
+                                                <span class="material-icons icons-size"></span>
+                                                <a asp-area="" asp-controller="FoodSite" asp-action="Logout">Log out</a>
+                                            </li>
+
+
+                                        </ul>
+                                    </div>
+                                </div>
+                                <script>
+                                    function menuToggle(){
+                                    const toggleMenu = document.querySelector('.menu');
+                                    toggleMenu.classList.toggle('active')
+                                    }
+                                </script>
+
+                            }
 
 
                     </ul>
@@ -147,6 +153,7 @@
             </div>
         </nav>
     </header>
+    }
     <div class="container">
         <main role="main" class="pb-3">
             <partial name="_Notification" />
@@ -154,11 +161,61 @@
         </main>
     </div>
 
-    <footer class="border-top w-100 footer bg-light text-muted">
+         
+
+   @* <footer class="border-top w-100 footer bg-light text-muted" style="margin-bottom:20px">
+  
         <div class="container">
-            &copy; 2022 - FoodDeliveryApplication - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            @*&copy; 2022 - FoodDeliveryApplication - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+
+                 
+
+                 <div class="footer_icons">
+                      <div><a href="#"><img src="https://img.icons8.com/ios/2x/instagram-new.png" style=" width:30px;height:30px;position:absolute;"/></a></div>
+                      <div><a href="#"><img src="https://img.icons8.com/ios/2x/twitter--v3.png" style=" width:30px;height:30px;position:absolute;"/></a></div>
+                      <div><a href="#"><img src="https://img.icons8.com/ios/2x/youtube-play.png" style=" width:30px;height:30px;position:absolute;"/></a></div>
+                      <div><a href="#"><img src="https://img.icons8.com/ios/2x/linkedin-circled--v2.png" style=" width:30px;height:30px;position:absolute;"/></a></div>
+                      <div><a href="#"><img src="https://img.icons8.com/ios/2x/facebook-circled--v4.png" style=" width:30px;height:30px;position:absolute;"/></a></div>
+                 </div>
+
+
         </div>
+    </footer>*@
+
+@*<link rel="stylesheet" href="~/css/style.css"/>
+
+   <footer class="border-top footer text-muted mt-0 mb-0 bg-light" >
+             <div class="container">
+                     <div class="footer_icons">
+                          <div><a href="#"><img src="https://img.icons8.com/ios/2x/instagram-new.png" style=" width:30px;height:30px;position:absolute;"/></a></div>
+                          <div><a href="#"><img src="https://img.icons8.com/ios/2x/twitter--v3.png" style=" width:30px;height:30px;position:absolute;"/></a></div>
+                          <div><a href="#"><img src="https://img.icons8.com/ios/2x/youtube-play.png" style=" width:30px;height:30px;position:absolute;"/></a></div>
+                          <div><a href="#"><img src="https://img.icons8.com/ios/2x/linkedin-circled--v2.png" style=" width:30px;height:30px;position:absolute;"/></a></div>
+                          <div><a href="#"><img src="https://img.icons8.com/ios/2x/facebook-circled--v4.png" style=" width:30px;height:30px;position:absolute;"/></a></div>
+                     </div>
+            </div>
+
+            <p style="text-align:center;margin-top:10px" >&copy; 2022 - JustEat</p>
+
+  
     </footer>
+*@
+
+
+@*<link rel="stylesheet" href="~/css/style.css">
+
+<div class="container2">
+
+     <div class="footer_icons">
+                          <div><a href="#"><img src="https://img.icons8.com/ios/2x/instagram-new.png" style=" width:30px;height:30px;position:absolute;"/></a></div>
+                          <div><a href="#"><img src="https://img.icons8.com/ios/2x/twitter--v3.png" style=" width:30px;height:30px;position:absolute;"/></a></div>
+                          <div><a href="#"><img src="https://img.icons8.com/ios/2x/youtube-play.png" style=" width:30px;height:30px;position:absolute;"/></a></div>
+                          <div><a href="#"><img src="https://img.icons8.com/ios/2x/linkedin-circled--v2.png" style=" width:30px;height:30px;position:absolute;"/></a></div>
+                          <div><a href="#"><img src="https://img.icons8.com/ios/2x/facebook-circled--v4.png" style=" width:30px;height:30px;position:absolute;"/></a></div>
+     </div>
+
+</div>*@
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

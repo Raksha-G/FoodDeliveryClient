@@ -15,7 +15,7 @@ namespace FoodDeliveryApplication
             {
                 filtercontext.Result = new ViewResult()
                 {
-                    ViewName = "Error"
+                    ViewName = "Error" + filtercontext.Exception.Message
                 };
                 filtercontext.ExceptionHandled = true;
             }

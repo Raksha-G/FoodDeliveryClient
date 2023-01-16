@@ -1,113 +1,88 @@
-﻿@inject IHttpContextAccessor _httpContextAccessor;
-@model List<Restaurants>
+﻿
+ <link rel="stylesheet" href="~/scss/Dummy.css">
 
-<link rel="stylesheet" href="~/scss/Dummy.css">
+<div class="container">
+    <div class="box">
 
+        <div class="left">
+            <h3>BILLING ADDRESS</h3>
+            <form>
+                Full name
+                <input type="text" name="" placeholder="Enter name" />
+                Email
+                <input type="text" name="" placeholder="Enter name" />
+                Address
+                <input type="text" name="" placeholder="Enter name" />
+                City
+                <input type="text" name="" placeholder="City" />
+                <div id="states">
+                    <label>
+                        State
+                        <select>
+                            <option>Choose State</option>
+                            <option>Maharastra</option>
+                            <option>Gujrat</option>
+                        </select>
+                    </label>
 
-@*<div>
-@*    <h2>Restaurants</h2>
+                <label>
+                    Zipcode
+                    <input type="number" name="" placeholder="Enter name" />
+                </label>
+                </div>
+            </form>
 
-    <div class="container1">
-        <img src="https://www.bing.com/th?id=OIP.Cl_5Jp99SFiVcA2qRrghbAHaFt&w=284&h=219&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2" />
+        </div>
+        <div class="right">
+            <h3>PAYMENT</h3>
+            <form>
+                Accepted Cards
+                <br />
+
+                <div class="images">
+
+                <div><img src="https://th.bing.com/th/id/R.16dbc44d8d44fd6157f722a9674e7b07?rik=Us1kmY7Dub3wRQ&riu=http%3a%2f%2fwww.pngall.com%2fwp-content%2fuploads%2f2016%2f07%2fMastercard-Download-PNG.png&ehk=j8swbECt%2f%2f%2bT0KJGslF5ZNtn6SLSvlMLsIGEDZogxNE%3d&risl=&pid=ImgRaw&r=0" /></div>
+
+                <div><img src="https://www.mycollection.in/public/images/rupay_card.png"/></div>
+                </div>
+
+             
+                <br /> <br />
+                Credit card number
+                <input type="text" name="" placeholder="Enter name" />
+                Exp month
+                <input type="text" name="" placeholder="Enter name" />
+
+                <div id="states">
+                    <label>
+                        Exp year
+                        <select>
+                            <option>Choose year</option>
+                            <option>2022</option>
+                            <option>2023</option>
+                        </select>
+                    </label>
+
+                <label>
+                    CVV
+                    <input type="number" name="" placeholder="Enter CVV" />
+                </label>
+                </div>
+                <button class="btn btn-primary">Proceed to Checkout</button>
+            </form>
+        </div>
     </div>
+</div>
+
+
+@*<div class="container2">
+
+     <div class="footer_icons">
+                          <div><a href="#"><img src="https://img.icons8.com/ios/2x/instagram-new.png" style=" width:30px;height:30px;position:absolute;"/></a></div>
+                          <div><a href="#"><img src="https://img.icons8.com/ios/2x/twitter--v3.png" style=" width:30px;height:30px;position:absolute;"/></a></div>
+                          <div><a href="#"><img src="https://img.icons8.com/ios/2x/youtube-play.png" style=" width:30px;height:30px;position:absolute;"/></a></div>
+                          <div><a href="#"><img src="https://img.icons8.com/ios/2x/linkedin-circled--v2.png" style=" width:30px;height:30px;position:absolute;"/></a></div>
+                          <div><a href="#"><img src="https://img.icons8.com/ios/2x/facebook-circled--v4.png" style=" width:30px;height:30px;position:absolute;"/></a></div>
+     </div>
 
 </div>*@
-
-
-<div id="cards_landscape_wrap-2">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
-                    <a href="">
-                        <div class="card-flyer">
-                            <div class="text-box">
-                                <div class="image-box">
-                                    <img src="https://cdn.pixabay.com/photo/2018/03/30/15/11/deer-3275594_960_720.jpg" alt="" />
-                                </div>
-                                <div class="text-container">
-                                    <h6>Title 01</h6>
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
-                    <a href="">
-                        <div class="card-flyer">
-                            <div class="text-box">
-                                <div class="image-box">
-                                    <img src="https://cdn.pixabay.com/photo/2018/04/09/19/55/low-poly-3305284_960_720.jpg" alt="" />
-                                </div>
-                                <div class="text-container">                                    
-                                    <h6>Title 02</h6>
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
-                    <a href="">
-                        <div class="card-flyer">
-                            <div class="text-box">
-                                <div class="image-box">
-                                    <img src="https://cdn.pixabay.com/photo/2018/04/06/13/46/poly-3295856_960_720.png" alt="" />
-                                </div>
-
-                                <div class="text-container">
-                                    <h6>Title 03</h6>
-                                   <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                
-                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
-                    <a href="">
-                        <div class="card-flyer">
-                            <div class="text-box">
-                                <div class="image-box">
-                                    <img src="https://cdn.pixabay.com/photo/2018/03/30/15/12/dog-3275593_960_720.jpg" alt="" />
-                                </div>
-                                <div class="text-container">
-                                    <h6>Title 04</h6>
-                                   <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-    <div id="cards_landscape_wrap-2">
-        <div class="container">
-            <div class="row">
-                                @for(int i=0;i<4;i++)
-                                {
-                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
-                    <a href="">
-                        <div class="card-flyer">
-                            <div class="text-box">
-                                     <div class="image-box">
-                                        <img src="https://cdn.pixabay.com/photo/2018/03/30/15/12/dog-3275593_960_720.jpg" alt="" />
-                                        </div>
-                                        <div class="text-container">
-                                            <h6>Title 01</h6>
-                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-                                        </div>
-                                   
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                                }
-            </div>
-        </div>
-    </div>   
-

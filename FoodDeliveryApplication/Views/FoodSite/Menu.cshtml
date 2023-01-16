@@ -28,9 +28,9 @@
 
 
 <div class="d-flex justify-content-between" style="margin-top:10px">
-    <h2 style="font-family:'Roboto Black', sans-serif;color:orange;font-weight:bold;">
+    <h3 style="font-family:'Roboto Black', sans-serif;color:#535665;font-weight:bold;">
         MENU
-    </h2>
+    </h3>
     @*  <p style="font-size:20px" class="btn btn-primary text-black ">@Html.ActionLink("Cart","Cart")</p>*@
     <table>
 
@@ -95,6 +95,18 @@
 *@
 
 
+@if(Model.Count==0)
+{
+    <div align="center" style="align-content:center;align-items:center;justify-content:center;margin-top:30px">
+    <h4 style="color:#535665;font-size: 20px;font-weight: 600;">Uh-oh!</h4>
+        <p style="color:#7e808c">No results found. Please try<br/>something else</p>
+        </div>
+}
+
+
+
+else{
+
 <link rel="stylesheet" href="~/scss/RestaurantStyle.css">
     
          
@@ -136,7 +148,7 @@
                                                     <span class="up" onClick='increaseCount(event, this)'>+</span>
                                                 </div>
                                                 <br />
-                                                <button class="btn btn-primary" type="submit" style="background-color:orange">Add to Cart</button>
+                                                <button class="btn btn-primary" type="submit" style="background-color:orange;border-color:orange">Add to Cart</button>
                                         </div>
                                  }
                                    
@@ -147,7 +159,8 @@
                }
             </div>
         </div>
-    </div>   
+    </div>  
+    }
 
 
 

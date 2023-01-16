@@ -43,7 +43,7 @@ namespace FoodAppWebApi.Services
                 {
                     return user;
                 }
-                return null;
+                return user;
             }
 
             return null;
@@ -112,7 +112,7 @@ namespace FoodAppWebApi.Services
                 audience: _config.Audience,
                 claims: claims,
                 notBefore: DateTime.UtcNow,
-                expires: DateTime.Now.AddSeconds(1000),
+                expires: DateTime.Now.AddSeconds(500),
                 signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler().WriteToken(token);

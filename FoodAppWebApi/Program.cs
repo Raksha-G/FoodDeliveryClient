@@ -58,6 +58,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
         ValidIssuer = config.Issuer,
         ValidAudience = config.Audience,
         ValidateIssuerSigningKey = true,
+        ValidateLifetime = true,
         ValidateIssuer = true,
         ValidateAudience = true,
         ClockSkew = TimeSpan.Zero

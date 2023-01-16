@@ -23,8 +23,13 @@
 
 
 @if(ViewBag.Cart=="Empty"){
-    <h4 class="text-danger">Your Cart is Empty</h4>
-    <a asp-controller="FoodSite" asp-action="Restaurants" class="btn btn-primary">Add Item To Cart</a>
+    <div align="center" style="align-content:center;align-items:center;justify-content:center;margin-top:30px;">
+        <img src="https://tse3.mm.bing.net/th/id/OIP.kQbZlYiaWUw5IXu3fVdJkAHaHa?w=194&h=194&c=7&r=0&o=5&dpr=1.5&pid=1.7" style="width:150px;height:150px;"/>
+        <h4 style="color:#535665;font-size: 20px;font-weight: 600;">Your Cart is Empty</h4>
+        <p style="color:#7e808c">You can go to home page to view more restaurants</p>
+        <a asp-controller="FoodSite" asp-action="Restaurants" class="btn btn-primary" style="background-color:orange;color:white;font-weight:bold;border-color:orange">SEE RESTAURANTS</a>
+
+    </div>
 }
 else
 {
@@ -32,7 +37,7 @@ else
 @*@using(@Html.BeginForm("DeleteItemFromCart","FoodSite",FormMethod.Post))
 @*<form method="post">*@
 //{
-<h2  style="font-family:'Roboto Black', sans-serif;color:orange;font-weight:bold;">CART</h2>
+<h3 style="font-family:'Roboto Black', sans-serif;color:#535665;font-weight:bold;margin-top:10px">CART</h3>
     
 
 
@@ -59,7 +64,7 @@ else
                                             <h6>@obj1.FoodItem</h6>
                                             <p>Price : @obj1.Price</p>
                                             <p>Quantity : @obj1.Quantity</p>
-                                            <a class="btn btn-primary" asp-controller="FoodSite" asp-action="DeleteItemFromCart" asp-route-Id="@obj1.ItemNo" style="background-color:orange">Remove</a>
+                                            <a class="btn btn-primary" asp-controller="FoodSite" asp-action="DeleteItemFromCart" asp-route-Id="@obj1.ItemNo" style="background-color:orange;border-color:orange">Remove</a>
                                             
                                             @{
                                                 Total_Price1 = Total_Price1 + obj1.Price * obj1.Quantity;
@@ -79,6 +84,6 @@ else
 <h4>Total Price : @Total_Price1</h4>
 <br/>
 
-<a class="btn btn-primary" asp-controller="FoodSite" asp-action="CustomerDetails" type="submit" style="background-color:orange" >Add Details</a>
-<a class="btn btn-primary" asp-controller="FoodSite" asp-action="Restaurants" style="background-color:orange">Add Items</a> 
+<a class="btn btn-primary" asp-controller="FoodSite" asp-action="CustomerDetails" type="submit" style="background-color:orange;border-color:orange" >Add Details</a>
+<a class="btn btn-primary" asp-controller="FoodSite" asp-action="Restaurants" style="background-color:orange;border-color:orange">Add Items</a> 
 }

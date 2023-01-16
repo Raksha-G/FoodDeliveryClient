@@ -6,12 +6,12 @@ using System.Data.SqlClient;
 namespace FoodAppWebApi.Controllers
 {
     [Route("api/[controller]/[action]")]
-    [CustomAttribute.TokenValidator]
+    //[CustomAttribute.TokenValidator]
     [ApiController]
     public class FoodController : ControllerBase
     {
         [HttpGet]
-       
+        [CustomAttribute.TokenValidator]
         public IActionResult GetAllRestaurants()
         {
             SqlConnection conn = new SqlConnection("Data Source = PSL-28MH6Q3 ; Initial Catalog = FoodDeliveryApplication; Integrated Security = True; ");
@@ -35,6 +35,7 @@ namespace FoodAppWebApi.Controllers
 
 
         [HttpGet("{Id}")]
+        [CustomAttribute.TokenValidator]
         public IActionResult GetRestaurantMenuById(int Id)
         {
 
@@ -65,6 +66,7 @@ namespace FoodAppWebApi.Controllers
         }
 
         [HttpPost]
+        [CustomAttribute.TokenValidator]
         public IActionResult AddToCart([FromBody] CartItems cart)
         {
 
@@ -92,6 +94,7 @@ namespace FoodAppWebApi.Controllers
 
 
         [HttpDelete("{id}")]
+        [CustomAttribute.TokenValidator]
         public IActionResult DeleteCartItemById(int id)
         {
             SqlConnection conn = new SqlConnection("Data Source = PSL-28MH6Q3; Initial Catalog = FoodDeliveryApplication; Integrated Security = True;");
@@ -113,6 +116,7 @@ namespace FoodAppWebApi.Controllers
 
 
         [HttpGet]
+        [CustomAttribute.TokenValidator]
         public IActionResult GetCartByUserName(string UserName)
         {
             SqlConnection conn = new SqlConnection("Data Source = PSL-28MH6Q3 ; Initial Catalog = FoodDeliveryApplication; Integrated Security = True;");
@@ -142,6 +146,7 @@ namespace FoodAppWebApi.Controllers
 
 
         [HttpDelete("{UserName}")]
+        [CustomAttribute.TokenValidator]
         public IActionResult DeleteCartItemsByUserName(string UserName)
         {
             SqlConnection conn = new SqlConnection("Data Source = PSL-28MH6Q3; Initial Catalog = FoodDeliveryApplication; Integrated Security = True;");
@@ -162,6 +167,7 @@ namespace FoodAppWebApi.Controllers
 
 
         [HttpGet("{Id}/{UserName}")]
+        [CustomAttribute.TokenValidator]
         public IActionResult OrderStatus(int Id,string UserName)
         {
             SqlConnection conn = new SqlConnection("Data Source = PSL-28MH6Q3 ; Initial Catalog = FoodDeliveryApplication; Integrated Security = True;");
@@ -206,16 +212,17 @@ namespace FoodAppWebApi.Controllers
 
 
         [HttpPost]
+        [CustomAttribute.TokenValidator]
         public IActionResult Orders([FromBody]OrdersApi order)
         {
             SqlConnection conn = new SqlConnection("Data Source = PSL-28MH6Q3 ; Initial Catalog = FoodDeliveryApplication; Integrated Security = True;");
             SqlCommand cmd = new SqlCommand(String.Format(
-                "insert into Orders values('{0}','{1}','{2}','{3}','{4}')",
+                "insert into Orders values('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}')",
                 order.InVoiceNo,
                 order.UserName,
                 order.Address,
                 order.PhoneNo,
-                order.OrderTime), conn);
+                order.OrderTime,order.City,order.State,order.Zipcode,order.CardNo,order.ExpMonth,order.ExpYear,order.CVV), conn);
             conn.Open();
             int res=cmd.ExecuteNonQuery();
             conn.Close();
@@ -230,6 +237,7 @@ namespace FoodAppWebApi.Controllers
         }
 
         [HttpPost]
+        [CustomAttribute.TokenValidator]
         public IActionResult OrderDetails([FromBody]List<OrderDetailsApi> order)
         {
             SqlConnection conn = new SqlConnection("Data Source = PSL-28MH6Q3 ; Initial Catalog = FoodDeliveryApplication; Integrated Security = True;");
@@ -265,6 +273,7 @@ namespace FoodAppWebApi.Controllers
         
 
         [HttpGet("{FoodItem}")]
+        [CustomAttribute.TokenValidator]
         public IActionResult SearchMenuByName(string FoodItem)
         {
             SqlConnection conn = new SqlConnection("Data Source = PSL-28MH6Q3 ; Initial Catalog = FoodDeliveryApplication; Integrated Security = True;");

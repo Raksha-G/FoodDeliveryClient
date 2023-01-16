@@ -1,15 +1,18 @@
-﻿@*
+﻿@model List<OrderDetails>
+
+
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
 }
 
 
-<div class="d-flex justify-content-between">
+@*<div class="d-flex justify-content-between">
     <h3 tyle="font-family:'Roboto Black', sans-serif;color:orange;font-weight:bold;">
         Your Order will be delivered soon! 
 
-    </h3>
+    </h3>*@
 @*
     
     <table>
@@ -18,5 +21,83 @@
         @*<tr> <td><a asp-controller="FoodSite" asp-action="CancelOrder" style="font-size:20px">Cancel Order</a></td></tr>
         
         
-    </table> *@
+    </table> 
 </div> 
+    *@
+       <link rel="stylesheet" href="~/scss/OrderStatus.css">
+
+ <div class="container">
+
+
+                @{
+                    List<OrderDetails> sorted = Model.OrderBy(x => x.OrderTime).ToList();
+
+                    int count = Model.Count;
+                    int tempInvoiceNo = 0;
+                    int bill = 0;
+                    int lastele = sorted.Count;
+                    int ptr = 1;
+                }
+
+<h3  style="font-family:'Roboto Black', sans-serif;color:#535665;font-weight:bold;">ORDER</h3>
+
+  @foreach(var i in Model){
+<div class=order>
+
+
+    <div class="flex1 mt-2">
+                                                        <div id="left">
+                                                            <p style="color:#7e808c;font-size:12px;font-weight:bold;">INVOICE NO</p>
+                                                            <p style="font-size:20px">@i.InVoiceNo</p>
+                                                        </div>
+                                                        <div id="right">
+                                                            <p style="color:#7e808c;font-size:12px;font-weight:bold;">ORDER TIME</p>
+                                                            <p style="font-size:20px">@i.OrderTime</p>
+                                                        </div>
+               
+     </div>
+
+
+       <div class="flex2">
+                                            <div id="left">
+                                                @if (tempInvoiceNo != @i.InVoiceNo)
+                                                {
+                                                    <p style="color:#7e808c;font-size:12px;font-weight:bold">FOOD ITEM</p>
+                        
+                                                }
+                                                <p style="font-size:20px">@i.FoodItem</p>
+                                            </div>
+                                            <div id="center">
+                                                @if (tempInvoiceNo != @i.InVoiceNo)
+                                                {
+                        
+                                                <p style="color:#7e808c;font-size:12px;font-weight:bold">QUANTITY</p>
+                                                }
+                                                <p style="font-size:20px">@i.Quantity</p>
+                                            </div>
+                                            <div id="right">
+                                                @if (tempInvoiceNo != @i.InVoiceNo)
+                                                {
+                                                    <p style="color:#7e808c;font-size:12px;font-weight:bold">PRICE</p>
+                                                }
+                        
+                                                <p style="font-size:20px">@i.Price</p>
+                                            </div>
+                                        </div>
+   
+
+</div>
+}
+
+</div>
+
+
+
+
+<div align="center" style="align-content:center;align-items:center;justify-content:center;margin-top:30px">
+        <img src="https://tse3.mm.bing.net/th/id/OIP.kQbZlYiaWUw5IXu3fVdJkAHaHa?w=194&h=194&c=7&r=0&o=5&dpr=1.5&pid=1.7" style="width:150px;height:150px;mix-blend-mode:darken"/>
+        <h4 style="color:#535665;font-size: 20px;font-weight: 600;">Order is On its Way!!</h4>
+        <p style="color:#7e808c">You can go to home page to view more restaurants</p>
+        <a asp-controller="FoodSite" asp-action="Restaurants" class="btn btn-primary" style="background-color:orange;color:white;font-weight:bold;border-color:orange">SEE RESTAURANTS</a>
+
+    </div>

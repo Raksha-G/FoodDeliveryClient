@@ -18,5 +18,17 @@
   {
     "outputFile": "wwwroot/scss/Dummy.css",
     "inputFile": "wwwroot/scss/Dummy.scss"
+  },
+  {
+    "outputFile": "wwwroot/scss/Login.css",
+    "inputFile": "wwwroot/scss/Login.scss"
+  },
+  {
+    "outputFile": "wwwroot/scss/OrderStatus.css",
+    "inputFile": "wwwroot/scss/OrderStatus.scss"
+  },
+  {
+    "outputFile": "wwwroot/scss/Payment.css",
+    "inputFile": "wwwroot/scss/Payment.scss"
   }
 ]

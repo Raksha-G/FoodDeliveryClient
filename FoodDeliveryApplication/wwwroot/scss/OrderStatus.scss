@@ -1,0 +1,82 @@
+﻿
+.container {
+    width: 100%;
+    background-color: bisque;
+
+    .order {
+        width: 100%;
+        background-color: antiquewhite;
+
+        hr {
+            height: 5px;
+            width: 700px;
+            color: orange;
+            margin: auto;
+        }
+
+
+
+
+        .flex1 {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding-left: 20px;
+            padding-right: 20px;
+            align-items: center;
+            margin-top: 40px;
+
+            #left {
+                float: left;
+                width: 150px;
+                text-align: center;
+            }
+
+            #right {
+                float: right;
+                width: 120px;
+                text-align: center;
+            }
+        }
+
+        .flex2 {
+            display: flex;
+            flex-direction: row;
+            padding-left: 20px;
+            padding-right: 20px;
+
+            #left {
+                float: left;
+                width: 150px;
+                text-align: center;
+            }
+
+            #center {
+                display: inline-block;
+                margin: 0 auto;
+                width: 100px;
+                text-align: center;
+            }
+
+            #right {
+                float: right;
+                width: 100px;
+                text-align: center;
+            }
+        }
+    }
+}
+
+
+
+
+
+
+/*PEN STYLES*/
+
+
+
+
+
+
+

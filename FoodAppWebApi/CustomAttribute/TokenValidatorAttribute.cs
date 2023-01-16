@@ -41,6 +41,7 @@ namespace FoodAppWebApi.CustomAttribute
                 ValidIssuer = "localhost:7092",
                 ValidAudience = "localhost:7092",
                 ValidateIssuerSigningKey = true,
+                ValidateLifetime = true,
                 ValidateAudience = true,
                 ValidateIssuer = true,
             };

@@ -44,8 +44,12 @@ namespace FoodAppWebApi.Controllers
             if (user == null)
             {
                 return Unauthorized("User Credentials Invalid");
+             
             }
-
+            if(user.Password!=loginRequest.Password)
+            {
+                return NotFound("Invalid Password");
+            }
             SuccessfullAuthenticationResponce responce = _auth.GenerateLoginResponce(user);
             return Ok(responce);
 

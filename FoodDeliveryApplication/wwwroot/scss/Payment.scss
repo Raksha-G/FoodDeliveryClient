@@ -1,0 +1,151 @@
+﻿.container {
+    //background-image: url(https://wallpapercave.com/dwp2x/wc1813161.jpg);
+    background-color: #c3bfbd;
+    //opacity:0.8;
+    width: 100%;
+    //position: absolute;
+    z-index: -3;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    //flex-direction:row;
+
+    .box {
+        margin-top: 40px;
+        margin-bottom: 40px;
+        background-color: white;
+        max-width: 800px;
+        min-height: 500px;
+        display: flex;
+        z-index: 3;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 30px;
+        flex-direction: row;
+        box-shadow: 10px 10px 22px rgb(59, 58, 58);
+        -moz-box-shadow: 10px 10px 22px rgba(59, 58, 58);
+        -webkit-box-shadow: 10px 10px 22px rgba(59, 58, 58);
+        -khtml-box-shadow: 10px 10px 22px rgba(59, 58, 58);
+        background: radial-gradient(tranparent,black);
+
+
+        .left {
+            flex-basis: 50%;
+
+            h3 {
+                margin-top: 10px;
+            }
+
+            .form1 {
+                padding: 20px;
+
+                input[type="text"] {
+                    width: 100%;
+                    padding: 0.5rem 0.7rem;
+                    margin: 0.5rem 0;
+                    outline: none;
+                    /*font-family: 'Roboto Black', sans-serif;
+                    color: #535665*/
+                }
+
+                #states {
+                    display: flex;
+                    margin-top: 0.5rem;
+
+                    select {
+                        padding: 0.5rem 0.7rem;
+                    }
+
+                    input[type="number"] {
+                        padding: 0.5rem 0.7rem;
+                        margin-left: 5px;
+                    }
+                }
+            }
+        }
+
+        .right {
+            flex-basis: 50%;
+
+            h3 {
+                margin-top: 10px;
+            }
+
+            .form1 {
+                padding: 20px;
+
+                .images {
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    justify-content: flex-start;
+                    align-items: center;
+                    height: 40px;
+                    width: 100%;
+
+
+                    img {
+                        height: 40px;
+                        //width: 50px;
+                        min-width: 60px;
+                    }
+                }
+
+
+
+
+
+
+
+                input[type="text"] {
+                    width: 100%;
+                    padding: 0.5rem 0.7rem;
+                    margin: 0.5rem 0;
+                    outline: none;
+                }
+
+                #states {
+                    display: flex;
+                    margin-top: 0.5rem;
+
+                    select {
+                        padding: 0.5rem 0.7rem;
+                    }
+
+                    input[type="number"] {
+                        padding: 0.5rem 0.7rem;
+                        margin-left: 5px;
+                    }
+                }
+
+                button {
+                    margin-top: 15px;
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+
+.container2 {
+    width: 100%;
+    background-color: aliceblue;
+
+
+    .footer_icons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .footer_icons > div {
+        margin-top: 20px;
+        margin-right: 40px;
+        margin-left: 0;
+    }
+}

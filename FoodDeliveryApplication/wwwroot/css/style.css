@@ -26,35 +26,7 @@
 
    
 
-  /*  .action .img {
-        border-radius: 50%;
-        cursor: pointer;
-        height: 40px;
-        overflow: hidden;
-        position: relative;
-        width: 40px;
-    }*/
 
-
-
-
-   /* .action .profile {
-        border-radius: 50%;
-        cursor: pointer;
-        height: 60px;
-        overflow: hidden;
-        position: relative;
-        width: 60px;
-    }
-
-        .action .profile img {
-            width: 50px;
-            top: 0;
-            position: absolute;
-            object-fit: cover;
-            left: 0;
-            height: 50px;
-        }*/
 
     .action .profile ul li {
         align-items: center;
@@ -152,3 +124,44 @@
             .action .menu ul li:hover a {
                 color: #0026ff;
             }
+
+            .icons_svg{
+                width:10px;
+                height:10px;
+                position:absolute;
+            }
+
+
+/*.footer_icons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer_icons>div
+{
+    margin-top:20px;
+    margin-right:40px;
+    margin-left:0;
+ 
+}
+*/
+
+.container2 {
+    width: 100%;
+    background-color: aliceblue;
+    bottom:0;
+    position:absolute;
+}
+
+.container2 .footer_icons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container2 .footer_icons > div {
+    margin-top: 20px;
+    margin-right: 40px;
+    margin-left: 0;
+}

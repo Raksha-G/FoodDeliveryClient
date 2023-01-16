@@ -7,25 +7,37 @@
     //Console.WriteLine(Model.Count());
 }
 
-    <div class="d-flex justify-content-between">
-        <h2  style="font-family:'Roboto Black', sans-serif;color:orange;font-weight:bold;">
+   @* <div class="d-flex justify-content-between">
+        <h3  style="font-family:'Roboto Black', sans-serif;color:#535665;font-weight:bold;">
             ORDERS
-        </h2>
+        </h3>
      
-    </div>
+    </div>*@
         
 
  
 
-    <a asp-controller="Foodsite" asp-action="Status" asp-route-id="1" class="btn btn-primary">Pending Orders</a>
-    @*<a asp-controller="Foodsite" asp-action="Status"  asp-route-id="2" class="btn btn-primary">Cancelled Orders</a>*@
-    <a asp-controller="Foodsite" asp-action="Status"  asp-route-id="3" class="btn btn-primary">Completed Orders</a>
+  @*  <a asp-controller="Foodsite" asp-action="Status" asp-route-id="1" class="btn" style="background-color:orange;color:white">Pending Orders</a>
+    @*<a asp-controller="Foodsite" asp-action="Status"  asp-route-id="2" class="btn btn-primary">Cancelled Orders</a>
+    <a asp-controller="Foodsite" asp-action="Status"  asp-route-id="3" class="btn" style="background-color:orange;color:white">Completed Orders</a>
 
     <br/>
     <br/>
-    <br/>
+    <br/>*@
 
-    @if (ViewBag.ObjectPassed == "Pending")
+
+@if(ViewBag.ObjectPassed != "Pending" && ViewBag.ObjectPassed!="Completed")
+{
+    
+}
+<div align="center" style="align-content:center;align-items:center;justify-content:center;margin-top:30px;margin-bottom:20px">
+                <img src="https://tse3.mm.bing.net/th/id/OIP.kQbZlYiaWUw5IXu3fVdJkAHaHa?w=194&h=194&c=7&r=0&o=5&dpr=1.5&pid=1.7" style="width:150px;height:150px;mix-blend-mode:darken"/>
+                <h3 style="color:#535665;font-weight: 600;">ORDERS!!</h3>
+                <a asp-controller="Foodsite" asp-action="Status" asp-route-id="1" class="btn" style="background-color:orange;color:white">Pending Orders</a>
+                <a asp-controller="Foodsite" asp-action="Status"  asp-route-id="3" class="btn" style="background-color:orange;color:white">Completed Orders</a>
+     </div>
+
+  @* @if (ViewBag.ObjectPassed == "Pending")
 {
 
         List<OrderDetails> sorted = Model.OrderBy(x => x.OrderTime).ToList();
@@ -85,7 +97,7 @@
     
 }
 
-
+*@
 
 
 
@@ -117,4 +129,114 @@
         }
 </table>
 *@
+
+
+@if(ViewBag.ObjectPassed == "Pending" || ViewBag.ObjectPassed=="Completed")
+{
+     
+    
+        <link rel="stylesheet" href="~/scss/OrderStatus.css">
+
+        @*<h3 style="margin:10px;margin-bottom:10px" >ORDERS</h3>*@
+
+        <div class="container1">
+
+
+                @{
+                    List<OrderDetails> sorted = Model.OrderBy(x => x.OrderTime).ToList();
+
+                    int count = Model.Count;
+                    int tempInvoiceNo = 0;
+                    int bill = 0;
+                    int lastele = sorted.Count;
+                    int ptr = 1;
+                }
+
+                @if(Model.Count==0)
+                {
+            <div align="center" style="align-content:center;align-items:center;justify-content:center;margin-top:30px">
+                @*<img src="https://tse3.mm.bing.net/th/id/OIP.kQbZlYiaWUw5IXu3fVdJkAHaHa?w=194&h=194&c=7&r=0&o=5&dpr=1.5&pid=1.7" style="width:150px;height:150px;mix-blend-mode:darken"/>*@
+                <h4 style="color:#535665;font-size: 20px;font-weight: 600;">No Orders!!</h4>
+                <p style="color:#7e808c">Order from your favorite Restaurants</p>
+                <a asp-controller="FoodSite" asp-action="Restaurants" class="btn btn-primary" style="background-color:orange;color:white;font-weight:bold;border-color:orange">SEE RESTAURANTS</a>
+
+             </div>
+        }
+
+            @foreach(var i in Model){
+                    <div class="order">
+
+                                        @if(tempInvoiceNo!=@i.InVoiceNo)
+                                        {
+                                                    @if(bill!=0)
+                                                    {
+                   
+
+                                                            <p style="color:black;font-size:16px;font-weight:bold;text-align:center;width:150px;padding-left:40px;margin-left:7px;margin-bottom:30px;">BILL : @bill</p>
+                                                            bill=0;
+                     
+                                                    }
+                                                    <hr>
+                                                    <div class="flex1 mt-2">
+                                                        <div id="left">
+                                                            <p style="color:#7e808c;font-size:12px;font-weight:bold;">INVOICE NO</p>
+                                                            <p style="font-size:20px">@i.InVoiceNo</p>
+                                                        </div>
+                                                        <div id="right">
+                                                            <p style="color:#7e808c;font-size:12px;font-weight:bold;">ORDER TIME</p>
+                                                            <p style="font-size:20px">@i.OrderTime</p>
+                                                        </div>
+               
+                                                    </div>
+
+                
+                                        }
+                                        <br/>
+           
+                                        <div class="flex2">
+                                            <div id="left">
+                                                @if (tempInvoiceNo != @i.InVoiceNo)
+                                                {
+                                                    <p style="color:#7e808c;font-size:12px;font-weight:bold">FOOD ITEM</p>
+                        
+                                                }
+                                                <p style="font-size:20px">@i.FoodItem</p>
+                                            </div>
+                                            <div id="center">
+                                                @if (tempInvoiceNo != @i.InVoiceNo)
+                                                {
+                        
+                                                <p style="color:#7e808c;font-size:12px;font-weight:bold">QUANTITY</p>
+                                                }
+                                                <p style="font-size:20px">@i.Quantity</p>
+                                            </div>
+                                            <div id="right">
+                                                @if (tempInvoiceNo != @i.InVoiceNo)
+                                                {
+                                                    <p style="color:#7e808c;font-size:12px;font-weight:bold">PRICE</p>
+                                                }
+                        
+                                                <p style="font-size:20px">@i.Price</p>
+                                            </div>
+                                        </div>
+                                        @{
+                                            tempInvoiceNo = @i.InVoiceNo;
+                                            bill = bill + @i.Price;
+                                        }
+                   
+                                        @if(ptr==lastele)
+                                        {
+                                             <p style="color:black;font-size:16px;font-weight:bold;text-align:left;width:100%;padding-left:40px;margin-left:7px;margin-bottom:30px;">BILL : @bill</p>
+                                        }
+                                        @{
+                                             ptr++;
+                                        }
+
+                    </div>
+                }
+
+            </div>
+}
+
+
 
