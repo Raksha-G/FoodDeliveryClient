@@ -64,19 +64,71 @@
 }
 .container .box .right .form1 {
   padding: 20px;
+  /*.images {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-items: center;
+      height: 40px;
+      width: 100%;
+
+
+      img {
+          height: 40px;
+          //width: 50px;
+          min-width: 60px;
+      }*/
+  /*.images > div {
+          //margin-top: 10px;
+          //margin-right: 40px;
+          margin-left: 0;
+      }*/
+  /*  .Upimethods {
+      select.icon-menu option {
+          background-repeat: no-repeat;
+          background-position: bottom left;
+          padding-left: 30px;
+      }
+
+      select#countries option[value="phonepay"] {
+          background-image: url(https://tse2.mm.bing.net/th/id/OIP.lQ866KEouNrd7YujZhGIUAAAAA?pid=ImgDet&w=445&h=100&rs=1);
+      }
+
+      select#countries option[value="googlepay"] {
+          background-image: url(https://tse2.mm.bing.net/th/id/OIP.lQ866KEouNrd7YujZhGIUAAAAA?pid=ImgDet&w=445&h=100&rs=1);
+      }
+
+      select#countries option[value="bhimupi"] {
+          background-image: url(https://tse2.mm.bing.net/th/id/OIP.lQ866KEouNrd7YujZhGIUAAAAA?pid=ImgDet&w=445&h=100&rs=1);
+      }
+
+      select#countries option[value="Paytm"] {
+          background-image: url(https://tse2.mm.bing.net/th/id/OIP.lQ866KEouNrd7YujZhGIUAAAAA?pid=ImgDet&w=445&h=100&rs=1);
+      }
+
+      select#countries option[value="Amazonpay"] {
+          background-image: url(https://tse2.mm.bing.net/th/id/OIP.lQ866KEouNrd7YujZhGIUAAAAA?pid=ImgDet&w=445&h=100&rs=1);
+      }
+  }*/
+}
+.container .box .right .form1 .sselect {
+  display: none;
+}
+.container .box .right .form1 .sselect .footer_icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 10px;
+}
+.container .box .right .form1 .sselect .footer_icons > div {
+  margin-top: 10px;
+  margin-right: 50px;
+  margin-left: 0;
+  margin-bottom: 10px;
 }
 .container .box .right .form1 .images {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: center;
-  height: 40px;
-  width: 100%;
-}
-.container .box .right .form1 .images img {
-  height: 40px;
-  min-width: 60px;
+  float: left;
 }
 .container .box .right .form1 input[type=text] {
   width: 100%;

@@ -1,13 +1,13 @@
 ﻿@model CustomerDetails
 <link rel="stylesheet" href="~/scss/Payment.css">
-
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 
 
 <form method="post">
     <div class="container">
         <div class="box">
             <div class="left">
-                <h3>BILLING ADDRESS</h3>
+                <h3 style="color:#535665;font-weight: 600;">BILLING ADDRESS</h3>
             
                     <div class="form1">
 
@@ -74,48 +74,106 @@
 
             </div>
             <div class="right">
-                <h3>PAYMENT</h3>
+                <h3 style="color:#535665;font-weight: 600;">PAYMENT</h3>
             
                     <div class="form1">
-
-                    Accepted Cards
-                    <br />
-
-                    <div class="images">
-
-                    <div><img src="https://th.bing.com/th/id/R.16dbc44d8d44fd6157f722a9674e7b07?rik=Us1kmY7Dub3wRQ&riu=http%3a%2f%2fwww.pngall.com%2fwp-content%2fuploads%2f2016%2f07%2fMastercard-Download-PNG.png&ehk=j8swbECt%2f%2f%2bT0KJGslF5ZNtn6SLSvlMLsIGEDZogxNE%3d&risl=&pid=ImgRaw&r=0" /></div>
-
-                    <div><img src="https://www.mycollection.in/public/images/rupay_card.png"/></div>
+                    <label> Cash on Delivery: </label> <input id="check" type="radio" name="radiob" value="cod"/>
+                    ‎ ‎ ‎ 
+                    <label> UPI: </label> <input id="Upi" type="radio" name="radiob" value="Upi"/>
+                    ‎ ‎ ‎ 
+                    <label> Card:  </label> <input id="cod" type="radio" name="radiob" value="cardd"/>
+                    <br/>
+                    
+                    <div class="cod sselect">
                     </div>
 
-             
-                    <br /> <br />
-                    Credit card number
-                    <input type="text" asp-for="CardNo" placeholder="Enter Credit Card" />
-                    Exp month
-                    <input type="text"  asp-for="ExpMonth" placeholder="Enter Expiry Month" />
 
-                    <div id="states">
-                        <label>
-                            Exp year
-                            <select asp-for="ExpYear">
-                                <option>Choose year</option>
-                                <option>2023</option>
-                                <option>2024</option>
-                                <option>2025</option>
-                                <option>2026</option>
-                                <option>2027</option>
-                                <option>2028</option>
-                            </select>
-                        </label>
+                    <div class="cardd sselect" style="margin-top:10px">
 
-                    <label>
-                        CVV
-                        <input type="number" name="" asp-for="CVV" placeholder="Enter CVV" />
-                    </label>
+                                Accepted Cards
+                               @* <div class="images" style="margin-bottom:10px;margin-top:0;top:0">*@
+                                   @* <div>
+                                        <img src="https://th.bing.com/th/id/R.667d4af4cdfd88547b9a6cbae6bcae40?rik=I6rG21QJ7ZkkbQ&riu=http%3a%2f%2f1.bp.blogspot.com%2f-F-LmQgPZBGI%2fT3bd3hdr1uI%2fAAAAAAAAGb0%2f5SLx-LcwI0A%2fs1600%2frupay%2blogo%27.jpg&ehk=WsoKMV6ZZSKlhghT%2fAFxeLOdvmXakD%2bqjgTmfpyABmw%3d&risl=&pid=ImgRaw&r=0" style="height:30px; min-width:60px;" />
+
+                                    </div>
+                                    <div>
+                                        <img src="https://tse2.mm.bing.net/th/id/OIP.lQ866KEouNrd7YujZhGIUAAAAA?pid=ImgDet&w=445&h=100&rs=1" style="height:30px; min-width:60px"/>
+
+                                    </div>*@
+
+                                      <div class="footer_icons">
+                                                                              <div><a href="#"><img src="https://img.icons8.com/color/2x/mastercard.png" style=" height:40px; min-width:40px;position:absolute;"/></a></div>
+                                                                              <div><a href="#"><img src="https://img.icons8.com/color/512/rupay.png" style="height:40px; min-width:40px;position:absolute;"/></a></div>
+                                                                              <div><a href="#"><img src="https://img.icons8.com/color/2x/visa.png" style=" height:40px; min-width:40px;position:absolute;"/></a></div>
+                                                                              @*<div><a href="#"><img src="https://img.icons8.com/color/2x/phone-pe.png" style=" height:40px; min-width:40px;position:absolute;"/></a></div>*@
+                          
+                                                         </div>
+
+                                @*</div>*@
+                                <br/>
+                                <br/>
+                                Credit card number
+                                <input type="text" asp-for="CardNo" id="card" placeholder="Enter Credit Card" value="000" />
+                                Exp month
+                                <input type="text"  asp-for="ExpMonth" id="expmonth" placeholder="Enter Expiry Month" value="xxx" />
+
+                                <div id="states">
+                                    <label>
+                                        Exp year
+                                        <select asp-for="ExpYear" id="expyear" value="xxx">
+                                            <option>Choose year</option>
+                                            <option>2023</option>
+                                            <option>2024</option>
+                                            <option>2025</option>
+                                            <option>2026</option>
+                                            <option>2027</option>
+                                            <option>2028</option>
+                                        </select>
+                                    </label>
+
+                                <label>
+                                    CVV
+                                    <input type="number"  asp-for="CVV" id="cvv" placeholder="Enter CVV" value="0"  />
+                                </label>
+                                </div>
+
                     </div>
-                    <button class="btn btn-primary" type="submit" asp-controller="FoodSite" asp-action="PlaceOrder" style="background-color:orange;color:white;font-weight:bold;border-color:orange">Proceed to Checkout</button>
-                    </div>
+                     <div class="Upi sselect" style="margin-top:10px">
+
+                                                UPI Payment methods
+                                               @* <div class="images" style="margin-bottom:10px;margin-top:0;top:0">*@
+                                                  @*  <div>
+                                                        <img src="https://th.bing.com/th/id/R.667d4af4cdfd88547b9a6cbae6bcae40?rik=I6rG21QJ7ZkkbQ&riu=http%3a%2f%2f1.bp.blogspot.com%2f-F-LmQgPZBGI%2fT3bd3hdr1uI%2fAAAAAAAAGb0%2f5SLx-LcwI0A%2fs1600%2frupay%2blogo%27.jpg&ehk=WsoKMV6ZZSKlhghT%2fAFxeLOdvmXakD%2bqjgTmfpyABmw%3d&risl=&pid=ImgRaw&r=0" style="height:30px; min-width:60px;" />
+
+                                                    </div>
+                                                    <div>
+                                                        <img src="https://1.bp.blogspot.com/-cNqQSrNS9Jg/XlAzE4H0-DI/AAAAAAABIDY/un2uHSnHOJESAX-RaEVCK3Dy7WFs69UywCLcBGAsYHQ/w1200-h630-p-k-no-nu/images%2B%252813%2529.jpeg" style="height:30px; min-width:60px"/>
+
+                                                    </div>*@
+
+                                                      <div class="footer_icons">
+                                                                              <div><a href="#"><img src="https://img.icons8.com/color/512/paytm.png" style=" height:40px; min-width:40px;position:absolute;"/></a></div>
+                                                                              <div><a href="#"><img src="https://img.icons8.com/color/2x/google-pay-india.png" style="height:40px; min-width:40px;position:absolute;"/></a></div>
+                                                                              <div><a href="#"><img src="https://img.icons8.com/windows/2x/amazon-pay.png" style=" height:40px; min-width:40px;position:absolute;"/></a></div>
+                                                                              <div><a href="#"><img src="https://img.icons8.com/color/2x/phone-pe.png" style=" height:40px; min-width:40px;position:absolute;"/></a></div>
+                          
+                                                         </div>
+                                                @*</div>*@
+                                                <br/>
+                                                <br/>
+                                               
+                                                <label>
+                                                    Enter Your UPI ID
+                                                    <input type="text" name=""  id="upiid" placeholder="Enter UPI ID" value="xxx" />
+                                                </label>
+                                                </div>
+                   </div>
+
+
+
+
+
+                    <button class="btn btn-primary" type="submit" asp-controller="FoodSite" asp-action="PlaceOrder" style="background-color:orange;color:white;font-weight:bold;border-color:orange;margin-left:20px">Proceed to Checkout</button>
             
             </div>
 
@@ -125,6 +183,29 @@
     <a class="btn btn-primary" type="submit" asp-controller="FoodSite" asp-action="PlaceOrder">Proceed to Checkout</a>
     *@
 </form>
+
+ <script type="text/javascript">
+ 
+           /* $(document).ready(function() {
+                $('input[type="checkbox"]').click(function() {
+                    var inputValue = $(this).attr("value");
+                    $("." + inputValue).toggle();
+
+                });
+            });*/
+
+            $(document).ready(function() {
+                $('input[type="radio"]').click(function() {
+                    var inputValue = $(this).attr("value");
+                    var targetBox = $("." + inputValue);
+                    $(".sselect").not(targetBox).hide();
+                    $(targetBox).show();
+                });
+            });
+       
+
+           
+ </script>
 
 
 

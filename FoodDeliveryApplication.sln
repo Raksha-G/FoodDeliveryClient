@@ -5,9 +5,9 @@ VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodDeliveryApplication", "FoodDeliveryApplication\FoodDeliveryApplication.csproj", "{605535BB-7ADC-4BBD-A992-3572703E174D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestaurantSideApplication", "..\RestaurantSideApplication\RestaurantSideApplication\RestaurantSideApplication.csproj", "{3E090AA5-BE0C-446E-824D-CCE25B88A76D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodAppWebApi", "FoodAppWebApi\FoodAppWebApi.csproj", "{3A8446A9-F680-488F-98EA-518F6C689F9B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodAppWebApi", "FoodAppWebApi\FoodAppWebApi.csproj", "{3A8446A9-F680-488F-98EA-518F6C689F9B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestaurantSideApplication", "..\RestaurantSideApplication1\RestaurantSide\RestaurantSideApplication\RestaurantSideApplication.csproj", "{8C7E1E68-61C8-483C-9E3B-103558AF7F12}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +19,14 @@ Global
 		{605535BB-7ADC-4BBD-A992-3572703E174D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{605535BB-7ADC-4BBD-A992-3572703E174D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{605535BB-7ADC-4BBD-A992-3572703E174D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3E090AA5-BE0C-446E-824D-CCE25B88A76D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3E090AA5-BE0C-446E-824D-CCE25B88A76D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3E090AA5-BE0C-446E-824D-CCE25B88A76D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3E090AA5-BE0C-446E-824D-CCE25B88A76D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3A8446A9-F680-488F-98EA-518F6C689F9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3A8446A9-F680-488F-98EA-518F6C689F9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A8446A9-F680-488F-98EA-518F6C689F9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A8446A9-F680-488F-98EA-518F6C689F9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C7E1E68-61C8-483C-9E3B-103558AF7F12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C7E1E68-61C8-483C-9E3B-103558AF7F12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C7E1E68-61C8-483C-9E3B-103558AF7F12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C7E1E68-61C8-483C-9E3B-103558AF7F12}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

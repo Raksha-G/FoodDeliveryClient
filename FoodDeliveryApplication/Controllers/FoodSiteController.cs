@@ -495,7 +495,15 @@ namespace FoodDeliveryApplication.Controllers
             {
                 if (apiRespoce.StatusCode == System.Net.HttpStatusCode.OK)
                 {
-                    TempData["success"] = "Payment done successfully";
+                    if(order.CVV==0)
+                    {
+                        TempData["success"] = "Order placed";
+                    }
+                    else
+                    {
+                        TempData["success"] = "Payment done successfully";
+                    }
+                    
                 }
                 else
                 {

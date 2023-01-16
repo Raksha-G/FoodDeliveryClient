@@ -77,8 +77,7 @@
 
             .form1 {
                 padding: 20px;
-
-                .images {
+                /*.images {
                     display: flex;
                     flex-direction: row;
                     flex-wrap: wrap;
@@ -92,15 +91,34 @@
                         height: 40px;
                         //width: 50px;
                         min-width: 60px;
+                    }*/
+
+                .sselect {
+                    display: none;
+
+                    .footer_icons {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        padding-right:10px;
+                    }
+
+                    .footer_icons > div {
+                        margin-top: 10px;
+                        margin-right: 50px;
+                        margin-left: 0;
+                        margin-bottom:10px;
                     }
                 }
 
-
-
-
-
-
-
+                .images {
+                    float: left;
+                }
+                /*.images > div {
+                        //margin-top: 10px;
+                        //margin-right: 40px;
+                        margin-left: 0;
+                    }*/
                 input[type="text"] {
                     width: 100%;
                     padding: 0.5rem 0.7rem;
@@ -121,6 +139,34 @@
                         margin-left: 5px;
                     }
                 }
+                /*  .Upimethods {
+                    select.icon-menu option {
+                        background-repeat: no-repeat;
+                        background-position: bottom left;
+                        padding-left: 30px;
+                    }
+
+                    select#countries option[value="phonepay"] {
+                        background-image: url(https://tse2.mm.bing.net/th/id/OIP.lQ866KEouNrd7YujZhGIUAAAAA?pid=ImgDet&w=445&h=100&rs=1);
+                    }
+
+                    select#countries option[value="googlepay"] {
+                        background-image: url(https://tse2.mm.bing.net/th/id/OIP.lQ866KEouNrd7YujZhGIUAAAAA?pid=ImgDet&w=445&h=100&rs=1);
+                    }
+
+                    select#countries option[value="bhimupi"] {
+                        background-image: url(https://tse2.mm.bing.net/th/id/OIP.lQ866KEouNrd7YujZhGIUAAAAA?pid=ImgDet&w=445&h=100&rs=1);
+                    }
+
+                    select#countries option[value="Paytm"] {
+                        background-image: url(https://tse2.mm.bing.net/th/id/OIP.lQ866KEouNrd7YujZhGIUAAAAA?pid=ImgDet&w=445&h=100&rs=1);
+                    }
+
+                    select#countries option[value="Amazonpay"] {
+                        background-image: url(https://tse2.mm.bing.net/th/id/OIP.lQ866KEouNrd7YujZhGIUAAAAA?pid=ImgDet&w=445&h=100&rs=1);
+                    }
+                }*/
+
 
                 button {
                     margin-top: 15px;
