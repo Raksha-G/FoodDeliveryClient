@@ -14,7 +14,7 @@ namespace FoodAppWebApi.Controllers
         [CustomAttribute.TokenValidator]
         public IActionResult GetAllRestaurants()
         {
-            SqlConnection conn = new SqlConnection("Data Source = PSL-28MH6Q3 ; Initial Catalog = FoodDeliveryApplication; Integrated Security = True; ");
+            SqlConnection conn = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997; ");
             SqlCommand cmd = new SqlCommand("select * from Restaurants", conn);
             conn.Open();
             SqlDataReader sr = cmd.ExecuteReader();
@@ -39,7 +39,7 @@ namespace FoodAppWebApi.Controllers
         public IActionResult GetRestaurantMenuById(int Id)
         {
 
-            SqlConnection conn = new SqlConnection("Data Source = PSL-28MH6Q3 ; Initial Catalog = FoodDeliveryApplication; Integrated Security = True;");
+            SqlConnection conn = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");
             SqlCommand cmd = new SqlCommand(String.Format("select *  from Food where Restaurant_Id={0}", Id), conn);
             conn.Open();
             SqlDataReader sr = cmd.ExecuteReader();
@@ -70,7 +70,7 @@ namespace FoodAppWebApi.Controllers
         public IActionResult AddToCart([FromBody] CartItems cart)
         {
 
-            SqlConnection conn = new SqlConnection("Data Source = PSL-28MH6Q3 ; Initial Catalog = FoodDeliveryApplication; Integrated Security = True;");
+            SqlConnection conn = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");
             SqlCommand cmd = new SqlCommand(String.Format("insert into AddItemToCart values('{0}','{1}','{2}','{3}','{4}')",
                                                           cart.UserName,
                                                           cart.FoodItem,
@@ -97,7 +97,7 @@ namespace FoodAppWebApi.Controllers
         [CustomAttribute.TokenValidator]
         public IActionResult DeleteCartItemById(int id)
         {
-            SqlConnection conn = new SqlConnection("Data Source = PSL-28MH6Q3; Initial Catalog = FoodDeliveryApplication; Integrated Security = True;");
+            SqlConnection conn = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");
             SqlCommand cmd = new SqlCommand(String.Format("delete from AddItemToCart where ItemNo = '{0}'", id), conn);
             conn.Open();
             int res = cmd.ExecuteNonQuery();
@@ -119,7 +119,7 @@ namespace FoodAppWebApi.Controllers
         [CustomAttribute.TokenValidator]
         public IActionResult GetCartByUserName(string UserName)
         {
-            SqlConnection conn = new SqlConnection("Data Source = PSL-28MH6Q3 ; Initial Catalog = FoodDeliveryApplication; Integrated Security = True;");
+            SqlConnection conn = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");
             SqlCommand cmd = new SqlCommand(String.Format("select A.FoodItem, A.Quantity,A.ItemNo, F.Food_Image,F.Price,F.Id,F.Restaurant_Id from AddItemToCart A inner join Food F on F.Food_Item = A.FoodItem where A.UserName = '{0}'", UserName), conn);
             conn.Open();
             SqlDataReader sr = cmd.ExecuteReader();
@@ -149,7 +149,7 @@ namespace FoodAppWebApi.Controllers
         [CustomAttribute.TokenValidator]
         public IActionResult DeleteCartItemsByUserName(string UserName)
         {
-            SqlConnection conn = new SqlConnection("Data Source = PSL-28MH6Q3; Initial Catalog = FoodDeliveryApplication; Integrated Security = True;");
+            SqlConnection conn = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");
             SqlCommand cmd = new SqlCommand(String.Format("delete from AddItemToCart where UserName = '{0}'", UserName), conn);
             conn.Open();
             int res = cmd.ExecuteNonQuery();
@@ -168,9 +168,9 @@ namespace FoodAppWebApi.Controllers
 
         [HttpGet("{Id}/{UserName}")]
         [CustomAttribute.TokenValidator]
-        public IActionResult OrderStatus(int Id,string UserName)
+        public IActionResult OrderStatus(int Id, string UserName)
         {
-            SqlConnection conn = new SqlConnection("Data Source = PSL-28MH6Q3 ; Initial Catalog = FoodDeliveryApplication; Integrated Security = True;");
+            SqlConnection conn = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");
 
             var OrderList = new List<Order>();
             var orderlist = new List<OrderDetails>();
@@ -213,20 +213,20 @@ namespace FoodAppWebApi.Controllers
 
         [HttpPost]
         [CustomAttribute.TokenValidator]
-        public IActionResult Orders([FromBody]OrdersApi order)
+        public IActionResult Orders([FromBody] OrdersApi order)
         {
-            SqlConnection conn = new SqlConnection("Data Source = PSL-28MH6Q3 ; Initial Catalog = FoodDeliveryApplication; Integrated Security = True;");
+            SqlConnection conn = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");
             SqlCommand cmd = new SqlCommand(String.Format(
                 "insert into Orders values('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}')",
                 order.InVoiceNo,
                 order.UserName,
                 order.Address,
                 order.PhoneNo,
-                order.OrderTime,order.City,order.State,order.Zipcode,order.CardNo,order.ExpMonth,order.ExpYear,order.CVV), conn);
+                order.OrderTime, order.City, order.State, order.Zipcode, order.CardNo, order.ExpMonth, order.ExpYear, order.CVV), conn);
             conn.Open();
-            int res=cmd.ExecuteNonQuery();
+            int res = cmd.ExecuteNonQuery();
             conn.Close();
-            if(res==0)
+            if (res == 0)
             {
                 return NotFound("No rows updates");
             }
@@ -238,10 +238,10 @@ namespace FoodAppWebApi.Controllers
 
         [HttpPost]
         [CustomAttribute.TokenValidator]
-        public IActionResult OrderDetails([FromBody]List<OrderDetailsApi> order)
+        public IActionResult OrderDetails([FromBody] List<OrderDetailsApi> order)
         {
-            SqlConnection conn = new SqlConnection("Data Source = PSL-28MH6Q3 ; Initial Catalog = FoodDeliveryApplication; Integrated Security = True;");
-            int res=0;
+            SqlConnection conn = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");
+            int res = 0;
             foreach (var obj in order)
             {
                 SqlCommand sqlCommand = new SqlCommand(String.Format(
@@ -253,35 +253,35 @@ namespace FoodAppWebApi.Controllers
                     obj.Quantity,
                     obj.Price,
                     obj.OrderTime), conn);
-            
+
                 conn.Open();
-                 res=res+sqlCommand.ExecuteNonQuery();
+                res = res + sqlCommand.ExecuteNonQuery();
                 conn.Close();
             }
-            if(res==0)
+            if (res == 0)
             {
                 return NotFound("No rows updated");
             }
             else
             {
-                return Ok(res); 
+                return Ok(res);
             }
 
         }
 
 
-        
+
 
         [HttpGet("{FoodItem}")]
         [CustomAttribute.TokenValidator]
         public IActionResult SearchMenuByName(string FoodItem)
         {
-            SqlConnection conn = new SqlConnection("Data Source = PSL-28MH6Q3 ; Initial Catalog = FoodDeliveryApplication; Integrated Security = True;");
+            SqlConnection conn = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");
             SqlCommand cmd = new SqlCommand(String.Format("Select * from Food where Food_Item like '%{0}%' ", FoodItem), conn);
             conn.Open();
             SqlDataReader sr = cmd.ExecuteReader();
 
-            List<Menu>  list = new List<Menu>();
+            List<Menu> list = new List<Menu>();
 
 
             while (sr.Read())
@@ -304,15 +304,15 @@ namespace FoodAppWebApi.Controllers
 
 
         [HttpPost]
-        public IActionResult SignUp([FromBody]SignUp signup)
+        public IActionResult SignUp([FromBody] SignUp signup)
         {
-            SqlConnection conn = new SqlConnection("Data Source = PSL-28MH6Q3 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=True;");
+            SqlConnection conn = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");
             SqlCommand cmd = new SqlCommand(String.Format("insert into Users values('{0}','{1}','{2}')", signup.UserName, signup.Email, signup.Password), conn);
             conn.Open();
-            int res=cmd.ExecuteNonQuery();
+            int res = cmd.ExecuteNonQuery();
             conn.Close();
 
-            if(res==0)
+            if (res == 0)
             {
                 return NotFound("No Rows Updated");
             }

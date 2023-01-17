@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\raksha_ganyarpawar\\source\\repos\\FoodDeliveryApplication\\FoodAppWebApi\\FoodAppWebApi.csproj": {}
+    "F:\\Dummy\\FoodDeliveryClient\\FoodAppWebApi\\FoodAppWebApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\raksha_ganyarpawar\\source\\repos\\FoodDeliveryApplication\\FoodAppWebApi\\FoodAppWebApi.csproj": {
+    "F:\\Dummy\\FoodDeliveryClient\\FoodAppWebApi\\FoodAppWebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\raksha_ganyarpawar\\source\\repos\\FoodDeliveryApplication\\FoodAppWebApi\\FoodAppWebApi.csproj",
+        "projectUniqueName": "F:\\Dummy\\FoodDeliveryClient\\FoodAppWebApi\\FoodAppWebApi.csproj",
         "projectName": "FoodAppWebApi",
-        "projectPath": "C:\\Users\\raksha_ganyarpawar\\source\\repos\\FoodDeliveryApplication\\FoodAppWebApi\\FoodAppWebApi.csproj",
-        "packagesPath": "C:\\Users\\raksha_ganyarpawar\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\raksha_ganyarpawar\\source\\repos\\FoodDeliveryApplication\\FoodAppWebApi\\obj\\",
+        "projectPath": "F:\\Dummy\\FoodDeliveryClient\\FoodAppWebApi\\FoodAppWebApi.csproj",
+        "packagesPath": "C:\\Users\\vempadapu_prasanth\\.nuget\\packages\\",
+        "outputPath": "F:\\Dummy\\FoodDeliveryClient\\FoodAppWebApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\raksha_ganyarpawar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\vempadapu_prasanth\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -85,7 +85,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

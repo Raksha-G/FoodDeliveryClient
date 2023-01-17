@@ -1,0 +1,28 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      dotnet: 6.0
+
+  pre_build:
+    commands:
+      - echo Restore started on `date`
+      - dotnet restore
+
+  build:
+    commands:
+      - echo Build started on `date`
+      - dotnet build -c Release
+
+  post_build:
+    commands:
+      - echo Publish started on `date`
+      - dotnet publish -c Release -r linux-x64 -o ./build_output ./FoodDeliveryApplication/FoodDeliveryApplication.csproj --self-contained false
+      - cp Procfile ./build_output
+
+artifacts:
+  files:
+    - '**/*'
+  base-directory: ./build_output
+  discard-paths: no

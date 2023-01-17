@@ -27,7 +27,7 @@ namespace FoodDeliveryApplication.Controllers
             _logger = logger;
             this._httpContextAccessor = httpContextAccessor;
 
-            SqlConnection conn = new SqlConnection("Data Source = PSL-28MH6Q3 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=True;");
+            SqlConnection conn = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");
             SqlCommand cmd = new SqlCommand("select * from Users", conn);
             conn.Open();
             SqlDataReader sr = cmd.ExecuteReader();
@@ -63,7 +63,7 @@ namespace FoodDeliveryApplication.Controllers
             var httpClient = new HttpClient();
 
             JsonContent content = JsonContent.Create(signup);
-            using (var apiRespoce = await httpClient.PostAsync("https://localhost:7021/api/Food/SignUp", content))
+            using (var apiRespoce = await httpClient.PostAsync("http://52.66.208.30:8081/api/Food/SignUp", content))
             {
                 if (apiRespoce.StatusCode == System.Net.HttpStatusCode.OK)
                 {
@@ -101,7 +101,7 @@ namespace FoodDeliveryApplication.Controllers
                         }*/
 
             JsonContent content = JsonContent.Create(login);
-            using (var apiRespoce = await httpClient.PostAsync("https://localhost:7021/api/NewAuthentication/login", content))
+            using (var apiRespoce = await httpClient.PostAsync("http://52.66.208.30:8081/api/NewAuthentication/login", content))
             {
                 if (apiRespoce.StatusCode == System.Net.HttpStatusCode.OK)
                 {
@@ -112,7 +112,7 @@ namespace FoodDeliveryApplication.Controllers
                     //_httpContextAccessor.HttpContext.Session.SetString("UserName", login.UserName);
                     //_httpContextAccessor.HttpContext.Session.SetString("AccessToken", userRes.AccessToken);
                     //_httpContextAccessor.HttpContext.Session.SetString("RefreshToken", userRes.RefreshToken); 
-                    
+
                     _httpContextAccessor.HttpContext.Session.SetString("UserName", login.UserName);
                     _httpContextAccessor.HttpContext.Session.SetString("AccessToken", userRes.AccessToken);
                     _httpContextAccessor.HttpContext.Session.SetString("RefreshToken", userRes.RefreshToken);
@@ -120,18 +120,18 @@ namespace FoodDeliveryApplication.Controllers
                     return RedirectToAction("Restaurants");
 
                 }
-                else if(apiRespoce.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+                else if (apiRespoce.StatusCode == System.Net.HttpStatusCode.Unauthorized)
                 {
                     ViewBag.NotExist = "User Not Exist";
                     return View();
                     //return Content("Error: " + await apiRespoce.Content.ReadAsStringAsync());
                 }
-                else if(apiRespoce.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                else if (apiRespoce.StatusCode == System.Net.HttpStatusCode.BadRequest)
                 {
                     ViewBag.EmptyCredential = "Empty Credential";
                     return View();
                 }
-                else if(apiRespoce.StatusCode == System.Net.HttpStatusCode.NotFound)
+                else if (apiRespoce.StatusCode == System.Net.HttpStatusCode.NotFound)
                 {
                     ViewBag.IncorrectPassword = "Incorrect Password";
                     return View();
@@ -157,7 +157,7 @@ namespace FoodDeliveryApplication.Controllers
             {
                 _logger.LogInformation("{0} Logged Out", CurrUser);
                 Console.WriteLine("Logout");
-                return RedirectToAction("Login","FoodSite");
+                return RedirectToAction("Login", "FoodSite");
             }
 
             JsonContent content = JsonContent.Create(new TokenDto()
@@ -168,13 +168,13 @@ namespace FoodDeliveryApplication.Controllers
             httpClient.DefaultRequestHeaders.Authorization =
                 new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", AccessToken);
 
-            var apiResponce = await httpClient.DeleteAsync("https://localhost:7021/api/NewAuthentication/logout");
+            var apiResponce = await httpClient.DeleteAsync("http://52.66.208.30:8081/api/NewAuthentication/logout");
 
             if (apiResponce.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 _logger.LogInformation("{0} Logged Out", _httpContextAccessor.HttpContext.Session.GetString("UserName"));
                 _httpContextAccessor.HttpContext.Session.Clear();
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("Index", "Home");
             }
             else
             {
@@ -219,7 +219,7 @@ namespace FoodDeliveryApplication.Controllers
 
             Console.WriteLine(AccessToken);
 
-            using (var apiResponce = await httpClient.GetAsync("https://localhost:7021/api/Food/GetAllRestaurants"))
+            using (var apiResponce = await httpClient.GetAsync("http://52.66.208.30:8081/api/Food/GetAllRestaurants"))
             {
 
                 if (apiResponce.StatusCode == System.Net.HttpStatusCode.OK)
@@ -228,7 +228,7 @@ namespace FoodDeliveryApplication.Controllers
                     res = JsonConvert.DeserializeObject<List<Restaurants>>(res1);
                     return View("Restaurants", res);
                 }
-                else if(apiResponce.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+                else if (apiResponce.StatusCode == System.Net.HttpStatusCode.Unauthorized)
                 {
                     return RedirectToAction("Login");
                 }
@@ -267,7 +267,7 @@ namespace FoodDeliveryApplication.Controllers
 
             List<Menu> res = new List<Menu>();
             //HttpClient httpClient = new HttpClient();
-            var apiResponce = await httpClient.GetAsync("https://localhost:7021/api/Food/GetRestaurantMenuById/" + Id);
+            var apiResponce = await httpClient.GetAsync("http://52.66.208.30:8081/api/Food/GetRestaurantMenuById/" + Id);
 
             if (apiResponce.StatusCode == System.Net.HttpStatusCode.OK)
             {
@@ -283,7 +283,7 @@ namespace FoodDeliveryApplication.Controllers
         }
 
 
-        public IActionResult RestaurantMenuVeg(string type,int Id)
+        public IActionResult RestaurantMenuVeg(string type, int Id)
         {
             string? AccessToken = _httpContextAccessor.HttpContext.Session.GetString("AccessToken");
 
@@ -305,10 +305,10 @@ namespace FoodDeliveryApplication.Controllers
 
             //List<Menu> res = new List<Menu>();
 
-     
 
-            SqlConnection conn = new SqlConnection("Data Source = PSL-28MH6Q3 ; Initial Catalog = FoodDeliveryApplication; Integrated Security = True;");
-            SqlCommand cmd = new SqlCommand(String.Format("select *  from Food where Restaurant_Id={0} and FoodType='{1}' ", Id,type), conn);
+
+            SqlConnection conn = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");
+            SqlCommand cmd = new SqlCommand(String.Format("select *  from Food where Restaurant_Id={0} and FoodType='{1}' ", Id, type), conn);
             conn.Open();
             SqlDataReader sr = cmd.ExecuteReader();
 
@@ -331,7 +331,7 @@ namespace FoodDeliveryApplication.Controllers
 
             ViewBag.veg = "veg";
 
-            return View("Menu",model);
+            return View("Menu", model);
         }
 
 
@@ -385,7 +385,7 @@ namespace FoodDeliveryApplication.Controllers
 
 
             JsonContent content1 = JsonContent.Create(cart);
-            using (var apiRespoce = await httpClient.PostAsync("https://localhost:7021/api/Food/AddToCart", content1))
+            using (var apiRespoce = await httpClient.PostAsync("http://52.66.208.30:8081/api/Food/AddToCart", content1))
             {
                 if (apiRespoce.StatusCode == System.Net.HttpStatusCode.OK)
                 {
@@ -433,7 +433,7 @@ namespace FoodDeliveryApplication.Controllers
 
 
             //HttpClient httpClient = new HttpClient();
-            var apiResponce = await httpClient.DeleteAsync("https://localhost:7021/api/Food/DeleteCartItemById/" + Id);
+            var apiResponce = await httpClient.DeleteAsync("http://52.66.208.30:8081/api/Food/DeleteCartItemById/" + Id);
 
             if (apiResponce.StatusCode == System.Net.HttpStatusCode.OK)
             {
@@ -473,7 +473,7 @@ namespace FoodDeliveryApplication.Controllers
 
 
             List<Cart> res = new List<Cart>();
-            var apiResponce = await httpClient.GetAsync("https://localhost:7021/api/Food/GetCartByUserName?UserName=" + UserName);
+            var apiResponce = await httpClient.GetAsync("http://52.66.208.30:8081/api/Food/GetCartByUserName?UserName=" + UserName);
 
             if (apiResponce.StatusCode == System.Net.HttpStatusCode.OK)
             {
@@ -525,7 +525,7 @@ namespace FoodDeliveryApplication.Controllers
 
             Console.WriteLine(OrderTime);
 
-            SqlConnection conn = new SqlConnection("Data Source = PSL-28MH6Q3 ; Initial Catalog = FoodDeliveryApplication; Integrated Security = True;");
+            SqlConnection conn = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");
 
 
             OrderPlaced order = new OrderPlaced();
@@ -544,11 +544,11 @@ namespace FoodDeliveryApplication.Controllers
 
 
             JsonContent content1 = JsonContent.Create(order);
-            using (var apiRespoce = await httpClient.PostAsync("https://localhost:7021/api/Food/Orders", content1))
+            using (var apiRespoce = await httpClient.PostAsync("http://52.66.208.30:8081/api/Food/Orders", content1))
             {
                 if (apiRespoce.StatusCode == System.Net.HttpStatusCode.OK)
                 {
-                    if(order.CVV==0)
+                    if (order.CVV == 0)
                     {
                         TempData["success"] = "Order placed";
                     }
@@ -556,7 +556,7 @@ namespace FoodDeliveryApplication.Controllers
                     {
                         TempData["success"] = "Payment done successfully";
                     }
-                    
+
                 }
                 else
                 {
@@ -569,7 +569,7 @@ namespace FoodDeliveryApplication.Controllers
 
 
 
-            SqlConnection conn1 = new SqlConnection("Data Source = PSL-28MH6Q3 ; Initial Catalog = FoodDeliveryApplication; Integrated Security = True;");
+            SqlConnection conn1 = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");
             SqlCommand sqlcmd = new SqlCommand(String.Format(
                 "select * from AddItemToCart where UserName = '{0}'",
                 _httpContextAccessor.HttpContext.Session.GetString("UserName")), conn);
@@ -592,7 +592,7 @@ namespace FoodDeliveryApplication.Controllers
                new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", AccessToken);
 
             JsonContent content2 = JsonContent.Create(orderList);
-            using (var apiRespoce = await httpClient1.PostAsync("https://localhost:7021/api/Food/OrderDetails", content2))
+            using (var apiRespoce = await httpClient1.PostAsync("http://52.66.208.30:8081/api/Food/OrderDetails", content2))
             {
                 if (apiRespoce.StatusCode == System.Net.HttpStatusCode.OK)
                 {
@@ -611,16 +611,16 @@ namespace FoodDeliveryApplication.Controllers
             HttpClient httpClient2 = new HttpClient();
             httpClient2.DefaultRequestHeaders.Authorization =
                new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", AccessToken);
-            var apiResponce = await httpClient.DeleteAsync("https://localhost:7021/api/Food/DeleteCartItemsByUserName/" + UserName);
+            var apiResponce = await httpClient.DeleteAsync("http://52.66.208.30:8081/api/Food/DeleteCartItemsByUserName/" + UserName);
 
             if (apiResponce.StatusCode == System.Net.HttpStatusCode.OK)
             {
 
-               
+
                 return View(orderList);
 
 
-               
+
             }
             else
             {
@@ -631,7 +631,7 @@ namespace FoodDeliveryApplication.Controllers
         }
 
 
-   
+
 
         public IActionResult CustomerDetails()
         {
@@ -644,7 +644,7 @@ namespace FoodDeliveryApplication.Controllers
             {
                 return RedirectToAction("Login");
             }
-            SqlConnection conn = new SqlConnection("Data Source = PSL-28MH6Q3 ; Initial Catalog = FoodDeliveryApplication; Integrated Security = True;");
+            SqlConnection conn = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");
             SqlCommand cmd = new SqlCommand(String.Format("select * from ConfirmOrder where UserName = '{0}'", _httpContextAccessor.HttpContext.Session.GetString("UserName")), conn);
             conn.Open();
             SqlDataReader sr = cmd.ExecuteReader();
@@ -707,7 +707,7 @@ namespace FoodDeliveryApplication.Controllers
             });
 
 
-            /* using(var validationResponce = await httpClient.PostAsync("https://localhost:7021/api/NewAuthentication/validate", content))
+            /* using(var validationResponce = await httpClient.PostAsync("http://52.66.208.30:8081/api/NewAuthentication/validate", content))
              {
                  if(validationResponce.StatusCode== System.Net.HttpStatusCode.BadRequest)
                  {
@@ -738,7 +738,7 @@ namespace FoodDeliveryApplication.Controllers
 
             List<OrderDetails> res = new List<OrderDetails>();
             //HttpClient httpClient = new HttpClient();
-            var apiResponce = await httpClient.GetAsync("https://localhost:7021/api/Food/OrderStatus/" + Id + "/" + UserName);
+            var apiResponce = await httpClient.GetAsync("http://52.66.208.30:8081/api/Food/OrderStatus/" + Id + "/" + UserName);
 
             if (apiResponce.StatusCode == System.Net.HttpStatusCode.OK)
             {
@@ -790,7 +790,7 @@ namespace FoodDeliveryApplication.Controllers
             string FoodItem = col["SearchedfoodItem"];
             List<Menu> res = new List<Menu>();
             //HttpClient httpClient = new HttpClient();
-            var apiResponce = await httpClient.GetAsync("https://localhost:7021/api/Food/SearchMenuByName/" + FoodItem);
+            var apiResponce = await httpClient.GetAsync("http://52.66.208.30:8081/api/Food/SearchMenuByName/" + FoodItem);
 
             if (apiResponce.StatusCode == System.Net.HttpStatusCode.OK)
             {

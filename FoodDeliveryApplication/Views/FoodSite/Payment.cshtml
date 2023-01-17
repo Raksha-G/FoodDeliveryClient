@@ -12,14 +12,14 @@
                     <div class="form1">
 
                     Full name
-                    <input type="text" asp-for="UserName" placeholder="Enter name" />
+                    <input required type="text" asp-for="UserName" placeholder="Enter name" />
                     Phone No
-                    <input type="text"  asp-for="PhoneNo" placeholder="Enter Phone No" />
+                    <input required type="text"  asp-for="PhoneNo" placeholder="Enter Phone No" />
                     Address
-                    <input type="text" asp-for="Address" placeholder="Enter Address" />
+                    <input required type="text" asp-for="Address" placeholder="Enter Address" />
                     <span asp-validation-for="Address" class="text-danger"></span>
                     City
-                    <input type="text"  asp-for="City" placeholder="City" />
+                    <input required type="text"  asp-for="City" placeholder="City" />
                     <div id="states">
                         <label>
                             State
@@ -66,7 +66,7 @@
 
                     <label>
                         Zipcode
-                        <input type="number"  asp-for="Zipcode" placeholder="Enter Zipcode" />
+                        <input required type="number"  asp-for="Zipcode" placeholder="Enter Zipcode" />
                     </label>
                     </div>
            

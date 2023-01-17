@@ -19,8 +19,8 @@ namespace FoodAppWebApi.Services
 
         public SignUp? LoginUser(LoginRequest userCredential)
         {
-            List<SignUp> userList = new() ;
-            SqlConnection conn = new SqlConnection("Data Source = PSL-28MH6Q3 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=True;");
+            List<SignUp> userList = new();
+            SqlConnection conn = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");
             SqlCommand cmd = new SqlCommand("select * from Users", conn);
             conn.Open();
             SqlDataReader sr = cmd.ExecuteReader();

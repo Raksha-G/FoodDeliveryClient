@@ -29,17 +29,17 @@
                         @*<br />*@
                         <div class="mb-3">
                             @*<label asp-for="UserName"></label>*@
-                            <input asp-for="UserName" placeholder="User Name" class="form-control" style="width:100%"/>
+                            <input required asp-for="UserName" placeholder="User Name" class="form-control" style="width:100%"/>
                         </div>
 
                          <div class="mb-3">
                             @*<label asp-for="Email"></label>*@
-                            <input asp-for="Email" placeholder="Email" class="form-control" style="width:100%"/>
+                            <input required asp-for="Email" placeholder="Email" class="form-control" style="width:100%"/>
                         </div>
 
                          <div class="mb-3">
                             @*<label asp-for="Password"></label>*@
-                            <input asp-for="Password" placeholder="Password" class="form-control" type="password" style="width:100%"/>
+                            <input required asp-for="Password" placeholder="Password" class="form-control" type="password" style="width:100%"/>
                         </div>
 
                         <button type="submit" class="btn" style="width:100%;background-color:crimson;color:white ">Create</button>
