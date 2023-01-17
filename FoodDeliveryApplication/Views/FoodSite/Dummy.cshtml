@@ -76,11 +76,19 @@
 
 
 
-     <div class="footer_icons">
+  @*   <div class="footer_icons">
                           <div><a href="#"><img src="https://img.icons8.com/color/512/paytm.png" style=" width:30px;height:30px;position:absolute;"/></a></div>
                           <div><a href="#"><img src="https://img.icons8.com/color/2x/google-pay-india.png" style=" width:30px;height:30px;position:absolute;"/></a></div>
                           <div><a href="#"><img src="https://img.icons8.com/windows/2x/amazon-pay.png" style=" width:30px;height:30px;position:absolute;"/></a></div>
                           <div><a href="#"><img src="https://img.icons8.com/color/2x/phone-pe.png" style=" width:30px;height:30px;position:absolute;"/></a></div>
                           
      </div>
+*@
 
+
+ @{
+            
+        var url = Url.Action("Restaurants", "FoodSite");
+    }
+    <div><input id="veg" type="checkbox" name="veg" value="veg" style="accent-color:green;margin-left:auto" onclick="window.location='@url'"/><label style="color:green">‎ Veg Only</label></div>
+       

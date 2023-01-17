@@ -282,6 +282,59 @@ namespace FoodDeliveryApplication.Controllers
 
         }
 
+
+        public IActionResult RestaurantMenuVeg(string type,int Id)
+        {
+            string? AccessToken = _httpContextAccessor.HttpContext.Session.GetString("AccessToken");
+
+            if (_httpContextAccessor.HttpContext.Session.GetString("UserName") == null)
+            {
+                _logger.LogInformation("{0} Logged Out", CurrUser);
+                Console.WriteLine("Logout");
+                return RedirectToAction("Login");
+            }
+
+            HttpClient httpClient = new HttpClient();
+            JsonContent content = JsonContent.Create(new TokenDto()
+            {
+                Token = AccessToken,
+            });
+
+            httpClient.DefaultRequestHeaders.Authorization =
+                new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", AccessToken);
+
+            //List<Menu> res = new List<Menu>();
+
+     
+
+            SqlConnection conn = new SqlConnection("Data Source = PSL-28MH6Q3 ; Initial Catalog = FoodDeliveryApplication; Integrated Security = True;");
+            SqlCommand cmd = new SqlCommand(String.Format("select *  from Food where Restaurant_Id={0} and FoodType='{1}' ", Id,type), conn);
+            conn.Open();
+            SqlDataReader sr = cmd.ExecuteReader();
+
+            var model = new List<Menu>();
+
+            while (sr.Read())
+            {
+                int id = (int)sr["Id"];
+                Menu menu = new Menu(
+                    4,
+                    sr["Food_Image"].ToString(),
+                    sr["Food_Item"].ToString(),
+                    (int)sr["Price"],
+                    (int)sr["Restaurant_Id"]);
+
+                Console.WriteLine(id);
+                menu.Id = id;
+                model.Add(menu);
+            }
+
+            ViewBag.veg = "veg";
+
+            return View("Menu",model);
+        }
+
+
         public IActionResult Order()
         {
             return Content(_httpContextAccessor.HttpContext.Session.GetString("UserName"));

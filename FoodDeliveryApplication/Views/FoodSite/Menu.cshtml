@@ -31,7 +31,32 @@
     <h3 style="font-family:'Roboto Black', sans-serif;color:#535665;font-weight:bold;">
         MENU
     </h3>
-    @*  <p style="font-size:20px" class="btn btn-primary text-black ">@Html.ActionLink("Cart","Cart")</p>*@
+    @if(ViewBag.veg == "veg")
+    {
+        @*<p style="color:green;font-weight:bold;margin-left:auto">Veg</p>*@
+             int Id=0;
+            foreach(var i in Model)
+            {
+                Id = i.RestaurantId;
+            }
+        var url = Url.Action("RestaurantMenu", "FoodSite", new{id = Id});
+    <div style="margin-left:auto"><input id="veg" type="checkbox" name="veg" value="veg" style="accent-color:green" onclick="window.location='@url'"/><label style="color:green">‎ All</label></div>
+    
+    }
+    else
+    {
+        
+   
+            int Id=0;
+            foreach(var i in Model)
+            {
+                Id = i.RestaurantId;
+            }
+        var url = Url.Action("RestaurantMenuVeg", "FoodSite", new{type = "veg", id = Id});
+    <div style="margin-left:auto"><input id="veg" type="checkbox" name="veg" value="veg" style="accent-color:green" onclick="window.location='@url'"/><label style="color:green">‎ Veg Only</label></div>
+    
+       
+    }
     <table>
 
         @* <tr><td><p style="font-size:15px">@Html.ActionLink("Log Out","Logout")</p></td></tr>*@

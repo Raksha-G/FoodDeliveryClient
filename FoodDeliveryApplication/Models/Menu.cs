@@ -11,6 +11,8 @@
 
         public int RestaurantId { get; set; }
 
+        public string Type { get; set; }
+
        
         public Menu()
         {
@@ -24,6 +26,15 @@
             this.food_item = food_item;
             this.price = price;
             this.RestaurantId = restaurantId;
+        }
+        public Menu(int Id, string food_img, string food_item, int price, int restaurantId,string type)
+        {
+            this.Id = this.Id;
+            this.food_img = food_img;
+            this.food_item = food_item;
+            this.price = price;
+            this.RestaurantId = restaurantId;
+            this.Type = type;
         }
 
         /* public Menu(string food_img)
