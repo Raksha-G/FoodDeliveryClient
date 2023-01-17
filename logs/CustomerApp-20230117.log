@@ -4914,3 +4914,456 @@
 2023-01-17 00:31:27.805 +05:30  DBG  Connection id "0HMNNU83PT056" received FIN.
 2023-01-17 00:31:27.805 +05:30  DBG  Connection id "0HMNNU83PT056" stopped.
 2023-01-17 00:31:27.806 +05:30  DBG  Connection id "0HMNNU83PT056" sending FIN because: "The Socket transport's send loop completed gracefully."
+2023-01-17 16:41:20.219 +05:30  DBG  Initializing Razor view compiler with compiled view: '/Views/FoodSite/AccountCreated.cshtml'.
+2023-01-17 16:41:20.332 +05:30  DBG  Initializing Razor view compiler with compiled view: '/Views/FoodSite/CancelOrder.cshtml'.
+2023-01-17 16:41:20.332 +05:30  DBG  Initializing Razor view compiler with compiled view: '/Views/FoodSite/Cart.cshtml'.
+2023-01-17 16:41:20.332 +05:30  DBG  Initializing Razor view compiler with compiled view: '/Views/FoodSite/CreateAccount.cshtml'.
+2023-01-17 16:41:20.332 +05:30  DBG  Initializing Razor view compiler with compiled view: '/Views/FoodSite/CustomerDetails.cshtml'.
+2023-01-17 16:41:20.333 +05:30  DBG  Initializing Razor view compiler with compiled view: '/Views/FoodSite/Dummy.cshtml'.
+2023-01-17 16:41:20.333 +05:30  DBG  Initializing Razor view compiler with compiled view: '/Views/FoodSite/Login.cshtml'.
+2023-01-17 16:41:20.333 +05:30  DBG  Initializing Razor view compiler with compiled view: '/Views/FoodSite/Menu.cshtml'.
+2023-01-17 16:41:20.333 +05:30  DBG  Initializing Razor view compiler with compiled view: '/Views/FoodSite/OrderStatus.cshtml'.
+2023-01-17 16:41:20.333 +05:30  DBG  Initializing Razor view compiler with compiled view: '/Views/FoodSite/Payment.cshtml'.
+2023-01-17 16:41:20.333 +05:30  DBG  Initializing Razor view compiler with compiled view: '/Views/FoodSite/PlaceOrder.cshtml'.
+2023-01-17 16:41:20.333 +05:30  DBG  Initializing Razor view compiler with compiled view: '/Views/FoodSite/Restaurants.cshtml'.
+2023-01-17 16:41:20.333 +05:30  DBG  Initializing Razor view compiler with compiled view: '/Views/Home/Index.cshtml'.
+2023-01-17 16:41:20.333 +05:30  DBG  Initializing Razor view compiler with compiled view: '/Views/Home/Privacy.cshtml'.
+2023-01-17 16:41:20.333 +05:30  DBG  Initializing Razor view compiler with compiled view: '/Views/Shared/Error.cshtml'.
+2023-01-17 16:41:20.333 +05:30  DBG  Initializing Razor view compiler with compiled view: '/Views/Shared/_Notification.cshtml'.
+2023-01-17 16:41:20.333 +05:30  DBG  Initializing Razor view compiler with compiled view: '/Views/Shared/_ValidationScriptsPartial.cshtml'.
+2023-01-17 16:41:20.333 +05:30  DBG  Initializing Razor view compiler with compiled view: '/Views/_ViewImports.cshtml'.
+2023-01-17 16:41:20.333 +05:30  DBG  Initializing Razor view compiler with compiled view: '/Views/_ViewStart.cshtml'.
+2023-01-17 16:41:20.333 +05:30  DBG  Initializing Razor view compiler with compiled view: '/Views/Shared/_Layout.cshtml'.
+2023-01-17 16:41:20.355 +05:30  DBG  Registered model binder providers, in the following order: ["Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider"]
+2023-01-17 16:41:20.671 +05:30  DBG  Hosting starting
+2023-01-17 16:41:20.801 +05:30  INF  User profile is available. Using 'C:\Users\vempadapu_prasanth\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-01-17 16:41:20.809 +05:30  DBG  Reading data from file 'C:\Users\vempadapu_prasanth\AppData\Local\ASP.NET\DataProtection-Keys\key-145d6bc5-9b80-46f7-95e8-86825b150bd1.xml'.
+2023-01-17 16:41:20.856 +05:30  DBG  Reading data from file 'C:\Users\vempadapu_prasanth\AppData\Local\ASP.NET\DataProtection-Keys\key-983f3911-cbc1-4ebd-a3d7-1e526b3d543b.xml'.
+2023-01-17 16:41:20.867 +05:30  DBG  Reading data from file 'C:\Users\vempadapu_prasanth\AppData\Local\ASP.NET\DataProtection-Keys\key-b4d935d2-b7fa-426a-a448-ef879818d251.xml'.
+2023-01-17 16:41:20.878 +05:30  DBG  Reading data from file 'C:\Users\vempadapu_prasanth\AppData\Local\ASP.NET\DataProtection-Keys\key-ee8e50a4-7c5c-4f1a-b2fd-e71076cf28c9.xml'.
+2023-01-17 16:41:20.908 +05:30  DBG  Found key {145d6bc5-9b80-46f7-95e8-86825b150bd1}.
+2023-01-17 16:41:20.916 +05:30  DBG  Found key {983f3911-cbc1-4ebd-a3d7-1e526b3d543b}.
+2023-01-17 16:41:20.916 +05:30  DBG  Found key {b4d935d2-b7fa-426a-a448-ef879818d251}.
+2023-01-17 16:41:20.916 +05:30  DBG  Found key {ee8e50a4-7c5c-4f1a-b2fd-e71076cf28c9}.
+2023-01-17 16:41:20.933 +05:30  DBG  Considering key {b4d935d2-b7fa-426a-a448-ef879818d251} with expiration date 2023-04-02 07:02:44Z as default key.
+2023-01-17 16:41:20.937 +05:30  DBG  Forwarded activator type request from Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2023-01-17 16:41:20.946 +05:30  DBG  Decrypting secret element using Windows DPAPI.
+2023-01-17 16:41:20.950 +05:30  DBG  Forwarded activator type request from Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2023-01-17 16:41:20.963 +05:30  DBG  Opening CNG algorithm 'AES' from provider 'null' with chaining mode CBC.
+2023-01-17 16:41:20.969 +05:30  DBG  Opening CNG algorithm 'SHA256' from provider 'null' with HMAC.
+2023-01-17 16:41:20.972 +05:30  DBG  Using key {b4d935d2-b7fa-426a-a448-ef879818d251} as the default key.
+2023-01-17 16:41:20.973 +05:30  DBG  Key ring with default key {b4d935d2-b7fa-426a-a448-ef879818d251} was loaded during application startup.
+2023-01-17 16:41:21.080 +05:30  DBG  Loaded hosting startup assembly FoodDeliveryApplication
+2023-01-17 16:41:21.080 +05:30  DBG  Loaded hosting startup assembly Microsoft.AspNetCore.Watch.BrowserRefresh
+2023-01-17 16:41:21.080 +05:30  DBG  Loaded hosting startup assembly Microsoft.WebTools.BrowserLink.Net
+2023-01-17 16:41:21.081 +05:30  INF  Application started. Press Ctrl+C to shut down.
+2023-01-17 16:41:21.081 +05:30  INF  Hosting environment: Development
+2023-01-17 16:41:21.081 +05:30  INF  Content root path: F:\Dummy\FoodDeliveryClient\FoodDeliveryApplication\
+2023-01-17 16:41:21.081 +05:30  DBG  Hosting started
+2023-01-17 16:41:21.185 +05:30  INF  Request starting HTTP/2 GET https://localhost:44339/ - -
+2023-01-17 16:41:21.311 +05:30  DBG  Wildcard detected, all requests with hosts will be allowed.
+2023-01-17 16:41:21.313 +05:30  DBG  The request path / does not match a supported file type
+2023-01-17 16:41:21.383 +05:30  DBG  1 candidate(s) found for the request path '/'
+2023-01-17 16:41:21.391 +05:30  DBG  Endpoint 'FoodDeliveryApplication.Controllers.HomeController.Index (FoodDeliveryApplication)' with route pattern '{controller=Home}/{action=Index}/{id?}' is valid for the request path '/'
+2023-01-17 16:41:21.392 +05:30  DBG  Request matched endpoint 'FoodDeliveryApplication.Controllers.HomeController.Index (FoodDeliveryApplication)'
+2023-01-17 16:41:21.432 +05:30  WRN  Error unprotecting the session cookie.System.Security.Cryptography.CryptographicException: The payload was invalid. For more information go to http://aka.ms/dataprotectionwarning
+   at Microsoft.AspNetCore.DataProtection.Cng.CbcAuthenticatedEncryptor.DecryptImpl(Byte* pbCiphertext, UInt32 cbCiphertext, Byte* pbAdditionalAuthenticatedData, UInt32 cbAdditionalAuthenticatedData)
+   at Microsoft.AspNetCore.DataProtection.Cng.Internal.CngAuthenticatedEncryptorBase.Decrypt(ArraySegment`1 ciphertext, ArraySegment`1 additionalAuthenticatedData)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector.UnprotectCore(Byte[] protectedData, Boolean allowOperationsOnRevokedKeys, UnprotectStatus& status)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector.Unprotect(Byte[] protectedData)
+   at Microsoft.AspNetCore.Session.CookieProtection.Unprotect(IDataProtector protector, String protectedText, ILogger logger)
+
+2023-01-17 16:41:21.574 +05:30  INF  Executing endpoint 'FoodDeliveryApplication.Controllers.HomeController.Index (FoodDeliveryApplication)'
+2023-01-17 16:41:21.615 +05:30  INF  Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller FoodDeliveryApplication.Controllers.HomeController (FoodDeliveryApplication).
+2023-01-17 16:41:21.617 +05:30  DBG  Execution plan of authorization filters (in the following order): ["None"]
+2023-01-17 16:41:21.617 +05:30  DBG  Execution plan of resource filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter"]
+2023-01-17 16:41:21.617 +05:30  DBG  Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.Filters.ControllerActionFilter (Order: -2147483648)","Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)"]
+2023-01-17 16:41:21.618 +05:30  DBG  Execution plan of exception filters (in the following order): ["None"]
+2023-01-17 16:41:21.618 +05:30  DBG  Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter"]
+2023-01-17 16:41:21.622 +05:30  DBG  Executing controller factory for controller FoodDeliveryApplication.Controllers.HomeController (FoodDeliveryApplication)
+2023-01-17 16:41:21.623 +05:30  DBG  Executed controller factory for controller FoodDeliveryApplication.Controllers.HomeController (FoodDeliveryApplication)
+2023-01-17 16:41:21.629 +05:30  DBG  View lookup cache miss for view 'Index' in controller 'Home'.
+2023-01-17 16:41:21.639 +05:30  INF  Executing ViewResult, running view Index.
+2023-01-17 16:41:21.650 +05:30  DBG  The view path '/Views/Home/Index.cshtml' was found in 10.9483ms.
+2023-01-17 16:41:21.760 +05:30  DBG  Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2023-01-17 16:41:21.767 +05:30  DBG  Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /FoodSite/Login and 
+2023-01-17 16:41:21.769 +05:30  DBG  Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /FoodSite/Login
+2023-01-17 16:41:21.773 +05:30  DBG  Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2023-01-17 16:41:21.773 +05:30  DBG  Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /FoodSite/CreateAccount and 
+2023-01-17 16:41:21.773 +05:30  DBG  Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /FoodSite/CreateAccount
+2023-01-17 16:41:21.775 +05:30  DBG  View lookup cache miss for view '_Layout' in controller 'Home'.
+2023-01-17 16:41:21.843 +05:30  DBG  View lookup cache miss for view '_Notification' in controller 'Home'.
+2023-01-17 16:41:21.849 +05:30  DBG  The temp data cookie .AspNetCore.Mvc.CookieTempDataProvider was not found.
+2023-01-17 16:41:22.220 +05:30  INF  Executed ViewResult - view Index executed in 591.4973ms.
+2023-01-17 16:41:22.229 +05:30  INF  Executed action FoodDeliveryApplication.Controllers.HomeController.Index (FoodDeliveryApplication) in 610.8388ms
+2023-01-17 16:41:22.230 +05:30  INF  Executed endpoint 'FoodDeliveryApplication.Controllers.HomeController.Index (FoodDeliveryApplication)'
+2023-01-17 16:41:22.290 +05:30  DBG  Response markup is scheduled to include browser refresh script injection.
+2023-01-17 16:41:22.338 +05:30  DBG  Response markup was updated to include browser refresh script injection.
+2023-01-17 16:41:22.339 +05:30  DBG  Connection ID "17942340933429232148" disconnecting.
+2023-01-17 16:41:22.342 +05:30  INF  Request finished HTTP/2 GET https://localhost:44339/ - - - 200 - text/html;+charset=utf-8 1168.0599ms
+2023-01-17 16:41:22.384 +05:30  INF  Request starting HTTP/2 GET https://localhost:44339/FoodDeliveryApplication.styles.css?v=9WVtNtbZWdlZSPUDo4l82Dg0Je6d9AMvAXr4GBHw4C4 - -
+2023-01-17 16:41:22.432 +05:30  INF  Sending file. Request path: '/FoodDeliveryApplication.styles.css'. Physical path: 'F:\Dummy\FoodDeliveryClient\FoodDeliveryApplication\obj\Debug\net6.0\scopedcss\bundle\FoodDeliveryApplication.styles.css'
+2023-01-17 16:41:22.433 +05:30  DBG  Connection ID "18086456104325219142" disconnecting.
+2023-01-17 16:41:22.433 +05:30  INF  Request finished HTTP/2 GET https://localhost:44339/FoodDeliveryApplication.styles.css?v=9WVtNtbZWdlZSPUDo4l82Dg0Je6d9AMvAXr4GBHw4C4 - - - 200 1140 text/css 49.1457ms
+2023-01-17 16:41:22.453 +05:30  INF  Request starting HTTP/2 GET https://localhost:44339/_framework/aspnetcore-browser-refresh.js - -
+2023-01-17 16:41:22.460 +05:30  DBG  Connection ID "17942340920544329934" disconnecting.
+2023-01-17 16:41:22.463 +05:30  INF  Request finished HTTP/2 GET https://localhost:44339/_framework/aspnetcore-browser-refresh.js - - - 200 12004 application/javascript;+charset=utf-8 6.4509ms
+2023-01-17 16:41:24.033 +05:30  INF  Request starting HTTP/2 GET https://localhost:44339/FoodSite/Login - -
+2023-01-17 16:41:24.035 +05:30  DBG  The request path /FoodSite/Login does not match a supported file type
+2023-01-17 16:41:24.038 +05:30  DBG  1 candidate(s) found for the request path '/FoodSite/Login'
+2023-01-17 16:41:24.038 +05:30  DBG  Endpoint 'FoodDeliveryApplication.Controllers.FoodSiteController.Login (FoodDeliveryApplication)' with route pattern '{controller=Home}/{action=Index}/{id?}' is valid for the request path '/FoodSite/Login'
+2023-01-17 16:41:24.038 +05:30  DBG  Request matched endpoint 'FoodDeliveryApplication.Controllers.FoodSiteController.Login (FoodDeliveryApplication)'
+2023-01-17 16:41:24.045 +05:30  WRN  Error unprotecting the session cookie.System.Security.Cryptography.CryptographicException: The payload was invalid. For more information go to http://aka.ms/dataprotectionwarning
+   at Microsoft.AspNetCore.DataProtection.Cng.CbcAuthenticatedEncryptor.DecryptImpl(Byte* pbCiphertext, UInt32 cbCiphertext, Byte* pbAdditionalAuthenticatedData, UInt32 cbAdditionalAuthenticatedData)
+   at Microsoft.AspNetCore.DataProtection.Cng.Internal.CngAuthenticatedEncryptorBase.Decrypt(ArraySegment`1 ciphertext, ArraySegment`1 additionalAuthenticatedData)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector.UnprotectCore(Byte[] protectedData, Boolean allowOperationsOnRevokedKeys, UnprotectStatus& status)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector.Unprotect(Byte[] protectedData)
+   at Microsoft.AspNetCore.Session.CookieProtection.Unprotect(IDataProtector protector, String protectedText, ILogger logger)
+
+2023-01-17 16:41:24.046 +05:30  INF  Executing endpoint 'FoodDeliveryApplication.Controllers.FoodSiteController.Login (FoodDeliveryApplication)'
+2023-01-17 16:41:24.048 +05:30  INF  Route matched with {action = "Login", controller = "FoodSite"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller FoodDeliveryApplication.Controllers.FoodSiteController (FoodDeliveryApplication).
+2023-01-17 16:41:24.048 +05:30  DBG  Execution plan of authorization filters (in the following order): ["None"]
+2023-01-17 16:41:24.048 +05:30  DBG  Execution plan of resource filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter"]
+2023-01-17 16:41:24.048 +05:30  DBG  Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.Filters.ControllerActionFilter (Order: -2147483648)","Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)"]
+2023-01-17 16:41:24.048 +05:30  DBG  Execution plan of exception filters (in the following order): ["FoodDeliveryApplication.CustomExceptionFilter"]
+2023-01-17 16:41:24.048 +05:30  DBG  Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter"]
+2023-01-17 16:41:24.048 +05:30  DBG  Executing controller factory for controller FoodDeliveryApplication.Controllers.FoodSiteController (FoodDeliveryApplication)
+2023-01-17 16:41:25.641 +05:30  DBG  Executed controller factory for controller FoodDeliveryApplication.Controllers.FoodSiteController (FoodDeliveryApplication)
+2023-01-17 16:41:25.642 +05:30  INF  Login Triggered
+2023-01-17 16:41:25.643 +05:30  DBG  View lookup cache miss for view 'Login' in controller 'FoodSite'.
+2023-01-17 16:41:25.645 +05:30  INF  Executing ViewResult, running view Login.
+2023-01-17 16:41:25.646 +05:30  DBG  The view path '/Views/FoodSite/Login.cshtml' was found in 2.6823ms.
+2023-01-17 16:41:25.660 +05:30  DBG  A new antiforgery cookie token was created.
+2023-01-17 16:41:25.868 +05:30  DBG  Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2023-01-17 16:41:25.869 +05:30  DBG  Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /FoodSite/CreateAccount and 
+2023-01-17 16:41:25.869 +05:30  DBG  Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /FoodSite/CreateAccount
+2023-01-17 16:41:25.870 +05:30  DBG  View lookup cache miss for view '_Layout' in controller 'FoodSite'.
+2023-01-17 16:41:25.873 +05:30  DBG  View lookup cache miss for view '_Notification' in controller 'FoodSite'.
+2023-01-17 16:41:25.873 +05:30  DBG  The temp data cookie .AspNetCore.Mvc.CookieTempDataProvider was not found.
+2023-01-17 16:41:25.881 +05:30  INF  Executed ViewResult - view Login executed in 238.5404ms.
+2023-01-17 16:41:25.883 +05:30  INF  Executed action FoodDeliveryApplication.Controllers.FoodSiteController.Login (FoodDeliveryApplication) in 1834.7112ms
+2023-01-17 16:41:25.883 +05:30  INF  Executed endpoint 'FoodDeliveryApplication.Controllers.FoodSiteController.Login (FoodDeliveryApplication)'
+2023-01-17 16:41:25.884 +05:30  DBG  Response markup is scheduled to include browser refresh script injection.
+2023-01-17 16:41:25.886 +05:30  DBG  Response markup was updated to include browser refresh script injection.
+2023-01-17 16:41:25.887 +05:30  INF  Request finished HTTP/2 GET https://localhost:44339/FoodSite/Login - - - 200 - text/html;+charset=utf-8 1854.2877ms
+2023-01-17 16:41:25.935 +05:30  INF  Request starting HTTP/2 GET https://localhost:44339/_framework/aspnetcore-browser-refresh.js - -
+2023-01-17 16:41:25.936 +05:30  DBG  Connection ID "17942340933429232150" disconnecting.
+2023-01-17 16:41:25.936 +05:30  INF  Request finished HTTP/2 GET https://localhost:44339/_framework/aspnetcore-browser-refresh.js - - - 200 12004 application/javascript;+charset=utf-8 1.0467ms
+2023-01-17 16:41:32.832 +05:30  INF  Request starting HTTP/2 POST https://localhost:44339/FoodSite/Login application/x-www-form-urlencoded 211
+2023-01-17 16:41:32.835 +05:30  DBG  POST requests are not supported
+2023-01-17 16:41:32.842 +05:30  DBG  2 candidate(s) found for the request path '/FoodSite/Login'
+2023-01-17 16:41:32.842 +05:30  DBG  Endpoint 'FoodDeliveryApplication.Controllers.FoodSiteController.Login (FoodDeliveryApplication)' with route pattern '{controller=Home}/{action=Index}/{id?}' is valid for the request path '/FoodSite/Login'
+2023-01-17 16:41:32.842 +05:30  DBG  Endpoint 'FoodDeliveryApplication.Controllers.FoodSiteController.Login (FoodDeliveryApplication)' with route pattern '{controller=Home}/{action=Index}/{id?}' is valid for the request path '/FoodSite/Login'
+2023-01-17 16:41:32.842 +05:30  DBG  Request matched endpoint 'FoodDeliveryApplication.Controllers.FoodSiteController.Login (FoodDeliveryApplication)'
+2023-01-17 16:41:32.844 +05:30  WRN  Error unprotecting the session cookie.System.Security.Cryptography.CryptographicException: The payload was invalid. For more information go to http://aka.ms/dataprotectionwarning
+   at Microsoft.AspNetCore.DataProtection.Cng.CbcAuthenticatedEncryptor.DecryptImpl(Byte* pbCiphertext, UInt32 cbCiphertext, Byte* pbAdditionalAuthenticatedData, UInt32 cbAdditionalAuthenticatedData)
+   at Microsoft.AspNetCore.DataProtection.Cng.Internal.CngAuthenticatedEncryptorBase.Decrypt(ArraySegment`1 ciphertext, ArraySegment`1 additionalAuthenticatedData)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector.UnprotectCore(Byte[] protectedData, Boolean allowOperationsOnRevokedKeys, UnprotectStatus& status)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingBasedDataProtector.Unprotect(Byte[] protectedData)
+   at Microsoft.AspNetCore.Session.CookieProtection.Unprotect(IDataProtector protector, String protectedText, ILogger logger)
+
+2023-01-17 16:41:32.845 +05:30  INF  Executing endpoint 'FoodDeliveryApplication.Controllers.FoodSiteController.Login (FoodDeliveryApplication)'
+2023-01-17 16:41:32.872 +05:30  INF  Route matched with {action = "Login", controller = "FoodSite"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(FoodDeliveryApplication.Models.LoginDetails) on controller FoodDeliveryApplication.Controllers.FoodSiteController (FoodDeliveryApplication).
+2023-01-17 16:41:32.872 +05:30  DBG  Execution plan of authorization filters (in the following order): ["None"]
+2023-01-17 16:41:32.872 +05:30  DBG  Execution plan of resource filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter"]
+2023-01-17 16:41:32.872 +05:30  DBG  Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.Filters.ControllerActionFilter (Order: -2147483648)","Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)"]
+2023-01-17 16:41:32.872 +05:30  DBG  Execution plan of exception filters (in the following order): ["FoodDeliveryApplication.CustomExceptionFilter"]
+2023-01-17 16:41:32.872 +05:30  DBG  Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter"]
+2023-01-17 16:41:32.872 +05:30  DBG  Executing controller factory for controller FoodDeliveryApplication.Controllers.FoodSiteController (FoodDeliveryApplication)
+2023-01-17 16:41:33.408 +05:30  DBG  Executed controller factory for controller FoodDeliveryApplication.Controllers.FoodSiteController (FoodDeliveryApplication)
+2023-01-17 16:41:33.421 +05:30  DBG  Attempting to bind parameter 'login' of type 'FoodDeliveryApplication.Models.LoginDetails' ...
+2023-01-17 16:41:33.426 +05:30  DBG  Attempting to bind parameter 'login' of type 'FoodDeliveryApplication.Models.LoginDetails' using the name '' in request data ...
+2023-01-17 16:41:33.431 +05:30  DBG  Attempting to bind property 'FoodDeliveryApplication.Models.LoginDetails.UserName' of type 'System.String' using the name 'UserName' in request data ...
+2023-01-17 16:41:33.433 +05:30  DBG  Done attempting to bind property 'FoodDeliveryApplication.Models.LoginDetails.UserName' of type 'System.String'.
+2023-01-17 16:41:33.435 +05:30  DBG  Attempting to bind property 'FoodDeliveryApplication.Models.LoginDetails.Password' of type 'System.String' using the name 'Password' in request data ...
+2023-01-17 16:41:33.435 +05:30  DBG  Done attempting to bind property 'FoodDeliveryApplication.Models.LoginDetails.Password' of type 'System.String'.
+2023-01-17 16:41:33.436 +05:30  DBG  Done attempting to bind parameter 'login' of type 'FoodDeliveryApplication.Models.LoginDetails'.
+2023-01-17 16:41:33.436 +05:30  DBG  Done attempting to bind parameter 'login' of type 'FoodDeliveryApplication.Models.LoginDetails'.
+2023-01-17 16:41:33.436 +05:30  DBG  Attempting to validate the bound parameter 'login' of type 'FoodDeliveryApplication.Models.LoginDetails' ...
+2023-01-17 16:41:33.445 +05:30  DBG  Done attempting to validate the bound parameter 'login' of type 'FoodDeliveryApplication.Models.LoginDetails'.
+2023-01-17 16:41:34.288 +05:30  DBG  Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2023-01-17 16:41:34.288 +05:30  DBG  Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /FoodSite/Restaurants and 
+2023-01-17 16:41:34.288 +05:30  DBG  Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /FoodSite/Restaurants
+2023-01-17 16:41:34.288 +05:30  INF  Executing RedirectResult, redirecting to /FoodSite/Restaurants.
+2023-01-17 16:41:34.288 +05:30  INF  Executed action FoodDeliveryApplication.Controllers.FoodSiteController.Login (FoodDeliveryApplication) in 1415.7702ms
+2023-01-17 16:41:34.288 +05:30  INF  Executed endpoint 'FoodDeliveryApplication.Controllers.FoodSiteController.Login (FoodDeliveryApplication)'
+2023-01-17 16:41:34.288 +05:30  INF  Session started; Key:f9109f57-bc2e-a9c5-18e9-81dfe9d60b75, Id:dbed12ed-d978-1527-643c-8bf228d9513e
+2023-01-17 16:41:34.302 +05:30  DBG  Session stored; Key:f9109f57-bc2e-a9c5-18e9-81dfe9d60b75, Id:dbed12ed-d978-1527-643c-8bf228d9513e, Count:3
+2023-01-17 16:41:34.304 +05:30  DBG  Connection ID "18014398531762127137" disconnecting.
+2023-01-17 16:41:34.304 +05:30  INF  Request finished HTTP/2 POST https://localhost:44339/FoodSite/Login application/x-www-form-urlencoded 211 - 302 - - 1472.1714ms
+2023-01-17 16:41:34.313 +05:30  INF  Request starting HTTP/2 GET https://localhost:44339/FoodSite/Restaurants - -
+2023-01-17 16:41:34.315 +05:30  DBG  The request path /FoodSite/Restaurants does not match a supported file type
+2023-01-17 16:41:34.316 +05:30  DBG  1 candidate(s) found for the request path '/FoodSite/Restaurants'
+2023-01-17 16:41:34.316 +05:30  DBG  Endpoint 'FoodDeliveryApplication.Controllers.FoodSiteController.Restaurants (FoodDeliveryApplication)' with route pattern '{controller=Home}/{action=Index}/{id?}' is valid for the request path '/FoodSite/Restaurants'
+2023-01-17 16:41:34.316 +05:30  DBG  Request matched endpoint 'FoodDeliveryApplication.Controllers.FoodSiteController.Restaurants (FoodDeliveryApplication)'
+2023-01-17 16:41:34.317 +05:30  INF  Executing endpoint 'FoodDeliveryApplication.Controllers.FoodSiteController.Restaurants (FoodDeliveryApplication)'
+2023-01-17 16:41:34.322 +05:30  INF  Route matched with {action = "Restaurants", controller = "FoodSite"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Restaurants() on controller FoodDeliveryApplication.Controllers.FoodSiteController (FoodDeliveryApplication).
+2023-01-17 16:41:34.322 +05:30  DBG  Execution plan of authorization filters (in the following order): ["None"]
+2023-01-17 16:41:34.322 +05:30  DBG  Execution plan of resource filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter"]
+2023-01-17 16:41:34.322 +05:30  DBG  Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.Filters.ControllerActionFilter (Order: -2147483648)","Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)"]
+2023-01-17 16:41:34.322 +05:30  DBG  Execution plan of exception filters (in the following order): ["FoodDeliveryApplication.CustomExceptionFilter"]
+2023-01-17 16:41:34.322 +05:30  DBG  Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter"]
+2023-01-17 16:41:34.323 +05:30  DBG  Executing controller factory for controller FoodDeliveryApplication.Controllers.FoodSiteController (FoodDeliveryApplication)
+2023-01-17 16:41:34.426 +05:30  DBG  Executed controller factory for controller FoodDeliveryApplication.Controllers.FoodSiteController (FoodDeliveryApplication)
+2023-01-17 16:41:34.427 +05:30  DBG  Session loaded; Key:f9109f57-bc2e-a9c5-18e9-81dfe9d60b75, Id:dbed12ed-d978-1527-643c-8bf228d9513e, Count:3
+2023-01-17 16:41:34.981 +05:30  DBG  View lookup cache miss for view 'Restaurants' in controller 'FoodSite'.
+2023-01-17 16:41:34.983 +05:30  INF  Executing ViewResult, running view Restaurants.
+2023-01-17 16:41:34.983 +05:30  DBG  The view path '/Views/FoodSite/Restaurants.cshtml' was found in 1.762ms.
+2023-01-17 16:41:34.989 +05:30  DBG  Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2023-01-17 16:41:34.989 +05:30  DBG  Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /FoodSite/RestaurantMenu/1 and 
+2023-01-17 16:41:34.989 +05:30  DBG  Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /FoodSite/RestaurantMenu/1
+2023-01-17 16:41:34.992 +05:30  DBG  Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2023-01-17 16:41:34.992 +05:30  DBG  Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /FoodSite/RestaurantMenu/2 and 
+2023-01-17 16:41:34.992 +05:30  DBG  Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /FoodSite/RestaurantMenu/2
+2023-01-17 16:41:34.993 +05:30  DBG  Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2023-01-17 16:41:34.993 +05:30  DBG  Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /FoodSite/RestaurantMenu/3 and 
+2023-01-17 16:41:34.993 +05:30  DBG  Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /FoodSite/RestaurantMenu/3
+2023-01-17 16:41:34.993 +05:30  DBG  Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2023-01-17 16:41:34.993 +05:30  DBG  Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /FoodSite/RestaurantMenu/4 and 
+2023-01-17 16:41:34.993 +05:30  DBG  Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /FoodSite/RestaurantMenu/4
+2023-01-17 16:41:34.993 +05:30  DBG  Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2023-01-17 16:41:34.993 +05:30  DBG  Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /FoodSite/RestaurantMenu/7 and 
+2023-01-17 16:41:34.994 +05:30  DBG  Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /FoodSite/RestaurantMenu/7
+2023-01-17 16:41:34.994 +05:30  DBG  View lookup cache hit for view '_Layout' in controller 'FoodSite'.
+2023-01-17 16:41:34.994 +05:30  DBG  Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2023-01-17 16:41:34.995 +05:30  DBG  Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in  and 
+2023-01-17 16:41:34.995 +05:30  DBG  Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /
+2023-01-17 16:41:34.997 +05:30  DBG  Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2023-01-17 16:41:34.997 +05:30  DBG  Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /FoodSite/Search and 
+2023-01-17 16:41:34.997 +05:30  DBG  Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /FoodSite/Search
+2023-01-17 16:41:34.998 +05:30  DBG  An antiforgery cookie token was reused.
+2023-01-17 16:41:34.998 +05:30  DBG  Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2023-01-17 16:41:34.998 +05:30  DBG  Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /FoodSite/OrderStatus and 
+2023-01-17 16:41:34.999 +05:30  DBG  Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /FoodSite/OrderStatus
+2023-01-17 16:41:34.999 +05:30  DBG  Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2023-01-17 16:41:34.999 +05:30  DBG  Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /FoodSite/Cart and 
+2023-01-17 16:41:34.999 +05:30  DBG  Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /FoodSite/Cart
+2023-01-17 16:41:35.000 +05:30  DBG  Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2023-01-17 16:41:35.000 +05:30  DBG  Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /FoodSite/Logout and 
+2023-01-17 16:41:35.000 +05:30  DBG  Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /FoodSite/Logout
+2023-01-17 16:41:35.001 +05:30  DBG  View lookup cache hit for view '_Notification' in controller 'FoodSite'.
+2023-01-17 16:41:35.002 +05:30  DBG  The temp data cookie .AspNetCore.Mvc.CookieTempDataProvider was not found.
+2023-01-17 16:41:35.009 +05:30  INF  Executed ViewResult - view Restaurants executed in 27.8575ms.
+2023-01-17 16:41:35.009 +05:30  INF  Executed action FoodDeliveryApplication.Controllers.FoodSiteController.Restaurants (FoodDeliveryApplication) in 686.6967ms
+2023-01-17 16:41:35.009 +05:30  INF  Executed endpoint 'FoodDeliveryApplication.Controllers.FoodSiteController.Restaurants (FoodDeliveryApplication)'
+2023-01-17 16:41:35.013 +05:30  DBG  Response markup is scheduled to include browser refresh script injection.
+2023-01-17 16:41:35.016 +05:30  DBG  Response markup was updated to include browser refresh script injection.
+2023-01-17 16:41:35.022 +05:30  DBG  Connection ID "17942340920544329937" disconnecting.
+2023-01-17 16:41:35.023 +05:30  INF  Request finished HTTP/2 GET https://localhost:44339/FoodSite/Restaurants - - - 200 - text/html;+charset=utf-8 709.3648ms
+2023-01-17 16:41:35.062 +05:30  INF  Request starting HTTP/2 GET https://localhost:44339/_framework/aspnetcore-browser-refresh.js - -
+2023-01-17 16:41:35.063 +05:30  INF  Request finished HTTP/2 GET https://localhost:44339/_framework/aspnetcore-browser-refresh.js - - - 200 12004 application/javascript;+charset=utf-8 1.0275ms
+2023-01-17 16:41:35.064 +05:30  DBG  Connection ID "17942340920544329939" disconnecting.
+2023-01-17 16:41:38.056 +05:30  INF  Request starting HTTP/2 GET https://localhost:44339/FoodSite/RestaurantMenu/2 - -
+2023-01-17 16:41:38.057 +05:30  DBG  The request path /FoodSite/RestaurantMenu/2 does not match a supported file type
+2023-01-17 16:41:38.057 +05:30  DBG  1 candidate(s) found for the request path '/FoodSite/RestaurantMenu/2'
+2023-01-17 16:41:38.057 +05:30  DBG  Endpoint 'FoodDeliveryApplication.Controllers.FoodSiteController.RestaurantMenu (FoodDeliveryApplication)' with route pattern '{controller=Home}/{action=Index}/{id?}' is valid for the request path '/FoodSite/RestaurantMenu/2'
+2023-01-17 16:41:38.057 +05:30  DBG  Request matched endpoint 'FoodDeliveryApplication.Controllers.FoodSiteController.RestaurantMenu (FoodDeliveryApplication)'
+2023-01-17 16:41:38.057 +05:30  INF  Executing endpoint 'FoodDeliveryApplication.Controllers.FoodSiteController.RestaurantMenu (FoodDeliveryApplication)'
+2023-01-17 16:41:38.060 +05:30  INF  Route matched with {action = "RestaurantMenu", controller = "FoodSite"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] RestaurantMenu(Int32) on controller FoodDeliveryApplication.Controllers.FoodSiteController (FoodDeliveryApplication).
+2023-01-17 16:41:38.060 +05:30  DBG  Execution plan of authorization filters (in the following order): ["None"]
+2023-01-17 16:41:38.060 +05:30  DBG  Execution plan of resource filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter"]
+2023-01-17 16:41:38.060 +05:30  DBG  Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.Filters.ControllerActionFilter (Order: -2147483648)","Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)"]
+2023-01-17 16:41:38.060 +05:30  DBG  Execution plan of exception filters (in the following order): ["FoodDeliveryApplication.CustomExceptionFilter"]
+2023-01-17 16:41:38.060 +05:30  DBG  Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter"]
+2023-01-17 16:41:38.061 +05:30  DBG  Executing controller factory for controller FoodDeliveryApplication.Controllers.FoodSiteController (FoodDeliveryApplication)
+2023-01-17 16:41:38.666 +05:30  DBG  Executed controller factory for controller FoodDeliveryApplication.Controllers.FoodSiteController (FoodDeliveryApplication)
+2023-01-17 16:41:38.666 +05:30  DBG  Attempting to bind parameter 'Id' of type 'System.Int32' ...
+2023-01-17 16:41:38.668 +05:30  DBG  Attempting to bind parameter 'Id' of type 'System.Int32' using the name 'Id' in request data ...
+2023-01-17 16:41:38.669 +05:30  DBG  Done attempting to bind parameter 'Id' of type 'System.Int32'.
+2023-01-17 16:41:38.669 +05:30  DBG  Done attempting to bind parameter 'Id' of type 'System.Int32'.
+2023-01-17 16:41:38.669 +05:30  DBG  Attempting to validate the bound parameter 'Id' of type 'System.Int32' ...
+2023-01-17 16:41:38.669 +05:30  DBG  Done attempting to validate the bound parameter 'Id' of type 'System.Int32'.
+2023-01-17 16:41:38.672 +05:30  DBG  Session loaded; Key:f9109f57-bc2e-a9c5-18e9-81dfe9d60b75, Id:dbed12ed-d978-1527-643c-8bf228d9513e, Count:3
+2023-01-17 16:41:39.407 +05:30  DBG  View lookup cache miss for view 'Menu' in controller 'FoodSite'.
+2023-01-17 16:41:39.408 +05:30  INF  Executing ViewResult, running view Menu.
+2023-01-17 16:41:39.408 +05:30  DBG  The view path '/Views/FoodSite/Menu.cshtml' was found in 1.1087ms.
+2023-01-17 16:41:39.419 +05:30  DBG  Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2023-01-17 16:41:39.420 +05:30  DBG  Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /FoodSite/RestaurantMenuVeg/2 and ?type=veg
+2023-01-17 16:41:39.420 +05:30  DBG  Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /FoodSite/RestaurantMenuVeg/2?type=veg
+2023-01-17 16:41:39.421 +05:30  DBG  Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2023-01-17 16:41:39.421 +05:30  DBG  Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /FoodSite/AddToCart and 
+2023-01-17 16:41:39.421 +05:30  DBG  Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /FoodSite/AddToCart
+2023-01-17 16:41:39.421 +05:30  DBG  An antiforgery cookie token was reused.
+2023-01-17 16:41:39.421 +05:30  DBG  Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2023-01-17 16:41:39.422 +05:30  DBG  Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /FoodSite/AddToCart and 
+2023-01-17 16:41:39.422 +05:30  DBG  Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /FoodSite/AddToCart
+2023-01-17 16:41:39.422 +05:30  DBG  An antiforgery cookie token was reused.
+2023-01-17 16:41:39.422 +05:30  DBG  View lookup cache hit for view '_Layout' in controller 'FoodSite'.
+2023-01-17 16:41:39.423 +05:30  DBG  Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2023-01-17 16:41:39.423 +05:30  DBG  Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in  and 
+2023-01-17 16:41:39.423 +05:30  DBG  Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /
+2023-01-17 16:41:39.423 +05:30  DBG  Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2023-01-17 16:41:39.423 +05:30  DBG  Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /FoodSite/Search and 
+2023-01-17 16:41:39.423 +05:30  DBG  Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /FoodSite/Search
+2023-01-17 16:41:39.423 +05:30  DBG  An antiforgery cookie token was reused.
+2023-01-17 16:41:39.423 +05:30  DBG  Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2023-01-17 16:41:39.423 +05:30  DBG  Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /FoodSite/OrderStatus and 
+2023-01-17 16:41:39.423 +05:30  DBG  Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /FoodSite/OrderStatus
+2023-01-17 16:41:39.424 +05:30  DBG  Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2023-01-17 16:41:39.424 +05:30  DBG  Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /FoodSite/Cart and 
+2023-01-17 16:41:39.424 +05:30  DBG  Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /FoodSite/Cart
+2023-01-17 16:41:39.424 +05:30  DBG  Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2023-01-17 16:41:39.424 +05:30  DBG  Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /FoodSite/Logout and 
+2023-01-17 16:41:39.424 +05:30  DBG  Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /FoodSite/Logout
+2023-01-17 16:41:39.424 +05:30  DBG  View lookup cache hit for view '_Notification' in controller 'FoodSite'.
+2023-01-17 16:41:39.424 +05:30  DBG  The temp data cookie .AspNetCore.Mvc.CookieTempDataProvider was not found.
+2023-01-17 16:41:39.433 +05:30  INF  Executed ViewResult - view Menu executed in 26.4266ms.
+2023-01-17 16:41:39.434 +05:30  INF  Executed action FoodDeliveryApplication.Controllers.FoodSiteController.RestaurantMenu (FoodDeliveryApplication) in 1373.1081ms
+2023-01-17 16:41:39.434 +05:30  INF  Executed endpoint 'FoodDeliveryApplication.Controllers.FoodSiteController.RestaurantMenu (FoodDeliveryApplication)'
+2023-01-17 16:41:39.438 +05:30  DBG  Response markup is scheduled to include browser refresh script injection.
+2023-01-17 16:41:39.441 +05:30  DBG  Response markup was updated to include browser refresh script injection.
+2023-01-17 16:41:39.445 +05:30  DBG  Connection ID "18014398523172192840" disconnecting.
+2023-01-17 16:41:39.445 +05:30  INF  Request finished HTTP/2 GET https://localhost:44339/FoodSite/RestaurantMenu/2 - - - 200 - text/html;+charset=utf-8 1389.3738ms
+2023-01-17 16:41:39.478 +05:30  INF  Request starting HTTP/2 GET https://localhost:44339/_framework/aspnetcore-browser-refresh.js - -
+2023-01-17 16:41:39.479 +05:30  DBG  Connection ID "17942340920544329943" disconnecting.
+2023-01-17 16:41:39.480 +05:30  INF  Request finished HTTP/2 GET https://localhost:44339/_framework/aspnetcore-browser-refresh.js - - - 200 12004 application/javascript;+charset=utf-8 1.1851ms
+2023-01-17 16:41:41.566 +05:30  INF  Request starting HTTP/2 POST https://localhost:44339/FoodSite/AddToCart application/x-www-form-urlencoded 242
+2023-01-17 16:41:41.568 +05:30  DBG  POST requests are not supported
+2023-01-17 16:41:41.568 +05:30  DBG  1 candidate(s) found for the request path '/FoodSite/AddToCart'
+2023-01-17 16:41:41.569 +05:30  DBG  Endpoint 'FoodDeliveryApplication.Controllers.FoodSiteController.AddToCart (FoodDeliveryApplication)' with route pattern '{controller=Home}/{action=Index}/{id?}' is valid for the request path '/FoodSite/AddToCart'
+2023-01-17 16:41:41.569 +05:30  DBG  Request matched endpoint 'FoodDeliveryApplication.Controllers.FoodSiteController.AddToCart (FoodDeliveryApplication)'
+2023-01-17 16:41:41.569 +05:30  INF  Executing endpoint 'FoodDeliveryApplication.Controllers.FoodSiteController.AddToCart (FoodDeliveryApplication)'
+2023-01-17 16:41:41.572 +05:30  INF  Route matched with {action = "AddToCart", controller = "FoodSite"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] AddToCart(Microsoft.AspNetCore.Http.IFormCollection) on controller FoodDeliveryApplication.Controllers.FoodSiteController (FoodDeliveryApplication).
+2023-01-17 16:41:41.573 +05:30  DBG  Execution plan of authorization filters (in the following order): ["None"]
+2023-01-17 16:41:41.573 +05:30  DBG  Execution plan of resource filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter"]
+2023-01-17 16:41:41.573 +05:30  DBG  Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.Filters.ControllerActionFilter (Order: -2147483648)","Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)"]
+2023-01-17 16:41:41.573 +05:30  DBG  Execution plan of exception filters (in the following order): ["FoodDeliveryApplication.CustomExceptionFilter"]
+2023-01-17 16:41:41.573 +05:30  DBG  Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter"]
+2023-01-17 16:41:41.573 +05:30  DBG  Executing controller factory for controller FoodDeliveryApplication.Controllers.FoodSiteController (FoodDeliveryApplication)
+2023-01-17 16:41:42.664 +05:30  DBG  Executed controller factory for controller FoodDeliveryApplication.Controllers.FoodSiteController (FoodDeliveryApplication)
+2023-01-17 16:41:42.665 +05:30  DBG  Attempting to bind parameter 'col' of type 'Microsoft.AspNetCore.Http.IFormCollection' ...
+2023-01-17 16:41:42.666 +05:30  DBG  Attempting to bind parameter 'col' of type 'Microsoft.AspNetCore.Http.IFormCollection' using the name '' in request data ...
+2023-01-17 16:41:42.667 +05:30  DBG  Done attempting to bind parameter 'col' of type 'Microsoft.AspNetCore.Http.IFormCollection'.
+2023-01-17 16:41:42.667 +05:30  DBG  Done attempting to bind parameter 'col' of type 'Microsoft.AspNetCore.Http.IFormCollection'.
+2023-01-17 16:41:42.667 +05:30  DBG  Attempting to validate the bound parameter 'col' of type 'Microsoft.AspNetCore.Http.IFormCollection' ...
+2023-01-17 16:41:42.667 +05:30  DBG  Done attempting to validate the bound parameter 'col' of type 'Microsoft.AspNetCore.Http.IFormCollection'.
+2023-01-17 16:41:42.669 +05:30  DBG  Session loaded; Key:f9109f57-bc2e-a9c5-18e9-81dfe9d60b75, Id:dbed12ed-d978-1527-643c-8bf228d9513e, Count:3
+2023-01-17 16:41:42.669 +05:30  INF  Item:["Chole Bhature"] added to cart by the user:Surya of Quantity:1
+2023-01-17 16:41:43.029 +05:30  DBG  The temp data cookie .AspNetCore.Mvc.CookieTempDataProvider was not found.
+2023-01-17 16:41:43.030 +05:30  DBG  Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2023-01-17 16:41:43.030 +05:30  DBG  Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /FoodSite/RestaurantMenu/2 and 
+2023-01-17 16:41:43.030 +05:30  DBG  Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /FoodSite/RestaurantMenu/2
+2023-01-17 16:41:43.030 +05:30  INF  Executing RedirectResult, redirecting to /FoodSite/RestaurantMenu/2.
+2023-01-17 16:41:43.031 +05:30  INF  Executed action FoodDeliveryApplication.Controllers.FoodSiteController.AddToCart (FoodDeliveryApplication) in 1457.7818ms
+2023-01-17 16:41:43.031 +05:30  INF  Executed endpoint 'FoodDeliveryApplication.Controllers.FoodSiteController.AddToCart (FoodDeliveryApplication)'
+2023-01-17 16:41:43.031 +05:30  INF  Request finished HTTP/2 POST https://localhost:44339/FoodSite/AddToCart application/x-www-form-urlencoded 242 - 302 - - 1464.7192ms
+2023-01-17 16:41:43.031 +05:30  DBG  Connection ID "18086456112915153418" disconnecting.
+2023-01-17 16:41:43.039 +05:30  INF  Request starting HTTP/2 GET https://localhost:44339/FoodSite/RestaurantMenu/2 - -
+2023-01-17 16:41:43.040 +05:30  DBG  The request path /FoodSite/RestaurantMenu/2 does not match a supported file type
+2023-01-17 16:41:43.040 +05:30  DBG  1 candidate(s) found for the request path '/FoodSite/RestaurantMenu/2'
+2023-01-17 16:41:43.040 +05:30  DBG  Endpoint 'FoodDeliveryApplication.Controllers.FoodSiteController.RestaurantMenu (FoodDeliveryApplication)' with route pattern '{controller=Home}/{action=Index}/{id?}' is valid for the request path '/FoodSite/RestaurantMenu/2'
+2023-01-17 16:41:43.040 +05:30  DBG  Request matched endpoint 'FoodDeliveryApplication.Controllers.FoodSiteController.RestaurantMenu (FoodDeliveryApplication)'
+2023-01-17 16:41:43.041 +05:30  INF  Executing endpoint 'FoodDeliveryApplication.Controllers.FoodSiteController.RestaurantMenu (FoodDeliveryApplication)'
+2023-01-17 16:41:43.041 +05:30  INF  Route matched with {action = "RestaurantMenu", controller = "FoodSite"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] RestaurantMenu(Int32) on controller FoodDeliveryApplication.Controllers.FoodSiteController (FoodDeliveryApplication).
+2023-01-17 16:41:43.041 +05:30  DBG  Execution plan of authorization filters (in the following order): ["None"]
+2023-01-17 16:41:43.041 +05:30  DBG  Execution plan of resource filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter"]
+2023-01-17 16:41:43.041 +05:30  DBG  Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.Filters.ControllerActionFilter (Order: -2147483648)","Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)"]
+2023-01-17 16:41:43.041 +05:30  DBG  Execution plan of exception filters (in the following order): ["FoodDeliveryApplication.CustomExceptionFilter"]
+2023-01-17 16:41:43.041 +05:30  DBG  Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter"]
+2023-01-17 16:41:43.041 +05:30  DBG  Executing controller factory for controller FoodDeliveryApplication.Controllers.FoodSiteController (FoodDeliveryApplication)
+2023-01-17 16:41:43.871 +05:30  DBG  Executed controller factory for controller FoodDeliveryApplication.Controllers.FoodSiteController (FoodDeliveryApplication)
+2023-01-17 16:41:43.872 +05:30  DBG  Attempting to bind parameter 'Id' of type 'System.Int32' ...
+2023-01-17 16:41:43.872 +05:30  DBG  Attempting to bind parameter 'Id' of type 'System.Int32' using the name 'Id' in request data ...
+2023-01-17 16:41:43.872 +05:30  DBG  Done attempting to bind parameter 'Id' of type 'System.Int32'.
+2023-01-17 16:41:43.872 +05:30  DBG  Done attempting to bind parameter 'Id' of type 'System.Int32'.
+2023-01-17 16:41:43.872 +05:30  DBG  Attempting to validate the bound parameter 'Id' of type 'System.Int32' ...
+2023-01-17 16:41:43.872 +05:30  DBG  Done attempting to validate the bound parameter 'Id' of type 'System.Int32'.
+2023-01-17 16:41:43.872 +05:30  DBG  Session loaded; Key:f9109f57-bc2e-a9c5-18e9-81dfe9d60b75, Id:dbed12ed-d978-1527-643c-8bf228d9513e, Count:3
+2023-01-17 16:41:44.485 +05:30  DBG  View lookup cache hit for view 'Menu' in controller 'FoodSite'.
+2023-01-17 16:41:44.485 +05:30  INF  Executing ViewResult, running view Menu.
+2023-01-17 16:41:44.485 +05:30  DBG  The view path '/Views/FoodSite/Menu.cshtml' was found in 0.3868ms.
+2023-01-17 16:41:44.486 +05:30  DBG  Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2023-01-17 16:41:44.486 +05:30  DBG  Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /FoodSite/RestaurantMenuVeg/2 and ?type=veg
+2023-01-17 16:41:44.486 +05:30  DBG  Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /FoodSite/RestaurantMenuVeg/2?type=veg
+2023-01-17 16:41:44.486 +05:30  DBG  Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2023-01-17 16:41:44.486 +05:30  DBG  Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /FoodSite/AddToCart and 
+2023-01-17 16:41:44.486 +05:30  DBG  Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /FoodSite/AddToCart
+2023-01-17 16:41:44.487 +05:30  DBG  An antiforgery cookie token was reused.
+2023-01-17 16:41:44.487 +05:30  DBG  Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2023-01-17 16:41:44.487 +05:30  DBG  Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /FoodSite/AddToCart and 
+2023-01-17 16:41:44.487 +05:30  DBG  Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /FoodSite/AddToCart
+2023-01-17 16:41:44.487 +05:30  DBG  An antiforgery cookie token was reused.
+2023-01-17 16:41:44.488 +05:30  DBG  View lookup cache hit for view '_Layout' in controller 'FoodSite'.
+2023-01-17 16:41:44.488 +05:30  DBG  Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2023-01-17 16:41:44.488 +05:30  DBG  Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in  and 
+2023-01-17 16:41:44.488 +05:30  DBG  Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /
+2023-01-17 16:41:44.489 +05:30  DBG  Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2023-01-17 16:41:44.489 +05:30  DBG  Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /FoodSite/Search and 
+2023-01-17 16:41:44.489 +05:30  DBG  Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /FoodSite/Search
+2023-01-17 16:41:44.489 +05:30  DBG  An antiforgery cookie token was reused.
+2023-01-17 16:41:44.489 +05:30  DBG  Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2023-01-17 16:41:44.489 +05:30  DBG  Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /FoodSite/OrderStatus and 
+2023-01-17 16:41:44.489 +05:30  DBG  Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /FoodSite/OrderStatus
+2023-01-17 16:41:44.489 +05:30  DBG  Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2023-01-17 16:41:44.489 +05:30  DBG  Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /FoodSite/Cart and 
+2023-01-17 16:41:44.489 +05:30  DBG  Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /FoodSite/Cart
+2023-01-17 16:41:44.490 +05:30  DBG  Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2023-01-17 16:41:44.490 +05:30  DBG  Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /FoodSite/Logout and 
+2023-01-17 16:41:44.490 +05:30  DBG  Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /FoodSite/Logout
+2023-01-17 16:41:44.490 +05:30  DBG  View lookup cache hit for view '_Notification' in controller 'FoodSite'.
+2023-01-17 16:41:44.491 +05:30  DBG  The temp data cookie .AspNetCore.Mvc.CookieTempDataProvider was used to successfully load temp data.
+2023-01-17 16:41:44.500 +05:30  INF  Executed ViewResult - view Menu executed in 15.7432ms.
+2023-01-17 16:41:44.501 +05:30  INF  Executed action FoodDeliveryApplication.Controllers.FoodSiteController.RestaurantMenu (FoodDeliveryApplication) in 1459.6697ms
+2023-01-17 16:41:44.501 +05:30  INF  Executed endpoint 'FoodDeliveryApplication.Controllers.FoodSiteController.RestaurantMenu (FoodDeliveryApplication)'
+2023-01-17 16:41:44.505 +05:30  DBG  Response markup is scheduled to include browser refresh script injection.
+2023-01-17 16:41:44.511 +05:30  DBG  Response markup was updated to include browser refresh script injection.
+2023-01-17 16:41:44.515 +05:30  DBG  Connection ID "18014398523172192844" disconnecting.
+2023-01-17 16:41:44.515 +05:30  INF  Request finished HTTP/2 GET https://localhost:44339/FoodSite/RestaurantMenu/2 - - - 200 - text/html;+charset=utf-8 1476.1060ms
+2023-01-17 16:41:44.547 +05:30  INF  Request starting HTTP/2 GET https://localhost:44339/_framework/aspnetcore-browser-refresh.js - -
+2023-01-17 16:41:44.548 +05:30  INF  Request finished HTTP/2 GET https://localhost:44339/_framework/aspnetcore-browser-refresh.js - - - 200 12004 application/javascript;+charset=utf-8 0.9471ms
+2023-01-17 16:41:49.074 +05:30  INF  Request starting HTTP/2 GET https://localhost:44339/FoodSite/Cart - -
+2023-01-17 16:41:49.078 +05:30  DBG  The request path /FoodSite/Cart does not match a supported file type
+2023-01-17 16:41:49.078 +05:30  DBG  1 candidate(s) found for the request path '/FoodSite/Cart'
+2023-01-17 16:41:49.078 +05:30  DBG  Endpoint 'FoodDeliveryApplication.Controllers.FoodSiteController.Cart (FoodDeliveryApplication)' with route pattern '{controller=Home}/{action=Index}/{id?}' is valid for the request path '/FoodSite/Cart'
+2023-01-17 16:41:49.078 +05:30  DBG  Request matched endpoint 'FoodDeliveryApplication.Controllers.FoodSiteController.Cart (FoodDeliveryApplication)'
+2023-01-17 16:41:49.078 +05:30  INF  Executing endpoint 'FoodDeliveryApplication.Controllers.FoodSiteController.Cart (FoodDeliveryApplication)'
+2023-01-17 16:41:49.082 +05:30  INF  Route matched with {action = "Cart", controller = "FoodSite"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Cart() on controller FoodDeliveryApplication.Controllers.FoodSiteController (FoodDeliveryApplication).
+2023-01-17 16:41:49.083 +05:30  DBG  Execution plan of authorization filters (in the following order): ["None"]
+2023-01-17 16:41:49.083 +05:30  DBG  Execution plan of resource filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter"]
+2023-01-17 16:41:49.083 +05:30  DBG  Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.Filters.ControllerActionFilter (Order: -2147483648)","Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)"]
+2023-01-17 16:41:49.083 +05:30  DBG  Execution plan of exception filters (in the following order): ["FoodDeliveryApplication.CustomExceptionFilter"]
+2023-01-17 16:41:49.083 +05:30  DBG  Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter"]
+2023-01-17 16:41:49.083 +05:30  DBG  Executing controller factory for controller FoodDeliveryApplication.Controllers.FoodSiteController (FoodDeliveryApplication)
+2023-01-17 16:41:49.740 +05:30  DBG  Executed controller factory for controller FoodDeliveryApplication.Controllers.FoodSiteController (FoodDeliveryApplication)
+2023-01-17 16:41:49.741 +05:30  DBG  Session loaded; Key:f9109f57-bc2e-a9c5-18e9-81dfe9d60b75, Id:dbed12ed-d978-1527-643c-8bf228d9513e, Count:3
+2023-01-17 16:41:50.252 +05:30  DBG  View lookup cache miss for view 'Cart' in controller 'FoodSite'.
+2023-01-17 16:41:50.253 +05:30  INF  Executing ViewResult, running view Cart.
+2023-01-17 16:41:50.253 +05:30  DBG  The view path '/Views/FoodSite/Cart.cshtml' was found in 0.6583ms.
+2023-01-17 16:41:50.267 +05:30  DBG  Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2023-01-17 16:41:50.267 +05:30  DBG  Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /FoodSite/DeleteItemFromCart/47 and 
+2023-01-17 16:41:50.267 +05:30  DBG  Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /FoodSite/DeleteItemFromCart/47
+2023-01-17 16:41:50.268 +05:30  DBG  Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2023-01-17 16:41:50.268 +05:30  DBG  Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /FoodSite/CustomerDetails and 
+2023-01-17 16:41:50.268 +05:30  DBG  Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /FoodSite/CustomerDetails
+2023-01-17 16:41:50.269 +05:30  DBG  Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2023-01-17 16:41:50.269 +05:30  DBG  Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /FoodSite/Restaurants and 
+2023-01-17 16:41:50.269 +05:30  DBG  Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /FoodSite/Restaurants
+2023-01-17 16:41:50.269 +05:30  DBG  View lookup cache hit for view '_Layout' in controller 'FoodSite'.
+2023-01-17 16:41:50.270 +05:30  DBG  Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2023-01-17 16:41:50.270 +05:30  DBG  Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in  and 
+2023-01-17 16:41:50.270 +05:30  DBG  Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /
+2023-01-17 16:41:50.270 +05:30  DBG  Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2023-01-17 16:41:50.270 +05:30  DBG  Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /FoodSite/Search and 
+2023-01-17 16:41:50.270 +05:30  DBG  Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /FoodSite/Search
+2023-01-17 16:41:50.271 +05:30  DBG  An antiforgery cookie token was reused.
+2023-01-17 16:41:50.271 +05:30  DBG  Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2023-01-17 16:41:50.271 +05:30  DBG  Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /FoodSite/OrderStatus and 
+2023-01-17 16:41:50.271 +05:30  DBG  Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /FoodSite/OrderStatus
+2023-01-17 16:41:50.271 +05:30  DBG  Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2023-01-17 16:41:50.271 +05:30  DBG  Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /FoodSite/Cart and 
+2023-01-17 16:41:50.271 +05:30  DBG  Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /FoodSite/Cart
+2023-01-17 16:41:50.271 +05:30  DBG  Found the endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] for address Microsoft.AspNetCore.Routing.RouteValuesAddress
+2023-01-17 16:41:50.271 +05:30  DBG  Successfully processed template {controller=Home}/{action=Index}/{id?} for Route: {controller=Home}/{action=Index}/{id?} resulting in /FoodSite/Logout and 
+2023-01-17 16:41:50.271 +05:30  DBG  Link generation succeeded for endpoints ["Route: {controller=Home}/{action=Index}/{id?}"] with result /FoodSite/Logout
+2023-01-17 16:41:50.271 +05:30  DBG  View lookup cache hit for view '_Notification' in controller 'FoodSite'.
+2023-01-17 16:41:50.271 +05:30  DBG  The temp data cookie .AspNetCore.Mvc.CookieTempDataProvider was not found.
+2023-01-17 16:41:50.278 +05:30  INF  Executed ViewResult - view Cart executed in 25.3333ms.
+2023-01-17 16:41:50.278 +05:30  INF  Executed action FoodDeliveryApplication.Controllers.FoodSiteController.Cart (FoodDeliveryApplication) in 1194.7713ms
+2023-01-17 16:41:50.278 +05:30  INF  Executed endpoint 'FoodDeliveryApplication.Controllers.FoodSiteController.Cart (FoodDeliveryApplication)'
+2023-01-17 16:41:50.279 +05:30  DBG  Response markup is scheduled to include browser refresh script injection.
+2023-01-17 16:41:50.280 +05:30  DBG  Response markup was updated to include browser refresh script injection.
+2023-01-17 16:41:50.282 +05:30  DBG  Connection ID "18086456125800056388" disconnecting.
+2023-01-17 16:41:50.282 +05:30  INF  Request finished HTTP/2 GET https://localhost:44339/FoodSite/Cart - - - 200 - text/html;+charset=utf-8 1208.1296ms
+2023-01-17 16:41:50.314 +05:30  INF  Request starting HTTP/2 GET https://localhost:44339/_framework/aspnetcore-browser-refresh.js - -
+2023-01-17 16:41:50.317 +05:30  DBG  Connection ID "17870283335096336969" disconnecting.
+2023-01-17 16:41:50.317 +05:30  INF  Request finished HTTP/2 GET https://localhost:44339/_framework/aspnetcore-browser-refresh.js - - - 200 12004 application/javascript;+charset=utf-8 3.2243ms
