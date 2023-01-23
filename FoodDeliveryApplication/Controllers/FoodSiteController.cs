@@ -830,7 +830,11 @@ namespace FoodDeliveryApplication.Controllers
                 conn.Close();
             }
 
-
+            SqlConnection conn4 = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");
+            SqlCommand cmd4 = new SqlCommand(String.Format("update Orders set status='Cancelled' where OrderId = '{0}'", id), conn4);
+            conn4.Open();
+            cmd4.ExecuteNonQuery();
+            conn4.Close();
 
             return RedirectToAction("OrderStatus");
 
