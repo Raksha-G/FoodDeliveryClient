@@ -1,0 +1,40 @@
+﻿@model List<OrderDetails>
+<style>
+    .bg-container{
+        background-color:antiquewhite;
+        margin:20px;
+        padding:30px;
+    }
+  .bg-items{
+      background-color:white;
+      border-radius:25px;
+      margin:10px;
+      padding:30px;
+  }
+  h1{
+      font-size:30px;
+  }
+  a{
+      margin:15px;
+  }
+</style>
+<div class="bg-container">
+    <h1 class="text-danger text-center mt-3">Are you Sure? You want to Cancel this Order</h1>
+    <div class="d-flex justify-content-center">
+        <div class="bg-items">
+        @foreach(var i in Model)
+    {
+        
+            <h1>@i.FoodItem   --   @i.Quantity</h1>
+            
+        
+
+    }
+    </div>
+    </div>
+    <div class="d-flex justify-content-center">
+        <a asp-controller="FoodSite" asp-action="CancelOrder" asp-route-id="@ViewBag.cancel" class="btn btn-danger mr-3" >Cancel</a>
+        <a asp-controller="FoodSite" asp-action="Status" asp-route-id="1" class="btn btn-secondary ml-3">Back</a>
+    </div>
+    
+</div>

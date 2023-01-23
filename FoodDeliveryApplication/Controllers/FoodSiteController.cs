@@ -541,7 +541,7 @@ namespace FoodDeliveryApplication.Controllers
             order.ExpMonth = details.ExpMonth;
             order.ExpYear = details.ExpYear;
             order.CVV = details.CVV;
-
+            order.status = "Placed";
 
             JsonContent content1 = JsonContent.Create(order);
             using (var apiRespoce = await httpClient.PostAsync("http://52.66.208.30:8081/api/Food/Orders", content1))
@@ -579,7 +579,7 @@ namespace FoodDeliveryApplication.Controllers
             var orderList = new List<OrderDetails>();
             while (sr.Read())
             {
-                OrderDetails orderDetails = new OrderDetails(inVoiceNo, sr["UserName"].ToString(), (int)sr["RestaurantId"], sr["FoodItem"].ToString(), (int)sr["Quantity"], (int)sr["Price"], OrderTime);
+                OrderDetails orderDetails = new OrderDetails(inVoiceNo, sr["UserName"].ToString(), (int)sr["RestaurantId"], sr["FoodItem"].ToString(), (int)sr["Quantity"], (int)sr["Price"], OrderTime,"Placed");
                 orderList.Add(orderDetails);
             }
             conn.Close();
@@ -638,42 +638,7 @@ namespace FoodDeliveryApplication.Controllers
             return View("Payment");
         }
 
-        public IActionResult CancelOrder()
-        {
-            if (HttpContext.Session.GetString("UserName") == null)
-            {
-                return RedirectToAction("Login");
-            }
-            SqlConnection conn = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");
-            SqlCommand cmd = new SqlCommand(String.Format("select * from ConfirmOrder where UserName = '{0}'", _httpContextAccessor.HttpContext.Session.GetString("UserName")), conn);
-            conn.Open();
-            SqlDataReader sr = cmd.ExecuteReader();
-            List<Order> CancelOrderList = new List<Order>();
-            while (sr.Read())
-            {
-                Order order = new Order(sr["UserName"].ToString(), sr["FoodItem"].ToString(), (int)sr["Price"], (int)sr["Quantity"], (int)sr["RestaurantId"]);
-                CancelOrderList.Add(order);
-            }
-            conn.Close();
-
-            foreach (var obj in CancelOrderList)
-            {
-                SqlCommand cmd1 = new SqlCommand(String.Format("insert into CancelOrder values('{0}','{1}','{2}','{3}','{4}')", obj.UserName, obj.FoodItem, obj.Price, obj.Quantity, obj.RestaurantId), conn);
-                conn.Open();
-                cmd1.ExecuteNonQuery();
-                conn.Close();
-            }
-
-            SqlCommand cmd2 = new SqlCommand(String.Format("delete from ConfirmOrder where UserName = '{0}'", _httpContextAccessor.HttpContext.Session.GetString("UserName")), conn);
-            conn.Open();
-            cmd2.ExecuteNonQuery();
-            conn.Close();
-
-            return View();
-
-
-
-        }
+        
 
         public IActionResult OrderStatus()
         {
@@ -804,8 +769,74 @@ namespace FoodDeliveryApplication.Controllers
             }
         }
 
+        public IActionResult ConfirmCancel(int id)
+        {
+            if (HttpContext.Session.GetString("UserName") == null)
+            {
+                return RedirectToAction("Login");
+            }
+            SqlConnection conn = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");
+
+            
+            var orderlist = new List<OrderDetails>();
+
+            
+                SqlCommand cmd = new SqlCommand(String.Format("Select * from PlacedOrderDetail where InVoiceNo = '{0}'", id), conn);
+                conn.Open();
+                SqlDataReader sr = cmd.ExecuteReader();
+
+                while (sr.Read())
+                {
+                    string time = sr["OrderTime"].ToString();
+                    DateTime orderTime = Convert.ToDateTime(time);
+                    OrderDetails orderDetails = new OrderDetails((int)sr["InVoiceNo"], sr["UserName"].ToString(), (int)sr["RestaurantId"], sr["FoodItem"].ToString(), (int)sr["Quantity"], (int)sr["Price"], orderTime, sr["status"].ToString());
+                    orderlist.Add(orderDetails);
+                }
+                conn.Close();
+                
+            
+            ViewBag.cancel = id.ToString();
+            return View(orderlist);
+        }
+        public IActionResult CancelOrder(int id)
+        {
+            if (HttpContext.Session.GetString("UserName") == null)
+            {
+                return RedirectToAction("Login");
+            }
+            List<OrderDetails> details = new List<OrderDetails>();
+            SqlConnection conn = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");           
+            SqlCommand cmd = new SqlCommand(String.Format("select * from PlacedOrderDetail where InVoiceNo='{0}'", id), conn);
+            conn.Open();
+            SqlDataReader sr = cmd.ExecuteReader();
+            while(sr.Read())
+            {
+                details.Add(new OrderDetails((int)sr["InVoiceNo"],sr["UserName"].ToString(),(int)sr["RestaurantId"],sr["FoodItem"].ToString(),(int)sr["Quantity"],(int)sr["Price"],DateTime.Now,sr["status"].ToString()));
+            }
+            conn.Close();
+
+            foreach (var obj in details)
+            {
+                SqlConnection conn1 = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");
+                SqlCommand cmd1 = new SqlCommand(String.Format("insert into CompletedOrder values('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')", obj.InVoiceNo, obj.UserName, obj.FoodItem, obj.Quantity, obj.Price, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), obj.RestaurantId, "Cancelled"), conn1);
+                conn1.Open();
+
+                cmd1.ExecuteNonQuery();
+                conn1.Close();
+
+                SqlCommand cmd2 = new SqlCommand(String.Format("delete from PlacedOrderDetail where InVoiceNo = '{0}'", id), conn);
+                conn.Open();
+                cmd2.ExecuteNonQuery();
+                conn.Close();
+            }
 
 
+
+            return RedirectToAction("OrderStatus");
+
+
+
+        }
 
         public IActionResult Dummy()
         {

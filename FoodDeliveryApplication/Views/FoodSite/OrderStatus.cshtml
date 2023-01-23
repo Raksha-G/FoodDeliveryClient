@@ -14,7 +14,96 @@
      
     </div>*@
         
+    <style>
 
+    <!-- Progress with steps -->
+    
+    ol.progtrckr {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+    }
+
+    ol.progtrckr li {
+        display: inline-block;
+        text-align: center;
+        line-height: 3em;
+    }
+    
+    
+
+    ol.progtrckr[data-progtrckr-steps="2"] li { width: 49%; }
+    ol.progtrckr[data-progtrckr-steps="3"] li { width: 33%; }
+    ol.progtrckr[data-progtrckr-steps="4"] li { width: 24%; }
+    ol.progtrckr[data-progtrckr-steps="5"] li { width: 19%; }
+    ol.progtrckr[data-progtrckr-steps="6"] li { width: 16%; }
+    ol.progtrckr[data-progtrckr-steps="7"] li { width: 14%; }
+    ol.progtrckr[data-progtrckr-steps="8"] li { width: 12%; }
+    ol.progtrckr[data-progtrckr-steps="9"] li { width: 11%; }
+
+    ol.progtrckr li.progtrckr-done {
+        color: black;
+        border-bottom: 4px solid yellowgreen;
+    }
+    ol.progtrckr li.progtrckr-todo {
+        color: silver; 
+        border-bottom: 4px solid silver;
+    }
+    ol.progtrckr li.progtrckr-cancel {
+        color: black;
+        border-bottom: 4px solid red;
+    }
+
+    ol.progtrckr li:after {
+        content: "\00a0\00a0";
+    }
+    ol.progtrckr li:before {
+        position: relative;
+        bottom: -2.5em;
+        float: left;
+        left: 50%;
+        line-height: 1em;
+    }
+    ol.progtrckr li.progtrckr-done:before {
+        content: "\2713";
+        color: white;
+        background-color: yellowgreen;
+        height: 1.2em;
+        width: 1.2em;
+        line-height: 1.2em;
+        border: none;
+        border-radius: 1.2em;
+    }
+    ol.progtrckr li.progtrckr-todo:before {
+        content: "\039F";
+        color: silver;
+        background-color: white;
+        font-size: 1.5em;
+        bottom: -1.6em;
+    }
+    ol.progtrckr li.progtrckr-cancel:before {
+        content: "\2713";
+        color: white;
+        background-color: red;
+        height: 1.2em;
+        width: 1.2em;
+        line-height: 1.2em;
+        border: none;
+        border-radius: 1.2em;
+    }
+      .flexing{
+        
+        width:60vw;
+    }
+    .flex-0{
+        display: flex;
+        flex-direction:row;
+        justify-content: center;
+        padding-left: 120px;
+    }
+
+
+</style>
  
 
   @*  <a asp-controller="Foodsite" asp-action="Status" asp-route-id="1" class="btn" style="background-color:orange;color:white">Pending Orders</a>
@@ -165,6 +254,7 @@
 
             @foreach(var i in Model){
                     <div class="order">
+                        
 
                                         @if(tempInvoiceNo!=@i.InVoiceNo)
                                         {
@@ -172,18 +262,108 @@
                                                     {
                    
 
-                                                            <p style="color:black;font-size:16px;font-weight:bold;text-align:center;width:150px;padding-left:40px;margin-left:7px;margin-bottom:30px;">BILL : @bill</p>
+                                                            <p style="color:black;font-size:16px;font-weight:bold;text-align:left;width:250px;padding-left:40px;margin-left:7px;margin-bottom:30px;">TOTAL BILL : @bill</p>
                                                             bill=0;
                      
                                                     }
                                                     <hr>
+ if(@i.Status=="Placed")
+   {
+       <div class="flex-0">
+       <div class="flexing">
+            <ol class="progtrckr" data-progtrckr-steps="5">
+                <li class="progtrckr-done">Order Placed</li>
+                <li class="progtrckr-todo">Preparing Food</li>
+                <li class="progtrckr-todo">On the Way</li>
+            
+                <li class="progtrckr-todo">Delivered</li>
+            </ol>
+        </div>
+        <div >
+             <a style="height:38px; margin-top:25px;" asp-controller="FoodSite" asp-action="ConfirmCancel" asp-route-id="@i.InVoiceNo" class="btn btn-danger">Cancel</a>
+          </div>
+        </div>
+   }else if(@i.Status=="Accepted"){
+       <div class="flex-0">
+       <div class="flexing">
+            <ol class="progtrckr" data-progtrckr-steps="5">
+                <li class="progtrckr-done">Order Placed</li>
+                <li class="progtrckr-done">Preparing Food</li>
+                <li class="progtrckr-todo">On the Way</li>
+            
+                <li class="progtrckr-todo">Delivered</li>
+            </ol>
+        </div>
+        </div>
+
+   }else if(@i.Status=="Prepared"){
+       <div class="flex-0">
+       <div class="flexing">
+            <ol class="progtrckr" data-progtrckr-steps="5">
+                <li class="progtrckr-done">Order Placed</li>
+                <li class="progtrckr-done">Preparing Food</li>
+                <li class="progtrckr-done">On the Way</li>
+            
+                <li class="progtrckr-todo">Delivered</li>
+            </ol>
+        </div>
+        </div>
+
+   }else if (@i.Status=="Delivered"){
+       <div class="flex-0">
+       <div class="flexing">
+            <ol class="progtrckr" data-progtrckr-steps="5">
+                <li class="progtrckr-done">Order Placed</li>
+                <li class="progtrckr-done">Preparing Food</li>
+                <li class="progtrckr-done">On the Way</li>
+            
+                <li class="progtrckr-done">Delivered</li>
+            </ol>
+        </div>
+                        </div>
+
+                    }else if (@i.Status == "Cancelled")
+                    {
+                        <div class="flex-0">
+       <div class="flexing">
+            <ol class="progtrckr" data-progtrckr-steps="5">
+                <li class="progtrckr-done">Order Placed</li>
+               <li class="progtrckr-cancel">Preparing Food</li>
+                <li class="progtrckr-cancel">On the Way</li>
+            
+                <li class="progtrckr-cancel">Cancelled</li>
+            </ol>
+        </div>
+                        </div>
+                    }else if (@i.Status == "Delivered")
+                    {
+                        <div class="flex-0">
+       <div class="flexing">
+            <ol class="progtrckr" data-progtrckr-steps="5">
+                <li class="progtrckr-done">Order Placed</li>
+               <li class="progtrckr-done">Preparing Food</li>
+                <li class="progtrckr-done">On the Way</li>
+            
+                <li class="progtrckr-done">Delivered</li>
+            </ol>
+        </div>
+                        </div>
+                    }
+
                                                     <div class="flex1 mt-2">
                                                         <div id="left">
                                                             <p style="color:#7e808c;font-size:12px;font-weight:bold;">INVOICE NO</p>
                                                             <p style="font-size:20px">@i.InVoiceNo</p>
                                                         </div>
                                                         <div id="right">
-                                                            <p style="color:#7e808c;font-size:12px;font-weight:bold;">ORDER TIME</p>
+                                                            @if(@i.Status=="Cancelled"){
+                                <p style="color:#7e808c;font-size:12px;font-weight:bold;">CANCELLED TIME</p>
+                            }else if(@i.Status=="Delivered"){
+                                <p style="color:#7e808c;font-size:12px;font-weight:bold;">DELIVERED TIME</p>
+                            }else{
+                                <p style="color:#7e808c;font-size:12px;font-weight:bold;">ORDERED TIME</p>
+                            }
+                            
                                                             <p style="font-size:20px">@i.OrderTime</p>
                                                         </div>
                
@@ -221,16 +401,21 @@
                                         </div>
                                         @{
                                             tempInvoiceNo = @i.InVoiceNo;
-                                            bill = bill + @i.Price;
+                                            bill = bill + (@i.Price * @i.Quantity);
                                         }
                    
                                         @if(ptr==lastele)
                                         {
-                                             <p style="color:black;font-size:16px;font-weight:bold;text-align:left;width:100%;padding-left:40px;margin-left:7px;margin-bottom:30px;">BILL : @bill</p>
+                                             <p style="color:black;font-size:16px;font-weight:bold;text-align:left;width:100%;padding-left:40px;margin-left:7px;margin-bottom:30px;">TOTAL BILL : @bill</p>
                                         }
                                         @{
                                              ptr++;
                                         }
+                                        
+                
+                                         
+                
+                
 
                     </div>
                 }

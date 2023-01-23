@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\Dummy\\FoodDeliveryClient\\FoodDeliveryApplication\\FoodDeliveryApplication.csproj": {}
+    "F:\\Final Project\\FoodDeliveryClient\\FoodDeliveryApplication\\FoodDeliveryApplication.csproj": {}
   },
   "projects": {
-    "F:\\Dummy\\FoodDeliveryClient\\FoodDeliveryApplication\\FoodDeliveryApplication.csproj": {
+    "F:\\Final Project\\FoodDeliveryClient\\FoodDeliveryApplication\\FoodDeliveryApplication.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Dummy\\FoodDeliveryClient\\FoodDeliveryApplication\\FoodDeliveryApplication.csproj",
+        "projectUniqueName": "F:\\Final Project\\FoodDeliveryClient\\FoodDeliveryApplication\\FoodDeliveryApplication.csproj",
         "projectName": "FoodDeliveryApplication",
-        "projectPath": "F:\\Dummy\\FoodDeliveryClient\\FoodDeliveryApplication\\FoodDeliveryApplication.csproj",
+        "projectPath": "F:\\Final Project\\FoodDeliveryClient\\FoodDeliveryApplication\\FoodDeliveryApplication.csproj",
         "packagesPath": "C:\\Users\\vempadapu_prasanth\\.nuget\\packages\\",
-        "outputPath": "F:\\Dummy\\FoodDeliveryClient\\FoodDeliveryApplication\\obj\\",
+        "outputPath": "F:\\Final Project\\FoodDeliveryClient\\FoodDeliveryApplication\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\vempadapu_prasanth\\AppData\\Roaming\\NuGet\\NuGet.Config",
