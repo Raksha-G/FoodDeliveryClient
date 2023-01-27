@@ -168,12 +168,14 @@ else{
                                                 </div>
 
                                                 <div class="counter">
-                                                    <span class="down" onClick='decreaseCount(event, this)'>-</span>
+                                                    @*<span class="down" onClick='decreaseCount(event, this)'>-</span>*@
+                                                    <button class="down" onclick='decreaseCount(event, this)' style="width:25px;border:none">-</button>
                                                     <input type="text" readonly value="1" style="width:50px" class="text-center" name="Quantity">
-                                                    <span class="up" onClick='increaseCount(event, this)'>+</span>
+                                                    @*<span class="up" onClick='increaseCount(event, this)'>+</span>*@
+                                                    <button class="up" onclick='increaseCount(event, this)' style="width:25px;border:none">+</button>
                                                 </div>
                                                 <br />
-                                                <button class="btn btn-primary" type="submit" style="background-color:orange;border-color:orange">Add to Cart</button>
+                                                <button class="btn btn-primary" type="submit" style="background-color:white;border-color:orange;color:orange">Add to Cart</button>
                                         </div>
                                  }
                                    

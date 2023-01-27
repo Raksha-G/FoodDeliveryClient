@@ -6,10 +6,10 @@
 }
 
 footer {
-    position: absolute;
+    position: relative;
     bottom: 0;
     background: black;
-    height: auto;
+    height: 120px;
     width: 100vw;
     padding: 20px 0 0 0;
 }
@@ -70,3 +70,5 @@ footer {
         align-items: center;
         justify-content: center;
     }
+
+}

@@ -8,93 +8,93 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = FoodDeliveryApplication
 build_property.RootNamespace = FoodDeliveryApplication
-build_property.ProjectDir = F:\Final Project\FoodDeliveryClient\FoodDeliveryApplication\
+build_property.ProjectDir = C:\Users\raksha_ganyarpawar\source\repos\JustEat\FoodDeliveryClient\FoodDeliveryApplication\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = F:\Final Project\FoodDeliveryClient\FoodDeliveryApplication
+build_property.MSBuildProjectDirectory = C:\Users\raksha_ganyarpawar\source\repos\JustEat\FoodDeliveryClient\FoodDeliveryApplication
 build_property._RazorSourceGeneratorDebug = 
 
-[F:/Final Project/FoodDeliveryClient/FoodDeliveryApplication/Views/FoodSite/AccountCreated.cshtml]
+[C:/Users/raksha_ganyarpawar/source/repos/JustEat/FoodDeliveryClient/FoodDeliveryApplication/Views/FoodSite/AccountCreated.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9vZFNpdGVcQWNjb3VudENyZWF0ZWQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Final Project/FoodDeliveryClient/FoodDeliveryApplication/Views/FoodSite/CancelOrder.cshtml]
+[C:/Users/raksha_ganyarpawar/source/repos/JustEat/FoodDeliveryClient/FoodDeliveryApplication/Views/FoodSite/CancelOrder.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9vZFNpdGVcQ2FuY2VsT3JkZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Final Project/FoodDeliveryClient/FoodDeliveryApplication/Views/FoodSite/Cart.cshtml]
+[C:/Users/raksha_ganyarpawar/source/repos/JustEat/FoodDeliveryClient/FoodDeliveryApplication/Views/FoodSite/Cart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9vZFNpdGVcQ2FydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Final Project/FoodDeliveryClient/FoodDeliveryApplication/Views/FoodSite/ConfirmCancel.cshtml]
+[C:/Users/raksha_ganyarpawar/source/repos/JustEat/FoodDeliveryClient/FoodDeliveryApplication/Views/FoodSite/ConfirmCancel.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9vZFNpdGVcQ29uZmlybUNhbmNlbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Final Project/FoodDeliveryClient/FoodDeliveryApplication/Views/FoodSite/CreateAccount.cshtml]
+[C:/Users/raksha_ganyarpawar/source/repos/JustEat/FoodDeliveryClient/FoodDeliveryApplication/Views/FoodSite/CreateAccount.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9vZFNpdGVcQ3JlYXRlQWNjb3VudC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Final Project/FoodDeliveryClient/FoodDeliveryApplication/Views/FoodSite/CustomerDetails.cshtml]
+[C:/Users/raksha_ganyarpawar/source/repos/JustEat/FoodDeliveryClient/FoodDeliveryApplication/Views/FoodSite/CustomerDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9vZFNpdGVcQ3VzdG9tZXJEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Final Project/FoodDeliveryClient/FoodDeliveryApplication/Views/FoodSite/Dummy.cshtml]
+[C:/Users/raksha_ganyarpawar/source/repos/JustEat/FoodDeliveryClient/FoodDeliveryApplication/Views/FoodSite/Dummy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9vZFNpdGVcRHVtbXkuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Final Project/FoodDeliveryClient/FoodDeliveryApplication/Views/FoodSite/Login.cshtml]
+[C:/Users/raksha_ganyarpawar/source/repos/JustEat/FoodDeliveryClient/FoodDeliveryApplication/Views/FoodSite/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9vZFNpdGVcTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Final Project/FoodDeliveryClient/FoodDeliveryApplication/Views/FoodSite/Menu.cshtml]
+[C:/Users/raksha_ganyarpawar/source/repos/JustEat/FoodDeliveryClient/FoodDeliveryApplication/Views/FoodSite/Menu.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9vZFNpdGVcTWVudS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Final Project/FoodDeliveryClient/FoodDeliveryApplication/Views/FoodSite/OrderStatus.cshtml]
+[C:/Users/raksha_ganyarpawar/source/repos/JustEat/FoodDeliveryClient/FoodDeliveryApplication/Views/FoodSite/OrderStatus.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9vZFNpdGVcT3JkZXJTdGF0dXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Final Project/FoodDeliveryClient/FoodDeliveryApplication/Views/FoodSite/Payment.cshtml]
+[C:/Users/raksha_ganyarpawar/source/repos/JustEat/FoodDeliveryClient/FoodDeliveryApplication/Views/FoodSite/Payment.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9vZFNpdGVcUGF5bWVudC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Final Project/FoodDeliveryClient/FoodDeliveryApplication/Views/FoodSite/PlaceOrder.cshtml]
+[C:/Users/raksha_ganyarpawar/source/repos/JustEat/FoodDeliveryClient/FoodDeliveryApplication/Views/FoodSite/PlaceOrder.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9vZFNpdGVcUGxhY2VPcmRlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Final Project/FoodDeliveryClient/FoodDeliveryApplication/Views/FoodSite/Restaurants.cshtml]
+[C:/Users/raksha_ganyarpawar/source/repos/JustEat/FoodDeliveryClient/FoodDeliveryApplication/Views/FoodSite/Restaurants.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9vZFNpdGVcUmVzdGF1cmFudHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Final Project/FoodDeliveryClient/FoodDeliveryApplication/Views/Home/Index.cshtml]
+[C:/Users/raksha_ganyarpawar/source/repos/JustEat/FoodDeliveryClient/FoodDeliveryApplication/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Final Project/FoodDeliveryClient/FoodDeliveryApplication/Views/Home/Privacy.cshtml]
+[C:/Users/raksha_ganyarpawar/source/repos/JustEat/FoodDeliveryClient/FoodDeliveryApplication/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Final Project/FoodDeliveryClient/FoodDeliveryApplication/Views/Shared/Error.cshtml]
+[C:/Users/raksha_ganyarpawar/source/repos/JustEat/FoodDeliveryClient/FoodDeliveryApplication/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Final Project/FoodDeliveryClient/FoodDeliveryApplication/Views/Shared/_Notification.cshtml]
+[C:/Users/raksha_ganyarpawar/source/repos/JustEat/FoodDeliveryClient/FoodDeliveryApplication/Views/Shared/_Notification.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Ob3RpZmljYXRpb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Final Project/FoodDeliveryClient/FoodDeliveryApplication/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/raksha_ganyarpawar/source/repos/JustEat/FoodDeliveryClient/FoodDeliveryApplication/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Final Project/FoodDeliveryClient/FoodDeliveryApplication/Views/_ViewImports.cshtml]
+[C:/Users/raksha_ganyarpawar/source/repos/JustEat/FoodDeliveryClient/FoodDeliveryApplication/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Final Project/FoodDeliveryClient/FoodDeliveryApplication/Views/_ViewStart.cshtml]
+[C:/Users/raksha_ganyarpawar/source/repos/JustEat/FoodDeliveryClient/FoodDeliveryApplication/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/Final Project/FoodDeliveryClient/FoodDeliveryApplication/Views/Shared/_Layout.cshtml]
+[C:/Users/raksha_ganyarpawar/source/repos/JustEat/FoodDeliveryClient/FoodDeliveryApplication/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-ufkla2vgwk

@@ -112,7 +112,7 @@
                                         <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
                                         <ul>
                                             <li>
-                                                <span class="material-icons icons-size">person</span>
+                                                <span class="material-icons icons-size">account_circle</span>
                                                 <p>@str</p>
                                             </li>
                                         </ul>
@@ -122,15 +122,19 @@
 
                                         <ul>
                                             <li>
-                                                <span class="material-icons icons-size"></span>
+                                                <span class="material-icons icons-size">person</span>
+                                                <a asp-controller="FoodSite" asp-action="Dummy">Account</a>
+                                            </li>
+                                            <li>
+                                                <span class="material-icons icons-size">history</span>
                                                 <a asp-controller="FoodSite" asp-action="OrderStatus">Order History</a>
                                             </li>
                                             <li>
-                                                <span class="material-icons icons-size"></span>
+                                                <span class="material-icons icons-size">shopping_cart</span>
                                                 <a asp-controller="FoodSite" asp-action="Cart">Cart</a>
                                             </li>
                                             <li>
-                                                <span class="material-icons icons-size"></span>
+                                                <span class="material-icons icons-size">logout</span>
                                                 <a asp-area="" asp-controller="FoodSite" asp-action="Logout">Log out</a>
                                             </li>
 
@@ -182,9 +186,8 @@
         </div>
     </footer>*@
 
-@*<link rel="stylesheet" href="~/css/style.css"/>
 
-   <footer class="border-top footer text-muted mt-0 mb-0 bg-light" >
+   @*<footer class="border-top footer text-muted mt-0 mb-0 bg-light" >
              <div class="container">
                      <div class="footer_icons">
                           <div><a href="#"><img src="https://img.icons8.com/ios/2x/instagram-new.png" style=" width:30px;height:30px;position:absolute;"/></a></div>
@@ -199,21 +202,56 @@
 
   
     </footer>
-*@
 
 
-@*<link rel="stylesheet" href="~/css/style.css">
 
-<div class="container2">
 
-     <div class="footer_icons">
-                          <div><a href="#"><img src="https://img.icons8.com/ios/2x/instagram-new.png" style=" width:30px;height:30px;position:absolute;"/></a></div>
-                          <div><a href="#"><img src="https://img.icons8.com/ios/2x/twitter--v3.png" style=" width:30px;height:30px;position:absolute;"/></a></div>
-                          <div><a href="#"><img src="https://img.icons8.com/ios/2x/youtube-play.png" style=" width:30px;height:30px;position:absolute;"/></a></div>
-                          <div><a href="#"><img src="https://img.icons8.com/ios/2x/linkedin-circled--v2.png" style=" width:30px;height:30px;position:absolute;"/></a></div>
-                          <div><a href="#"><img src="https://img.icons8.com/ios/2x/facebook-circled--v4.png" style=" width:30px;height:30px;position:absolute;"/></a></div>
+    <footer class="border-top footer text-muted" style="height:auto;position:absolute;margin-bottom:auto">
+
+             <div class="footer_icons" style="display:flex;flex-direction:row; align-items:center;justify-content:center" >
+                                  <div><a href="#"><img src="https://img.icons8.com/ios/2x/instagram-new.png" style=" width:30px;height:30px;position:absolute; margin-top: 20px;margin-right: 40px;margin-left: 0;margin-bottom:10px"/></a></div>
+                                  <div><a href="#"><img src="https://img.icons8.com/ios/2x/twitter--v3.png" style=" width:30px;height:30px;position:absolute; margin-top: 20px;margin-right: 40px;margin-left: 0;margin-bottom:10px"/></a></div>
+                                  <div><a href="#"><img src="https://img.icons8.com/ios/2x/youtube-play.png" style=" width:30px;height:30px;position:absolute; margin-top: 20px;margin-right: 40px;margin-left: 0;margin-bottom:10px"/></a></div>
+                                  <div><a href="#"><img src="https://img.icons8.com/ios/2x/linkedin-circled--v2.png" style=" width:30px;height:30px;position:absolute; margin-top: 20px;margin-right: 40px;margin-left: 0;margin-bottom:10px"/></a></div>
+                                  <div><a href="#"><img src="https://img.icons8.com/ios/2x/facebook-circled--v4.png" style=" width:30px;height:30px;position:absolute; margin-top: 20px;margin-right: 40px;margin-left: 0;margin-bottom:10px"/></a></div>
+             </div>
+     
+
+     </footer>*@
+
+<link rel="stylesheet" href="~/css/style.css"/>
+     <div class="footer" style="border-top:solid">
+         <div class="icon_container" style="min-width:100vw">
+              <p style="color:black;text-align:center;font-size:20px">JustEat</p>
+             <div class="footer_icons" >
+                                  <div><a href="#"><img src="https://img.icons8.com/ios/2x/instagram-new.png" style=" width:30px;height:30px;position:absolute;"/></a></div>
+                                  <div><a href="#"><img src="https://img.icons8.com/ios/2x/twitter--v3.png" style=" width:30px;height:30px;position:absolute;"/></a></div>
+                                  <div><a href="#"><img src="https://img.icons8.com/ios/2x/youtube-play.png" style=" width:30px;height:30px;position:absolute;"/></a></div>
+                                  <div><a href="#"><img src="https://img.icons8.com/ios/2x/linkedin-circled--v2.png" style=" width:30px;height:30px;position:absolute;"/></a></div>
+                                  <div><a href="#"><img src="https://img.icons8.com/ios/2x/facebook-circled--v4.png" style=" width:30px;height:30px;position:absolute;"/></a></div>
+             </div>
+             <p style="color:black;text-align:center;margin-top:35px"> JustEat.com © 2023</p>
+
+         </div>
      </div>
 
+
+
+   @*  <div class="footer-dark ">
+<div class="container">
+<div class="">
+<div class="w-100 item text-center">
+<h2>eShop.com</h2>
+</div>
+<div class="col item social">
+<a href="#"><i class="fab fa-facebook"></i></a>
+<a href="#"><i class="fab fa-twitter"></i></a>
+<a href="#"><i class="fab fa-snapchat"></i></a>
+<a href="#"><i class="fab fa-instagram"></i></a>
+</div>
+</div>
+<p class="copyright">eShop.com © 2023</p>
+</div>
 </div>*@
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

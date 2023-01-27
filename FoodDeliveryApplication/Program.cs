@@ -32,9 +32,10 @@ builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddSession(options =>
 {
-    options.IdleTimeout = TimeSpan.FromSeconds(600);
+    options.IdleTimeout = TimeSpan.FromSeconds(10080);
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
+    
 });
 
 

@@ -2,7 +2,7 @@
 
 .icons-size {
     color: #333;
-    font-size: 14px;
+    font-size: 20px;
 }
 
 .action {
@@ -147,7 +147,7 @@
 }
 */
 
-.container2 {
+/*.container2 {
     width: 100%;
     background-color: aliceblue;
     bottom:0;
@@ -164,4 +164,50 @@
     margin-top: 20px;
     margin-right: 40px;
     margin-left: 0;
+}
+*/
+
+.footer {
+    position: relative;
+    background-color: rgb(248, 248, 248) !important;
+    bottom: 0;
+    width: 100%;
+    color: aliceblue;
+    padding: 25px;
+    height: 200px;
+    display: flex;
+    margin-top: 50px;
+    margin-bottom: -200px !important;
+    line-height: 40px !important;
+}
+
+.footer .icon_container{
+
+}
+
+    .footer .icon_container .footer_icons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        align-content: center;
+    }
+
+        .footer .icon_container .footer_icons > div {
+            margin-top: 10px;
+            margin-right: 40px;
+            margin-left: 0;
+        }
+
+
+.blur {
+     filter: blur(3px);
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+   /* filter: brightness(50%);
+    -webkit-filter: brightness(50%);
+    -moz-filter: brightness(50%);
+    -o-filter: brightness(50%);
+    -ms-filter: brightness(50%);*/
 }

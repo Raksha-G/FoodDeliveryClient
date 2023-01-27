@@ -12,12 +12,15 @@
       padding:30px;
   }
   h1{
-      font-size:30px;
+      font-size:25px;
   }
   a{
       margin:15px;
   }
 </style>
+
+
+
 <div class="bg-container">
     <h1 class="text-danger text-center mt-3">Are you Sure? You want to Cancel this Order</h1>
     <div class="d-flex justify-content-center">
@@ -25,7 +28,7 @@
         @foreach(var i in Model)
     {
         
-            <h1>@i.FoodItem   --   @i.Quantity</h1>
+            <p style="font-size:20px">@i.FoodItem   --   @i.Quantity</p>
             
         
 
