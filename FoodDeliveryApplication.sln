@@ -11,12 +11,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Procfile = Procfile
 	EndProjectSection
 EndProject
-
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestaurantSideApplication", "..\RestaurantSide\RestaurantSideApplication\RestaurantSideApplication.csproj", "{2792637F-8664-4079-AF93-918397F4CDD9}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodAppWebApi", "..\Food-API\FoodAppWebApi.csproj", "{5213BD00-3977-4524-B471-66A92DAFACB1}"
-EndProject
-
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,16 +21,6 @@ Global
 		{605535BB-7ADC-4BBD-A992-3572703E174D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{605535BB-7ADC-4BBD-A992-3572703E174D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{605535BB-7ADC-4BBD-A992-3572703E174D}.Release|Any CPU.Build.0 = Release|Any CPU
-
-		{2792637F-8664-4079-AF93-918397F4CDD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2792637F-8664-4079-AF93-918397F4CDD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2792637F-8664-4079-AF93-918397F4CDD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2792637F-8664-4079-AF93-918397F4CDD9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5213BD00-3977-4524-B471-66A92DAFACB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5213BD00-3977-4524-B471-66A92DAFACB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5213BD00-3977-4524-B471-66A92DAFACB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5213BD00-3977-4524-B471-66A92DAFACB1}.Release|Any CPU.Build.0 = Release|Any CPU
-
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
