@@ -293,6 +293,55 @@ namespace FoodDeliveryApplication.Controllers
         }
 
 
+        public async Task<IActionResult> GetRestaurantsByCuisine(string cuisine)
+        {
+            List<Restaurants> res = new List<Restaurants>();
+            string? AccessToken = _httpContextAccessor.HttpContext.Session.GetString("AccessToken");
+
+
+
+            if (_httpContextAccessor.HttpContext.Session.GetString("UserName") == null)
+            {
+                _logger.LogInformation("{0} Logged Out", CurrUser);
+                Console.WriteLine("Logout");
+                return RedirectToAction("Login");
+            }
+
+            HttpClient httpClient = new HttpClient();
+            JsonContent content = JsonContent.Create(new TokenDto()
+            {
+                Token = AccessToken,
+            });
+
+
+
+            httpClient.DefaultRequestHeaders.Authorization =
+                new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", AccessToken);
+
+            Console.WriteLine(AccessToken);
+
+            using (var apiResponce = await httpClient.GetAsync("http://52.66.208.30:8081/api/Food/GetRestaurantByCuisine?cuisine=" + cuisine))
+            {
+
+                if (apiResponce.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    string res1 = await apiResponce.Content.ReadAsStringAsync();
+                    res = JsonConvert.DeserializeObject<List<Restaurants>>(res1);
+                    return View("Restaurants", res);
+                }
+                else if (apiResponce.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+                {
+                    return RedirectToAction("Login");
+                }
+                else
+                {
+                    return Content("Api error" + apiResponce.StatusCode);
+                }
+
+            }
+        }
+
+
 
 
         public async Task<IActionResult> RestaurantMenu(int Id)

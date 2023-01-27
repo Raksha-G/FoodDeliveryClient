@@ -20,33 +20,38 @@
           <p style="margin-left:20px;margin-top:30px;font-size:14px">Cuisines</p>
             @{
 
-            var url1 = Url.Action("PureVegRestaurants", "FoodSite");
+            var url1 = Url.Action("GetRestaurantsByCuisine", "FoodSite",new{cuisine = "South Indian"});
+            var url2 = Url.Action("GetRestaurantsByCuisine", "FoodSite",new{cuisine = "Punjabi"});
+            var url3 = Url.Action("GetRestaurantsByCuisine", "FoodSite",new{cuisine = "Chinese"});
+            var url4 = Url.Action("GetRestaurantsByCuisine", "FoodSite",new{cuisine = "Coffee"});
+            var url5 = Url.Action("GetRestaurantsByCuisine", "FoodSite",new{cuisine = "Biryani"});
+            var url6 = Url.Action("GetRestaurantsByCuisine", "FoodSite",new{cuisine = "Pizza"});
           }
 
           <table>
               <tr>
                   <td>
-                        <div style="margin-left:30px"><input id="cuisines" type="checkbox" name="veg" value="veg" style="accent-color:green" onclick="window.location='@url1'"/> <label style="color:#282c3f;font-size:14px">‎ Chinese</label></div>
+                        <div style="margin-left:30px"><input id="cuisines" type="checkbox" name="veg" value="veg" style="accent-color:green" onclick="window.location='@url3'"/> <label style="color:#282c3f;font-size:14px">‎ Chinese</label></div>
 
                   </td>
                   <td>
-                         <div style="margin-left:30px"><input id="cuisines" type="checkbox" name="veg" value="veg" style="accent-color:green" onclick="window.location='@url1'"/> <label style="color:#282c3f;font-size:14px">‎ Punjabi</label></div>
-
-                  </td>
-              </tr>
-              <tr>
-                  <td>
-                    <div style="margin-left:30px"><input id="cuisines" type="checkbox" name="veg" value="veg" style="accent-color:green" onclick="window.location='@url1'"/> <label style="color:#282c3f;font-size:14px">‎ Pizzas</label></div>
-
-                  </td>
-                  <td>
-                    <div style="margin-left:30px"><input id="cuisines" type="checkbox" name="veg" value="veg" style="accent-color:green" onclick="window.location='@url1'"/> <label style="color:#282c3f;font-size:14px">‎ Thalis</label></div>
+                         <div style="margin-left:30px"><input id="cuisines" type="checkbox" name="veg" value="veg" style="accent-color:green" onclick="window.location='@url2'"/> <label style="color:#282c3f;font-size:14px">‎ Punjabi</label></div>
 
                   </td>
               </tr>
               <tr>
                   <td>
-                    <div style="margin-left:30px"><input id="cuisines" type="checkbox" name="veg" value="veg" style="accent-color:green" onclick="window.location='@url1'"/> <label style="color:#282c3f;font-size:14px">‎ Icecream</label></div>
+                    <div style="margin-left:30px"><input id="cuisines" type="checkbox" name="veg" value="veg" style="accent-color:green" onclick="window.location='@url6'"/> <label style="color:#282c3f;font-size:14px">‎ Pizzas</label></div>
+
+                  </td>
+                  <td>
+                    <div style="margin-left:30px"><input id="cuisines" type="checkbox" name="veg" value="veg" style="accent-color:green" onclick="window.location='@url4'"/> <label style="color:#282c3f;font-size:14px">‎ Coffee</label></div>
+
+                  </td>
+              </tr>
+              <tr>
+                  <td>
+                    <div style="margin-left:30px"><input id="cuisines" type="checkbox" name="veg" value="veg" style="accent-color:green" onclick="window.location='@url5'"/> <label style="color:#282c3f;font-size:14px">‎ Biryani</label></div>
 
                   </td>
                   <td>

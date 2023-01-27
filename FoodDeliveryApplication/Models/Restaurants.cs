@@ -8,6 +8,8 @@
 
         public string RestaurantImage { get; set; }
 
+        public string Cuisine { get; set; }
+
         public Restaurants()
         {
 
@@ -19,6 +21,13 @@
             RestaurantId = restaurantId;
             RestaurantName = restaurantName;
             RestaurantImage = restaurantImage;
+        }
+        public Restaurants(int restaurantId, string restaurantName, string restaurantImage,string cuisine)
+        {
+            RestaurantId = restaurantId;
+            RestaurantName = restaurantName;
+            RestaurantImage = restaurantImage;
+            Cuisine = cuisine;
         }
     }
 }
