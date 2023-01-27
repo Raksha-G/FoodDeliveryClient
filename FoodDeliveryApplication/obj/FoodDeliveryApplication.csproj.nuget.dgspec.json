@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "F:\\Final Project\\FoodDeliveryClient\\FoodDeliveryApplication\\FoodDeliveryApplication.csproj": {}
+    "C:\\Users\\raksha_ganyarpawar\\source\\repos\\JustEat\\FoodDeliveryClient\\FoodDeliveryApplication\\FoodDeliveryApplication.csproj": {}
   },
   "projects": {
-    "F:\\Final Project\\FoodDeliveryClient\\FoodDeliveryApplication\\FoodDeliveryApplication.csproj": {
+    "C:\\Users\\raksha_ganyarpawar\\source\\repos\\JustEat\\FoodDeliveryClient\\FoodDeliveryApplication\\FoodDeliveryApplication.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Final Project\\FoodDeliveryClient\\FoodDeliveryApplication\\FoodDeliveryApplication.csproj",
+        "projectUniqueName": "C:\\Users\\raksha_ganyarpawar\\source\\repos\\JustEat\\FoodDeliveryClient\\FoodDeliveryApplication\\FoodDeliveryApplication.csproj",
         "projectName": "FoodDeliveryApplication",
-        "projectPath": "F:\\Final Project\\FoodDeliveryClient\\FoodDeliveryApplication\\FoodDeliveryApplication.csproj",
-        "packagesPath": "C:\\Users\\vempadapu_prasanth\\.nuget\\packages\\",
-        "outputPath": "F:\\Final Project\\FoodDeliveryClient\\FoodDeliveryApplication\\obj\\",
+        "projectPath": "C:\\Users\\raksha_ganyarpawar\\source\\repos\\JustEat\\FoodDeliveryClient\\FoodDeliveryApplication\\FoodDeliveryApplication.csproj",
+        "packagesPath": "C:\\Users\\raksha_ganyarpawar\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\raksha_ganyarpawar\\source\\repos\\JustEat\\FoodDeliveryClient\\FoodDeliveryApplication\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\vempadapu_prasanth\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\raksha_ganyarpawar\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -79,7 +79,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }

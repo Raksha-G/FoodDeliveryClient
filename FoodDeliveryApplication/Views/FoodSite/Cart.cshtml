@@ -33,13 +33,14 @@
 }
 else
 {
+    int items = Model.Count();
 
 @*@using(@Html.BeginForm("DeleteItemFromCart","FoodSite",FormMethod.Post))
 @*<form method="post">*@
 //{
 <h3 style="font-family:'Roboto Black', sans-serif;color:#535665;font-weight:bold;margin-top:10px">CART</h3>
     
-
+<p>You have @items items in your cart</p>
 
 
 
@@ -81,9 +82,9 @@ else
         </div>
     </div>   
 
-<h4>Total Price : @Total_Price1</h4>
+<h4 style="text-align:right;margin-top:10px">Total Price : @Total_Price1</h4>
 <br/>
 
-<a class="btn btn-primary" asp-controller="FoodSite" asp-action="CustomerDetails" type="submit" style="background-color:orange;border-color:orange" >Proceed</a>
-<a class="btn btn-primary" asp-controller="FoodSite" asp-action="Restaurants" style="background-color:orange;border-color:orange">Add Items</a> 
+<a class="btn btn-primary" asp-controller="FoodSite" asp-action="Restaurants" style="background-color:white;border-color:orange;color:orange">Add Items</a> 
+<a class="btn btn-primary" asp-controller="FoodSite" asp-action="CustomerDetails" type="submit" style="background-color:white;border-color:orange;float:right;color:orange" >Checkout</a>
 }

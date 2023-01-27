@@ -1,94 +1,24 @@
-﻿
- <link rel="stylesheet" href="~/scss/Dummy.css">
+﻿ <link rel="stylesheet" href="~/scss/Dummy.css">
 
-<@*div class="container">
-    <div class="box">
 
-        <div class="left">
-            <h3>BILLING ADDRESS</h3>
-            <form>
-                Full name
-                <input type="text" name="" placeholder="Enter name" />
-                Email
-                <input type="text" name="" placeholder="Enter name" />
-                Address
-                <input type="text" name="" placeholder="Enter name" />
-                City
-                <input type="text" name="" placeholder="City" />
-                <div id="states">
-                    <label>
-                        State
-                        <select>
-                            <option>Choose State</option>
-                            <option>Maharastra</option>
-                            <option>Gujrat</option>
-                        </select>
-                    </label>
+ 
 
-                <label>
-                    Zipcode
-                    <input type="number" name="" placeholder="Enter name" />
-                </label>
-                </div>
-            </form>
 
-        </div>
-        <div class="right">
-            <h3>PAYMENT</h3>
-            <form>
-                Accepted Cards
-                <br />
-
-                <div class="images">
-
-                <div><img src="https://th.bing.com/th/id/R.16dbc44d8d44fd6157f722a9674e7b07?rik=Us1kmY7Dub3wRQ&riu=http%3a%2f%2fwww.pngall.com%2fwp-content%2fuploads%2f2016%2f07%2fMastercard-Download-PNG.png&ehk=j8swbECt%2f%2f%2bT0KJGslF5ZNtn6SLSvlMLsIGEDZogxNE%3d&risl=&pid=ImgRaw&r=0" /></div>
-
-                <div><img src="https://www.mycollection.in/public/images/rupay_card.png"/></div>
-                </div>
-
-             
-                <br /> <br />
-                Credit card number
-                <input type="text" name="" placeholder="Enter name" />
-                Exp month
-                <input type="text" name="" placeholder="Enter name" />
-
-                <div id="states">
-                    <label>
-                        Exp year
-                        <select>
-                            <option>Choose year</option>
-                            <option>2022</option>
-                            <option>2023</option>
-                        </select>
-                    </label>
-
-                <label>
-                    CVV
-                    <input type="number" name="" placeholder="Enter CVV" />
-                </label>
-                </div>
-                <button class="btn btn-primary">Proceed to Checkout</button>
-            </form>
-        </div>
+<div class="d-flex">
+    <div>
+            <button type="button" uncheckable class="btn  btn-xl" ng-click="selected(0)">1</button>
+            <p style="font-size:5px">Shopping Cart</p>
     </div>
-</div>*@
+    
+        <hr class="horizontal"/>
+    <div>
 
-
-
-  @*   <div class="footer_icons">
-                          <div><a href="#"><img src="https://img.icons8.com/color/512/paytm.png" style=" width:30px;height:30px;position:absolute;"/></a></div>
-                          <div><a href="#"><img src="https://img.icons8.com/color/2x/google-pay-india.png" style=" width:30px;height:30px;position:absolute;"/></a></div>
-                          <div><a href="#"><img src="https://img.icons8.com/windows/2x/amazon-pay.png" style=" width:30px;height:30px;position:absolute;"/></a></div>
-                          <div><a href="#"><img src="https://img.icons8.com/color/2x/phone-pe.png" style=" width:30px;height:30px;position:absolute;"/></a></div>
-                          
-     </div>
-*@
-
-
- @{
-            
-        var url = Url.Action("Restaurants", "FoodSite");
-    }
-    <div><input id="veg" type="checkbox" name="veg" value="veg" style="accent-color:green;margin-left:auto" onclick="window.location='@url'"/><label style="color:green">‎ Veg Only</label></div>
-       
+         <button type="button" uncheckable class="btn  btn-xl" ng-click="selected(0)">1</button>
+         <p style="font-size:5px">Shopping Cart</p>
+    </div>
+    <hr class="horizontal"/>
+     <div>
+          <button type="button" uncheckable class="btn  btn-xl" ng-click="selected(0)">1</button>
+          <p style="font-size:5px">Shopping Cart</p>
+    </div>
+</div>
