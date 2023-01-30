@@ -63,7 +63,7 @@ namespace FoodDeliveryApplication.Controllers
             var httpClient = new HttpClient();
 
             JsonContent content = JsonContent.Create(signup);
-            using (var apiRespoce = await httpClient.PostAsync("http://52.66.208.30:8081/api/Food/SignUp", content))
+            using (var apiRespoce = await httpClient.PostAsync("http://15.206.79.229:8081/api/Food/SignUp", content))
             {
                 if (apiRespoce.StatusCode == System.Net.HttpStatusCode.OK)
                 {
@@ -100,7 +100,7 @@ namespace FoodDeliveryApplication.Controllers
                         }*/
 
             JsonContent content = JsonContent.Create(login);
-            using (var apiRespoce = await httpClient.PostAsync("http://52.66.208.30:8081/api/NewAuthentication/login", content))
+            using (var apiRespoce = await httpClient.PostAsync("http://15.206.79.229:8081/api/NewAuthentication/login", content))
             {
                 if (apiRespoce.StatusCode == System.Net.HttpStatusCode.OK)
                 {
@@ -167,7 +167,7 @@ namespace FoodDeliveryApplication.Controllers
             httpClient.DefaultRequestHeaders.Authorization =
                 new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", AccessToken);
 
-            var apiResponce = await httpClient.DeleteAsync("http://52.66.208.30:8081/api/NewAuthentication/logout");
+            var apiResponce = await httpClient.DeleteAsync("http://15.206.79.229:8081/api/NewAuthentication/logout");
 
             if (apiResponce.StatusCode == System.Net.HttpStatusCode.OK)
             {
@@ -224,7 +224,7 @@ namespace FoodDeliveryApplication.Controllers
 
                 Console.WriteLine(AccessToken);
 
-                using (var apiResponce = await httpClient.GetAsync("http://52.66.208.30:8081/api/Food/GetAllRestaurants"))
+                using (var apiResponce = await httpClient.GetAsync("http://15.206.79.229:8081/api/Food/GetAllRestaurants"))
                 {
 
                     if (apiResponce.StatusCode == System.Net.HttpStatusCode.OK)
@@ -274,7 +274,7 @@ namespace FoodDeliveryApplication.Controllers
 
             Console.WriteLine(AccessToken);
 
-            using (var apiResponce = await httpClient.GetAsync("http://52.66.208.30:8081/api/Food/GetAllVegRestaurants"))
+            using (var apiResponce = await httpClient.GetAsync("http://15.206.79.229:8081/api/Food/GetAllVegRestaurants"))
             {
 
                 if (apiResponce.StatusCode == System.Net.HttpStatusCode.OK)
@@ -324,7 +324,7 @@ namespace FoodDeliveryApplication.Controllers
 
             Console.WriteLine(AccessToken);
 
-            using (var apiResponce = await httpClient.GetAsync("http://52.66.208.30:8081/api/Food/GetRestaurantByCuisine?cuisine=" + cuisine))
+            using (var apiResponce = await httpClient.GetAsync("http://15.206.79.229:8081/api/Food/GetRestaurantByCuisine?cuisine=" + cuisine))
             {
 
                 if (apiResponce.StatusCode == System.Net.HttpStatusCode.OK)
@@ -371,7 +371,7 @@ namespace FoodDeliveryApplication.Controllers
 
             List<Menu> res = new List<Menu>();
             //HttpClient httpClient = new HttpClient();
-            var apiResponce = await httpClient.GetAsync("http://52.66.208.30:8081/api/Food/GetRestaurantMenuById/" + Id);
+            var apiResponce = await httpClient.GetAsync("http://15.206.79.229:8081/api/Food/GetRestaurantMenuById/" + Id);
 
             if (apiResponce.StatusCode == System.Net.HttpStatusCode.OK)
             {
@@ -500,7 +500,7 @@ namespace FoodDeliveryApplication.Controllers
 
 
             JsonContent content1 = JsonContent.Create(cart);
-            using (var apiRespoce = await httpClient.PostAsync("http://52.66.208.30:8081/api/Food/AddToCart", content1))
+            using (var apiRespoce = await httpClient.PostAsync("http://15.206.79.229:8081/api/Food/AddToCart", content1))
             {
                 if (apiRespoce.StatusCode == System.Net.HttpStatusCode.OK)
                 {
@@ -552,7 +552,7 @@ namespace FoodDeliveryApplication.Controllers
 
 
             //HttpClient httpClient = new HttpClient();
-            var apiResponce = await httpClient.DeleteAsync("http://52.66.208.30:8081/api/Food/DeleteCartItemById/" + Id);
+            var apiResponce = await httpClient.DeleteAsync("http://15.206.79.229:8081/api/Food/DeleteCartItemById/" + Id);
 
             if (apiResponce.StatusCode == System.Net.HttpStatusCode.OK)
             {
@@ -596,7 +596,7 @@ namespace FoodDeliveryApplication.Controllers
 
 
             List<Cart> res = new List<Cart>();
-            var apiResponce = await httpClient.GetAsync("http://52.66.208.30:8081/api/Food/GetCartByUserName?UserName=" + UserName);
+            var apiResponce = await httpClient.GetAsync("http://15.206.79.229:8081/api/Food/GetCartByUserName?UserName=" + UserName);
 
             if (apiResponce.StatusCode == System.Net.HttpStatusCode.OK)
             {
@@ -668,7 +668,7 @@ namespace FoodDeliveryApplication.Controllers
             order.status = "Placed";
 
             JsonContent content1 = JsonContent.Create(order);
-            using (var apiRespoce = await httpClient.PostAsync("http://52.66.208.30:8081/api/Food/Orders", content1))
+            using (var apiRespoce = await httpClient.PostAsync("http://15.206.79.229:8081/api/Food/Orders", content1))
             {
                 if (apiRespoce.StatusCode == System.Net.HttpStatusCode.OK)
                 {
@@ -720,7 +720,7 @@ namespace FoodDeliveryApplication.Controllers
                new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", AccessToken);
 
             JsonContent content2 = JsonContent.Create(orderList);
-            using (var apiRespoce = await httpClient1.PostAsync("http://52.66.208.30:8081/api/Food/OrderDetails", content2))
+            using (var apiRespoce = await httpClient1.PostAsync("http://15.206.79.229:8081/api/Food/OrderDetails", content2))
             {
                 if (apiRespoce.StatusCode == System.Net.HttpStatusCode.OK)
                 {
@@ -743,7 +743,7 @@ namespace FoodDeliveryApplication.Controllers
             HttpClient httpClient2 = new HttpClient();
             httpClient2.DefaultRequestHeaders.Authorization =
                new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", AccessToken);
-            var apiResponce = await httpClient.DeleteAsync("http://52.66.208.30:8081/api/Food/DeleteCartItemsByUserName/" + UserName);
+            var apiResponce = await httpClient.DeleteAsync("http://15.206.79.229:8081/api/Food/DeleteCartItemsByUserName/" + UserName);
 
             if (apiResponce.StatusCode == System.Net.HttpStatusCode.OK)
             {
@@ -814,7 +814,7 @@ namespace FoodDeliveryApplication.Controllers
             });
 
 
-            /* using(var validationResponce = await httpClient.PostAsync("http://52.66.208.30:8081/api/NewAuthentication/validate", content))
+            /* using(var validationResponce = await httpClient.PostAsync("http://15.206.79.229:8081/api/NewAuthentication/validate", content))
              {
                  if(validationResponce.StatusCode== System.Net.HttpStatusCode.BadRequest)
                  {
@@ -845,7 +845,7 @@ namespace FoodDeliveryApplication.Controllers
 
             List<OrderDetails> res = new List<OrderDetails>();
             //HttpClient httpClient = new HttpClient();
-            var apiResponce = await httpClient.GetAsync("http://52.66.208.30:8081/api/Food/OrderStatus/" + Id + "/" + UserName);
+            var apiResponce = await httpClient.GetAsync("http://15.206.79.229:8081/api/Food/OrderStatus/" + Id + "/" + UserName);
 
             if (apiResponce.StatusCode == System.Net.HttpStatusCode.OK)
             {
@@ -902,7 +902,7 @@ namespace FoodDeliveryApplication.Controllers
             string FoodItem = col["SearchedfoodItem"];
             List<Menu> res = new List<Menu>();
             //HttpClient httpClient = new HttpClient();
-            var apiResponce = await httpClient.GetAsync("http://52.66.208.30:8081/api/Food/SearchMenuByName/" + FoodItem);
+            var apiResponce = await httpClient.GetAsync("http://15.206.79.229:8081/api/Food/SearchMenuByName/" + FoodItem);
 
             if (apiResponce.StatusCode == System.Net.HttpStatusCode.OK)
             {
