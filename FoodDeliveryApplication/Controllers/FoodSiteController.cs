@@ -175,6 +175,10 @@ namespace FoodDeliveryApplication.Controllers
                 _httpContextAccessor.HttpContext.Session.Clear();
                 return RedirectToAction("Index", "Home");
             }
+            else if (apiResponce.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+            {
+                return RedirectToAction("Login");
+            }
             else
             {
                 return Content("Api error " + apiResponce.StatusCode);
@@ -375,6 +379,10 @@ namespace FoodDeliveryApplication.Controllers
                 res = JsonConvert.DeserializeObject<List<Menu>>(res1);
                 return View("Menu", res);
             }
+            else if (apiResponce.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+            {
+                return RedirectToAction("Login");
+            }
             else
             {
                 return Content("Api error" + apiResponce.StatusCode);
@@ -437,6 +445,12 @@ namespace FoodDeliveryApplication.Controllers
 
         public IActionResult Order()
         {
+            if (_httpContextAccessor.HttpContext.Session.GetString("UserName") == null)
+            {
+                _logger.LogInformation("{0} Logged Out", CurrUser);
+                Console.WriteLine("Logout");
+                return RedirectToAction("Login");
+            }
             return Content(_httpContextAccessor.HttpContext.Session.GetString("UserName"));
 
         }
@@ -480,6 +494,7 @@ namespace FoodDeliveryApplication.Controllers
             cart.RestaurantId = Restaurant_Id;
             cart.Quantity = Quantity;
             cart.Price = Price;
+            cart.FoodId = Food_Id;
 
             _logger.LogInformation("Item:{0} added to cart by the user:{1} of Quantity:{2}", Food_Item, _httpContextAccessor.HttpContext.Session.GetString("UserName"), Quantity);
 
@@ -493,6 +508,10 @@ namespace FoodDeliveryApplication.Controllers
 
                     return RedirectToAction("RestaurantMenu", new { Id = Restaurant_Id });
 
+                }
+                else if (apiRespoce.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+                {
+                    return RedirectToAction("Login");
                 }
                 else
                 {
@@ -540,6 +559,10 @@ namespace FoodDeliveryApplication.Controllers
                 TempData["success"] = "Item Removed From Cart";
                 return RedirectToAction("Cart");
             }
+            else if (apiResponce.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+            {
+                return RedirectToAction("Login");
+            }
             else
             {
                 return Content("Api error " + apiResponce.StatusCode);
@@ -582,6 +605,7 @@ namespace FoodDeliveryApplication.Controllers
 
                 return View("Cart", res);
             }
+           
             else
             {
                 ViewBag.Cart = "Empty";
@@ -658,6 +682,10 @@ namespace FoodDeliveryApplication.Controllers
                     }
 
                 }
+                else if (apiRespoce.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+                {
+                    return RedirectToAction("Login");
+                }
                 else
                 {
                     return Content("Error:kk " + apiRespoce.StatusCode);
@@ -698,6 +726,10 @@ namespace FoodDeliveryApplication.Controllers
                 {
 
                 }
+                else if (apiRespoce.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+                {
+                    return RedirectToAction("Login");
+                }
                 else
                 {
                     return Content("Error: " + apiRespoce.StatusCode);
@@ -722,6 +754,10 @@ namespace FoodDeliveryApplication.Controllers
 
 
             }
+            else if (apiResponce.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+            {
+                return RedirectToAction("Login");
+            }
             else
             {
                 return Content("Api error " + apiResponce.StatusCode);
@@ -735,6 +771,12 @@ namespace FoodDeliveryApplication.Controllers
 
         public IActionResult CustomerDetails()
         {
+            if (_httpContextAccessor.HttpContext.Session.GetString("UserName") == null)
+            {
+                _logger.LogInformation("{0} Logged Out", CurrUser);
+                Console.WriteLine("Logout");
+                return RedirectToAction("Login");
+            }
             return View("Payment");
         }
 
@@ -821,8 +863,13 @@ namespace FoodDeliveryApplication.Controllers
                 return View("OrderStatus", res);
                 //return View("Dummy", res);
             }
+            else if (apiResponce.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+            {
+                return RedirectToAction("Login");
+            }
             else
             {
+                
                 return Content("Api error" + apiResponce.Content.ToString);
             }
 
@@ -862,6 +909,10 @@ namespace FoodDeliveryApplication.Controllers
                 string res1 = await apiResponce.Content.ReadAsStringAsync();
                 res = JsonConvert.DeserializeObject<List<Menu>>(res1);
                 return View("Menu", res);
+            }
+            else if (apiResponce.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+            {
+                return RedirectToAction("Login");
             }
             else
             {
@@ -944,6 +995,10 @@ namespace FoodDeliveryApplication.Controllers
 
         public IActionResult Dummy()
         {
+            if (HttpContext.Session.GetString("UserName") == null)
+            {
+                return RedirectToAction("Login");
+            }
             return View();
         }
 

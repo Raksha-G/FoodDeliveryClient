@@ -12,6 +12,6 @@
 
 
         public int RestaurantId { get; set; }
-
+        public int FoodId { get; set; }
     }
 }
