@@ -1,0 +1,130 @@
+﻿ <link rel="stylesheet" href="~/scss/Profile.css">
+ <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+ @inject IHttpContextAccessor _httpContextAccessor;
+ @model List<Profile>
+
+
+ 
+
+
+@*<div class="d-flex">
+    <div>
+            <button type="button" uncheckable class="btn  btn-xl" ng-click="selected(0)">1</button>
+            <p style="font-size:5px">Shopping Cart</p>
+    </div>
+    
+        <hr class="horizontal"/>
+    <div>
+
+         <button type="button" uncheckable class="btn  btn-xl" ng-click="selected(0)">1</button>
+         <p style="font-size:5px">Shopping Cart</p>
+    </div>
+    <hr class="horizontal"/>
+     <div>
+          <button type="button" uncheckable class="btn  btn-xl" ng-click="selected(0)">1</button>
+          <p style="font-size:5px">Shopping Cart</p>
+    </div>
+</div>
+*@
+
+
+@{
+    var list = Model.FirstOrDefault();
+    string phone = list.Phone;
+    string email = list.Email;
+    //string address = "";
+    List<string> addresses = new List<string>();
+    foreach(var obj in Model)
+    {
+        string add = (obj.Address + " " + obj.City + " " + obj.State + " " + obj.Zipcode);
+        if (!addresses.Contains(add))
+        {
+            string address = obj.Address + " " + obj.City + " " + obj.State + " " + obj.Zipcode;
+            addresses.Add(address);
+        }
+    }
+
+    List<string> cards = new List<string>();
+    foreach(var obj in Model)
+    {
+        string c = (obj.CreditCard + " " + obj.ExpMonth + " " + obj.ExpYear);
+        if (!cards.Contains(c))
+        {
+            string card = (obj.CreditCard + " " + obj.ExpMonth + " " + obj.ExpYear);
+            cards.Add(card);
+        }
+    }
+}
+
+
+
+
+<div class="container">
+    <div class="box">
+        <div class="d-flex justify-content-between">
+
+                <div>
+                    <h2>@_httpContextAccessor.HttpContext.Session.GetString("UserName")</h2>
+                    <p style="color:#7e808c">@phone    @email</p>
+                </div>
+                <span class="material-icons" style="font-size:80px;color:orange;padding-left:120px;display:inline-block">account_circle</span>
+        </div>
+ 
+                                        <ul>
+                                            <li>
+                                                <span class="material-icons icons-size">home</span>
+                                                <a onclick="myFunction()">Address Book</a>
+                                            </li>
+                                        </ul>
+                                        <div id="myDIV" style="display:none;padding-left:80px;padding-top:20px;padding-bottom:10px">
+                                            @foreach(var i in addresses)
+                                                    {
+                                                        <p>@i</p>;
+                                                    }
+                                        <hr style="width:40px;color:orange;height:3px;margin-bottom:20px;align-content:center"/>
+                                        </div>
+
+                                        <ul>
+                                            <li>
+                                                <span class="material-icons icons-size">credit_card</span>
+                                                <a onclick="myFunction1()">Payment Methods</a>
+                                            </li>
+                                        </ul>
+                                         <div id="myDIV1" style="display:none;padding-left:80px;padding-top:20px;padding-bottom:10px">
+                                            @foreach(var i in cards)
+                                                    {
+                                                        <p>@i</p>;
+                                                    }
+                                            <hr style="width:40px;color:orange;height:3px;margin-bottom:20px;align-content:center"/>
+                                        </div>
+
+                                          <ul>
+                                            <li>
+                                                <span class="material-icons icons-size">event</span>
+                                                <a asp-controller="FoodSite" asp-action="OrderStatus">Your Orders</a>
+                                            </li>
+                                        </ul>
+
+
+    </div>
+</div>
+
+<script>
+           function myFunction() {
+  var x = document.getElementById("myDIV");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+function myFunction1() {
+  var x = document.getElementById("myDIV1");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>

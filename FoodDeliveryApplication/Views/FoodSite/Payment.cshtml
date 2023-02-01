@@ -1,188 +1,280 @@
-﻿@model CustomerDetails
-<link rel="stylesheet" href="~/scss/Payment.css">
+﻿ <link rel="stylesheet" href="~/scss/Dummy.css">
+ <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+ @inject IHttpContextAccessor _httpContextAccessor;
+ @model List<Profile>
+@*<link rel="stylesheet" href="~/scss/Payment.css">*@
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 
 
-<form method="post">
-    <div class="container">
-        <div class="box">
-            <div class="left">
-                <h3 style="color:#535665;font-weight: 600;">BILLING ADDRESS</h3>
+
+@{
+    var list = Model.FirstOrDefault();
+    //string phone = list.Phone;
+    //string email = list.Email;
+    //string address = "";
+    List<string> addresses = new List<string>();
+    foreach(var obj in Model)
+    {
+        string add = (obj.Address + ", " + obj.City + ", " + obj.State + ", " + obj.Zipcode);
+        if (!addresses.Contains(add))
+        {
+            string address = obj.Address + ", " + obj.City + ", " + obj.State + ", " + obj.Zipcode;
+            addresses.Add(address);
+        }
+    }
+
+    List<string> cards = new List<string>();
+    foreach(var obj in Model)
+    {
+        string c = (obj.CreditCard + ", " + obj.ExpMonth + ", " + obj.ExpYear);
+        if (!cards.Contains(c))
+        {
+            string card = (obj.CreditCard + ", " + obj.ExpMonth + ", " + obj.ExpYear);
+            cards.Add(card);
+        }
+    }
+}
+
+<div>
+
+
+ <div class="split1 left">
+
+     <div class="address">
+         <p style="font-size:20px;color:#535665;font-weight: 600;">Saved Addresses</p>
+         <div class="saved_address">
+               @foreach(var i in addresses)
+                {
+                      @*<p class="btn-use-address" >@i</p>;*@
+                      <p style="font-size:10px;color:#535665" data="addresss-@i" class="btn-use-address">
+                           @i
+                      </p>
+
+                }
+              @*  @for(int i=0;i<Model.Count();i++)
+            {
+               <span data="addresss-@i" class="btn-use-address">
+                           @Model[i].Address
+                      </span>
+            }*@
+        </div>
+     </div>
+
+
+     <div class="card">
+         <p style="font-size:20px;color:#535665;font-weight: 600;">Cards</p>
+         <div class="saved_cards">
+              @foreach(var i in cards)
+              {
+                        <p data="cards-@i" class="btn-use-card" style="font-size:10px;color::#535665">
+                           @i
+                      </p>
+              }
+         </div>
+     </div>
             
-                    <div class="form1">
+ </div>
 
-                    Full name
-                    <input required type="text" asp-for="UserName" placeholder="Enter name" />
-                    Phone No
-                    <input required type="text"  asp-for="PhoneNo" placeholder="Enter Phone No" />
-                    Address
-                    <input required type="text" asp-for="Address" placeholder="Enter Address" />
-                    <span asp-validation-for="Address" class="text-danger"></span>
-                    City
-                    <input required type="text"  asp-for="City" placeholder="City" />
-                    <div id="states">
-                        <label>
-                            State
-                            <select asp-for="State">
-                                <option value="AN">Andaman and Nicobar Islands</option>
-                                <option value="AP">Andhra Pradesh</option>
-                                <option value="AR">Arunachal Pradesh</option>
-                                <option value="AS">Assam</option>
-                                <option value="BR">Bihar</option>
-                                <option value="CH">Chandigarh</option>
-                                <option value="CT">Chhattisgarh</option>
-                                <option value="DN">Dadra and Nagar Haveli</option>
-                                <option value="DD">Daman and Diu</option>
-                                <option value="DL">Delhi</option>
-                                <option value="GA">Goa</option>
-                                <option value="GJ">Gujarat</option>
-                                <option value="HR">Haryana</option>
-                                <option value="HP">Himachal Pradesh</option>
-                                <option value="JK">Jammu and Kashmir</option>
-                                <option value="JH">Jharkhand</option>
-                                <option value="KA">Karnataka</option>
-                                <option value="KL">Kerala</option>
-                                <option value="LA">Ladakh</option>
-                                <option value="LD">Lakshadweep</option>
-                                <option value="MP">Madhya Pradesh</option>
-                                <option value="MH">Maharashtra</option>
-                                <option value="MN">Manipur</option>
-                                <option value="ML">Meghalaya</option>
-                                <option value="MZ">Mizoram</option>
-                                <option value="NL">Nagaland</option>
-                                <option value="OR">Odisha</option>
-                                <option value="PY">Puducherry</option>
-                                <option value="PB">Punjab</option>
-                                <option value="RJ">Rajasthan</option>
-                                <option value="SK">Sikkim</option>
-                                <option value="TN">Tamil Nadu</option>
-                                <option value="TG">Telangana</option>
-                                <option value="TR">Tripura</option>
-                                <option value="UP">Uttar Pradesh</option>
-                                <option value="UT">Uttarakhand</option>
-                                <option value="WB">West Bengal</option>
-                            </select>
-                        </label>
-
-                    <label>
-                        Zipcode
-                        <input required type="number"  asp-for="Zipcode" placeholder="Enter Zipcode" />
-                    </label>
-                    </div>
-           
-                    </div>
-
-            </div>
-            <div class="right">
-                <h3 style="color:#535665;font-weight: 600;">PAYMENT</h3>
-            
-                    <div class="form1">
-                    <label> Cash on Delivery: </label> <input id="check" type="radio" name="radiob" value="cod"/>
-                    ‎ ‎ ‎ 
-                    <label> UPI: </label> <input id="Upi" type="radio" name="radiob" value="Upi"/>
-                    ‎ ‎ ‎ 
-                    <label> Card:  </label> <input id="cod" type="radio" name="radiob" value="cardd"/>
-                    <br/>
-                    
-                    <div class="cod sselect">
-                    </div>
+ <div class="split2 right">
 
 
-                    <div class="cardd sselect" style="margin-top:10px">
+        <link rel="stylesheet" href="~/scss/Payment.css">
 
-                                Accepted Cards
-                               @* <div class="images" style="margin-bottom:10px;margin-top:0;top:0">*@
-                                   @* <div>
-                                        <img src="https://th.bing.com/th/id/R.667d4af4cdfd88547b9a6cbae6bcae40?rik=I6rG21QJ7ZkkbQ&riu=http%3a%2f%2f1.bp.blogspot.com%2f-F-LmQgPZBGI%2fT3bd3hdr1uI%2fAAAAAAAAGb0%2f5SLx-LcwI0A%2fs1600%2frupay%2blogo%27.jpg&ehk=WsoKMV6ZZSKlhghT%2fAFxeLOdvmXakD%2bqjgTmfpyABmw%3d&risl=&pid=ImgRaw&r=0" style="height:30px; min-width:60px;" />
+                @*<form method="post" asp-action="PlaceOrder">*@
+                    @using(Html.BeginForm("PlaceOrder","FoodSite"))
+                    {
+                <div class="container" style="background-color:white !important">
+                    <div class="box" style="border-radius:25px !important;margin-top:20px !important;background-color:white !important">
+                        <div class="left1">
+                            <h3 style="color:#535665;font-weight: 600;">BILLING ADDRESS</h3>
+                            
+                                <div class="form1">
 
-                                    </div>
-                                    <div>
-                                        <img src="https://tse2.mm.bing.net/th/id/OIP.lQ866KEouNrd7YujZhGIUAAAAA?pid=ImgDet&w=445&h=100&rs=1" style="height:30px; min-width:60px"/>
+                                Full name
+                                <input required type="text" @*asp-for="UserName"*@ placeholder="Enter name" id="Name" name="Name"/>
+                                Phone No
+                                <input required type="text"  @*asp-for="PhoneNo"*@ placeholder="Enter Phone No" id="PhoneNo" name="PhoneNo" />
+                                Address
+                                <input required type="text" @*asp-for="Address"*@ placeholder="Enter Address" id="add" name="add"/>
+                                @*<span asp-validation-for="Address" class="text-danger"></span>*@
+                                <div class="d-flex">
 
-                                    </div>*@
-
-                                      <div class="footer_icons">
-                                                                              <div><a href="#"><img src="https://img.icons8.com/color/2x/mastercard.png" style=" height:40px; min-width:40px;position:absolute;"/></a></div>
-                                                                              <div><a href="#"><img src="https://img.icons8.com/color/512/rupay.png" style="height:40px; min-width:40px;position:absolute;"/></a></div>
-                                                                              <div><a href="#"><img src="https://img.icons8.com/color/2x/visa.png" style=" height:40px; min-width:40px;position:absolute;"/></a></div>
-                                                                              @*<div><a href="#"><img src="https://img.icons8.com/color/2x/phone-pe.png" style=" height:40px; min-width:40px;position:absolute;"/></a></div>*@
-                          
-                                                         </div>
-
-                                @*</div>*@
-                                <br/>
-                                <br/>
-                                Credit card number
-                                <input type="text" asp-for="CardNo" id="card" placeholder="Enter Credit Card" value="000" />
-                                Exp month
-                                <input type="text"  asp-for="ExpMonth" id="expmonth" placeholder="Enter Expiry Month" value="xxx" />
-
+                                <label value="City"/>
+                                <input required type="text"  @*asp-for="City"*@ placeholder="City" id="city" name="city"/>
+                                </div>
                                 <div id="states">
                                     <label>
-                                        Exp year
-                                        <select asp-for="ExpYear" id="expyear" value="xxx">
-                                            <option>Choose year</option>
-                                            <option>2023</option>
-                                            <option>2024</option>
-                                            <option>2025</option>
-                                            <option>2026</option>
-                                            <option>2027</option>
-                                            <option>2028</option>
+                                        State
+                                        <select @*asp-for="State"*@ id="state" name="state">
+                                            <option value="AN">Andaman and Nicobar Islands</option>
+                                            <option value="AP">Andhra Pradesh</option>
+                                            <option value="AR">Arunachal Pradesh</option>
+                                            <option value="AS">Assam</option>
+                                            <option value="BR">Bihar</option>
+                                            <option value="CH">Chandigarh</option>
+                                            <option value="CT">Chhattisgarh</option>
+                                            <option value="DN">Dadra and Nagar Haveli</option>
+                                            <option value="DD">Daman and Diu</option>
+                                            <option value="DL">Delhi</option>
+                                            <option value="GA">Goa</option>
+                                            <option value="GJ">Gujarat</option>
+                                            <option value="HR">Haryana</option>
+                                            <option value="HP">Himachal Pradesh</option>
+                                            <option value="JK">Jammu and Kashmir</option>
+                                            <option value="JH">Jharkhand</option>
+                                            <option value="KA">Karnataka</option>
+                                            <option value="KL">Kerala</option>
+                                            <option value="LA">Ladakh</option>
+                                            <option value="LD">Lakshadweep</option>
+                                            <option value="MP">Madhya Pradesh</option>
+                                            <option value="MH">Maharashtra</option>
+                                            <option value="MN">Manipur</option>
+                                            <option value="ML">Meghalaya</option>
+                                            <option value="MZ">Mizoram</option>
+                                            <option value="NL">Nagaland</option>
+                                            <option value="OR">Odisha</option>
+                                            <option value="PY">Puducherry</option>
+                                            <option value="PB">Punjab</option>
+                                            <option value="RJ">Rajasthan</option>
+                                            <option value="SK">Sikkim</option>
+                                            <option value="TN">Tamil Nadu</option>
+                                            <option value="TG">Telangana</option>
+                                            <option value="TR">Tripura</option>
+                                            <option value="UP">Uttar Pradesh</option>
+                                            <option value="UT">Uttarakhand</option>
+                                            <option value="WB">West Bengal</option>
                                         </select>
                                     </label>
 
-                                <label>
-                                    CVV
-                                    <input type="number"  asp-for="CVV" id="cvv" placeholder="Enter CVV" value="0"  />
-                                </label>
+                                </div>
+                               @* <label>
+                                    Zipcode
+                                    <input required type="number"  @*asp-for="Zipcode" placeholder="Enter Zipcode" />
+                                </label>*@
+@*
+                                 Zipcode*@
+                                <input required type="text" @*asp-for="Address"*@ name="zip" placeholder="Enter Zipcode" id="zip"/>
+           
                                 </div>
 
-                    </div>
-                     <div class="Upi sselect" style="margin-top:10px">
-
-                                                UPI Payment methods
-                                               @* <div class="images" style="margin-bottom:10px;margin-top:0;top:0">*@
-                                                  @*  <div>
-                                                        <img src="https://th.bing.com/th/id/R.667d4af4cdfd88547b9a6cbae6bcae40?rik=I6rG21QJ7ZkkbQ&riu=http%3a%2f%2f1.bp.blogspot.com%2f-F-LmQgPZBGI%2fT3bd3hdr1uI%2fAAAAAAAAGb0%2f5SLx-LcwI0A%2fs1600%2frupay%2blogo%27.jpg&ehk=WsoKMV6ZZSKlhghT%2fAFxeLOdvmXakD%2bqjgTmfpyABmw%3d&risl=&pid=ImgRaw&r=0" style="height:30px; min-width:60px;" />
-
-                                                    </div>
-                                                    <div>
-                                                        <img src="https://1.bp.blogspot.com/-cNqQSrNS9Jg/XlAzE4H0-DI/AAAAAAABIDY/un2uHSnHOJESAX-RaEVCK3Dy7WFs69UywCLcBGAsYHQ/w1200-h630-p-k-no-nu/images%2B%252813%2529.jpeg" style="height:30px; min-width:60px"/>
-
-                                                    </div>*@
-
-                                                      <div class="footer_icons">
-                                                                              <div><a href="#"><img src="https://img.icons8.com/color/512/paytm.png" style=" height:40px; min-width:40px;position:absolute;"/></a></div>
-                                                                              <div><a href="#"><img src="https://img.icons8.com/color/2x/google-pay-india.png" style="height:40px; min-width:40px;position:absolute;"/></a></div>
-                                                                              <div><a href="#"><img src="https://img.icons8.com/windows/2x/amazon-pay.png" style=" height:40px; min-width:40px;position:absolute;"/></a></div>
-                                                                              <div><a href="#"><img src="https://img.icons8.com/color/2x/phone-pe.png" style=" height:40px; min-width:40px;position:absolute;"/></a></div>
-                          
-                                                         </div>
-                                                @*</div>*@
-                                                <br/>
-                                                <br/>
-                                               
-                                                <label>
-                                                    Enter Your UPI ID
-                                                    <input type="text" name=""  id="upiid" placeholder="Enter UPI ID" value="xxx" />
-                                                </label>
-                                                </div>
-                   </div>
-
-
-
-
-
-                    <button class="btn btn-primary" type="submit" asp-controller="FoodSite" asp-action="PlaceOrder" style="background-color:orange;color:white;font-weight:bold;border-color:orange;margin-left:20px">Proceed to Checkout</button>
+                        </div>
+                        <div class="right1">
+                            <h3 style="color:#535665;font-weight: 600;">PAYMENT</h3>
             
-            </div>
+                                <div class="form1">
+                                <label> Cash on Delivery: </label> <input id="check" type="radio" name="radiob" value="cod"/>
+                                ‎ ‎ ‎ 
+                                <label> UPI: </label> <input id="Upi" type="radio" name="radiob" value="Upi"/>
+                                ‎ ‎ ‎ 
+                                <label> Card:  </label> <input id="cod" type="radio" name="radiob" value="cardd"/>
+                                <br/>
+                    
+                                <div class="cod sselect">
+                                </div>
 
-        </div>
-    </div>
-    @*
-    <a class="btn btn-primary" type="submit" asp-controller="FoodSite" asp-action="PlaceOrder">Proceed to Checkout</a>
-    *@
-</form>
+
+                                <div class="cardd sselect" style="margin-top:10px">
+
+                                            Accepted Cards
+                                           @* <div class="images" style="margin-bottom:10px;margin-top:0;top:0">*@
+                                               @* <div>
+                                                    <img src="https://th.bing.com/th/id/R.667d4af4cdfd88547b9a6cbae6bcae40?rik=I6rG21QJ7ZkkbQ&riu=http%3a%2f%2f1.bp.blogspot.com%2f-F-LmQgPZBGI%2fT3bd3hdr1uI%2fAAAAAAAAGb0%2f5SLx-LcwI0A%2fs1600%2frupay%2blogo%27.jpg&ehk=WsoKMV6ZZSKlhghT%2fAFxeLOdvmXakD%2bqjgTmfpyABmw%3d&risl=&pid=ImgRaw&r=0" style="height:30px; min-width:60px;" />
+
+                                                </div>
+                                                <div>
+                                                    <img src="https://tse2.mm.bing.net/th/id/OIP.lQ866KEouNrd7YujZhGIUAAAAA?pid=ImgDet&w=445&h=100&rs=1" style="height:30px; min-width:60px"/>
+
+                                                </div>*@
+
+                                                  <div class="footer_icons">
+                                                                                          <div><a href="#"><img src="https://img.icons8.com/color/2x/mastercard.png" style=" height:40px; min-width:40px;position:absolute;"/></a></div>
+                                                                                          <div><a href="#"><img src="https://img.icons8.com/color/512/rupay.png" style="height:40px; min-width:40px;position:absolute;"/></a></div>
+                                                                                          <div><a href="#"><img src="https://img.icons8.com/color/2x/visa.png" style=" height:40px; min-width:40px;position:absolute;"/></a></div>
+                                                                                          @*<div><a href="#"><img src="https://img.icons8.com/color/2x/phone-pe.png" style=" height:40px; min-width:40px;position:absolute;"/></a></div>*@
+                          
+                                                                     </div>
+
+                                            @*</div>*@
+                                            <br/>
+                                            <br/>
+                                            Credit card number
+                                            <input type="text" @*asp-for="CardNo"*@  name="card" id="card" placeholder="Enter Credit Card"/>
+                                            Exp month
+                                            <input type="text"  @*asp-for="ExpMonth"*@ id="expmonth" name="expmonth" placeholder="Enter Expiry Month"/>
+
+                                            <div id="states">
+                                                <label>
+                                                    Exp year
+                                                    <select @*asp-for="ExpYear"*@ name="expyear" id="expyear">
+                                                        <option>Choose year</option>
+                                                        <option>2023</option>
+                                                        <option>2024</option>
+                                                        <option>2025</option>
+                                                        <option>2026</option>
+                                                        <option>2027</option>
+                                                        <option>2028</option>
+                                                    </select>
+                                                </label>
+
+                                            <label>
+                                                CVV
+                                                <input type="number" @* asp-for="CVV"*@ name="cvv" id="cvv" placeholder="Enter CVV" value="0"  />
+                                            </label>
+                                            </div>
+
+                                </div>
+                                 <div class="Upi sselect" style="margin-top:10px">
+
+                                                            UPI Payment methods
+                                                           @* <div class="images" style="margin-bottom:10px;margin-top:0;top:0">*@
+                                                              @*  <div>
+                                                                    <img src="https://th.bing.com/th/id/R.667d4af4cdfd88547b9a6cbae6bcae40?rik=I6rG21QJ7ZkkbQ&riu=http%3a%2f%2f1.bp.blogspot.com%2f-F-LmQgPZBGI%2fT3bd3hdr1uI%2fAAAAAAAAGb0%2f5SLx-LcwI0A%2fs1600%2frupay%2blogo%27.jpg&ehk=WsoKMV6ZZSKlhghT%2fAFxeLOdvmXakD%2bqjgTmfpyABmw%3d&risl=&pid=ImgRaw&r=0" style="height:30px; min-width:60px;" />
+
+                                                                </div>
+                                                                <div>
+                                                                    <img src="https://1.bp.blogspot.com/-cNqQSrNS9Jg/XlAzE4H0-DI/AAAAAAABIDY/un2uHSnHOJESAX-RaEVCK3Dy7WFs69UywCLcBGAsYHQ/w1200-h630-p-k-no-nu/images%2B%252813%2529.jpeg" style="height:30px; min-width:60px"/>
+
+                                                                </div>*@
+
+                                                                  <div class="footer_icons">
+                                                                                          <div><a href="#"><img src="https://img.icons8.com/color/512/paytm.png" style=" height:40px; min-width:40px;position:absolute;"/></a></div>
+                                                                                          <div><a href="#"><img src="https://img.icons8.com/color/2x/google-pay-india.png" style="height:40px; min-width:40px;position:absolute;"/></a></div>
+                                                                                          <div><a href="#"><img src="https://img.icons8.com/windows/2x/amazon-pay.png" style=" height:40px; min-width:40px;position:absolute;"/></a></div>
+                                                                                          <div><a href="#"><img src="https://img.icons8.com/color/2x/phone-pe.png" style=" height:40px; min-width:40px;position:absolute;"/></a></div>
+                          
+                                                                     </div>
+                                                            @*</div>*@
+                                                            <br/>
+                                                            <br/>
+                                               
+                                                            <label>
+                                                                Enter Your UPI ID
+                                                                <input type="text" name=""  id="upiid" placeholder="Enter UPI ID" value="xxx" />
+                                                            </label>
+                                                            </div>
+                               </div>
+
+
+
+
+
+                                <button class="btn btn-primary" type="submit" asp-controller="FoodSite" asp-action="PlaceOrder" style="background-color:orange;color:white;font-weight:bold;border-color:orange;margin-left:20px">Proceed to Checkout</button>
+            
+                        </div>
+
+                    </div>
+                </div>
+                @*
+                <a class="btn btn-primary" type="submit" asp-controller="FoodSite" asp-action="PlaceOrder">Proceed to Checkout</a>
+                *@
+                }
+      @*      </form>*@
+
+            
+ </div>
+ </div>
+     
+
 
  <script type="text/javascript">
  
@@ -202,11 +294,75 @@
                     $(targetBox).show();
                 });
             });
-       
-
-           
- </script>
 
 
+            
+  
+        $(".btn-use-address").click(function(fe){
+ 
+            var id = $(this).attr("data");
+            //console.log(id)
+ 
+            var address = $(this).text();
+ 
+            console.log(address)
+ 
+            /*var houseNo = address.split(',')[0].trim();
+            var street = address.split(',')[1].trim();
+            var city = address.split(',')[2].trim();
+            var pin = (address.split(',')[3]).trim();
+ 
+            var state = address.split(',')[4].trim();*/
+
+            var add1 = address.split(',')[0].trim();
+            var add2 = address.split(',')[1].trim();
+            var add = add1 + ", " + add2; 
+             var city = address.split(',')[2].trim();
+             var state = address.split(',')[3].trim();
+             var zipcode = address.split(',')[4].trim();
+
+            console.log("----" + state);
+            $("#city").val(city);
+            $("#zip").val(zipcode);
+
+            $("#state").val(state);
+            $("#add").attr("value", add);
+
+ 
+        });
 
 
+        
+        $(".btn-use-card").click(function(fe){
+ 
+            var id = $(this).attr("data");
+            //console.log(id)
+ 
+            var card = $(this).text();
+ 
+
+
+            var card1 = card.split(',')[0].trim();
+             var expMonth = card.split(',')[1].trim();
+             var expYear = card.split(',')[2].trim();
+            console.log(card);
+
+            $("#card").val(card1);
+            $("#expmonth").val(expMonth);
+            $("#expyear").val(expYear);
+            console.log(card1);
+            console.log(expMonth);
+            //$("#add").attr("value", add);
+
+ 
+        });
+
+
+
+
+          
+</script>
+
+@* <script>
+           </script>*@
+      

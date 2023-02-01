@@ -1,83 +1,104 @@
-﻿.container {
-    //background-image: url(https://wallpapercave.com/dwp2x/wc1813161.jpg);
-    background-color: #c3bfbd;
-    //opacity:0.8;
-    width: 100%;
-    //position: absolute;
-    z-index: -3;
+﻿.split1 {
     height: 100%;
-    max-width: 100%;
-    max-height: 100%;
-    font-size: 12px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    //flex-direction:row;
+    width: 50%;
+    position: absolute;
+    z-index: -2;
+}
 
-    .box {
-        margin-top: 40px;
-        margin-bottom: 40px;
+.split2 {
+    height: 100%;
+    width: 50%;
+    position: absolute;
+    z-index: -2;
+}
+
+
+.right {
+    background-color: white;
+
+
+
+
+    .container {
+        //background-image: url(https://wallpapercave.com/dwp2x/wc1813161.jpg);
         background-color: white;
-        max-width: 800px;
-        min-height: 500px;
+        //opacity:0.8;
+        width: 100%;
+        //position: absolute;
+        z-index: -3;
+        height: 100%;
+        max-width: 100%;
+        max-height: 100%;
+        font-size: 12px;
         display: flex;
-        z-index: 3;
-        justify-content: space-between;
-        align-items: flex-start;
-        padding: 30px;
-        flex-direction: row;
-        box-shadow: 10px 10px 22px rgb(59, 58, 58);
-        -moz-box-shadow: 10px 10px 22px rgba(59, 58, 58);
-        -webkit-box-shadow: 10px 10px 22px rgba(59, 58, 58);
-        -khtml-box-shadow: 10px 10px 22px rgba(59, 58, 58);
-        background: radial-gradient(tranparent,black);
+        justify-content: center;
+        align-items: center;
+        //flex-direction:row;
+
+        .box {
+            margin-top: 25px;
+            margin-bottom: 40px;
+            background-color: white;
+            max-width: 800px;
+            max-height: 450px;
+            display: flex;
+            z-index: 3;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 10px;
+            flex-direction: row;
+            box-shadow: 10px 10px 22px rgb(59, 58, 58);
+            -moz-box-shadow: 10px 10px 22px rgba(59, 58, 58);
+            -webkit-box-shadow: 10px 10px 22px rgba(59, 58, 58);
+            -khtml-box-shadow: 10px 10px 22px rgba(59, 58, 58);
+            background: radial-gradient(tranparent,black);
 
 
-        .left {
-            flex-basis: 50%;
+            .left1 {
+                flex-basis: 50%;
 
-            h3 {
-                margin-top: 10px;
-            }
+                h3 {
+                    margin-top: 10px;
+                }
 
-            .form1 {
-                padding: 20px;
+                .form1 {
+                    padding: 20px;
 
-                input[type="text"] {
-                    width: 100%;
-                    padding: 0.5rem 0.7rem;
-                    margin: 0.5rem 0;
-                    outline: none;
-                    /*font-family: 'Roboto Black', sans-serif;
+                    input[type="text"] {
+                        width: 100%;
+                        padding: 0.5rem 0.7rem;
+                        margin: 0.5rem 0;
+                        outline: none;
+                        /*font-family: 'Roboto Black', sans-serif;
                     color: #535665*/
-                }
-
-                #states {
-                    display: flex;
-                    margin-top: 0.5rem;
-
-                    select {
-                        padding: 0.5rem 0.7rem;
                     }
 
-                    input[type="number"] {
-                        padding: 0.5rem 0.7rem;
-                        margin-left: 5px;
+                    #states {
+                        display: flex;
+                        margin-top: 0.5rem;
+
+                        select {
+                            padding: 0.5rem 0.7rem;
+                        }
+
+                        input[type="number"] {
+                            padding: 0.5rem 0.7rem;
+                            margin-left: 5px;
+                        }
                     }
                 }
             }
-        }
 
-        .right {
-            flex-basis: 50%;
+            .right1 {
+                flex-basis: 50%;
 
-            h3 {
-                margin-top: 10px;
-            }
+                h3 {
+                    margin-top: 10px;
+                }
 
-            .form1 {
-                padding: 20px;
-                /*.images {
+                .form1 {
+                    padding: 20px;
+                    /*.images {
                     display: flex;
                     flex-direction: row;
                     flex-wrap: wrap;
@@ -93,105 +114,124 @@
                         min-width: 60px;
                     }*/
 
-                .sselect {
-                    display: none;
+                    .sselect {
+                        display: none;
 
-                    .footer_icons {
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        padding-right:10px;
+                        .footer_icons {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            padding-right: 10px;
+                        }
+
+                        .footer_icons > div {
+                            margin-top: 10px;
+                            margin-right: 50px;
+                            margin-left: 0;
+                            margin-bottom: 10px;
+                        }
                     }
 
-                    .footer_icons > div {
-                        margin-top: 10px;
-                        margin-right: 50px;
-                        margin-left: 0;
-                        margin-bottom:10px;
+                    .images {
+                        float: left;
                     }
-                }
-
-                .images {
-                    float: left;
-                }
-                /*.images > div {
+                    /*.images > div {
                         //margin-top: 10px;
                         //margin-right: 40px;
                         margin-left: 0;
                     }*/
-                input[type="text"] {
-                    width: 100%;
-                    padding: 0.5rem 0.7rem;
-                    margin: 0.5rem 0;
-                    outline: none;
-                }
-
-                #states {
-                    display: flex;
-                    margin-top: 0.5rem;
-
-                    select {
+                    input[type="text"] {
+                        width: 100%;
                         padding: 0.5rem 0.7rem;
+                        margin: 0.5rem 0;
+                        outline: none;
                     }
 
-                    input[type="number"] {
-                        padding: 0.5rem 0.7rem;
-                        margin-left: 5px;
-                    }
-                }
-                /*  .Upimethods {
-                    select.icon-menu option {
-                        background-repeat: no-repeat;
-                        background-position: bottom left;
-                        padding-left: 30px;
-                    }
+                    #states {
+                        display: flex;
+                        margin-top: 0.5rem;
 
-                    select#countries option[value="phonepay"] {
-                        background-image: url(https://tse2.mm.bing.net/th/id/OIP.lQ866KEouNrd7YujZhGIUAAAAA?pid=ImgDet&w=445&h=100&rs=1);
+                        select {
+                            padding: 0.5rem 0.7rem;
+                        }
+
+                        input[type="number"] {
+                            padding: 0.5rem 0.7rem;
+                            margin-left: 5px;
+                        }
                     }
 
-                    select#countries option[value="googlepay"] {
-                        background-image: url(https://tse2.mm.bing.net/th/id/OIP.lQ866KEouNrd7YujZhGIUAAAAA?pid=ImgDet&w=445&h=100&rs=1);
+
+
+                    button {
+                        margin-top: 15px;
+                        width: 100%;
                     }
-
-                    select#countries option[value="bhimupi"] {
-                        background-image: url(https://tse2.mm.bing.net/th/id/OIP.lQ866KEouNrd7YujZhGIUAAAAA?pid=ImgDet&w=445&h=100&rs=1);
-                    }
-
-                    select#countries option[value="Paytm"] {
-                        background-image: url(https://tse2.mm.bing.net/th/id/OIP.lQ866KEouNrd7YujZhGIUAAAAA?pid=ImgDet&w=445&h=100&rs=1);
-                    }
-
-                    select#countries option[value="Amazonpay"] {
-                        background-image: url(https://tse2.mm.bing.net/th/id/OIP.lQ866KEouNrd7YujZhGIUAAAAA?pid=ImgDet&w=445&h=100&rs=1);
-                    }
-                }*/
-
-
-                button {
-                    margin-top: 15px;
-                    width: 100%;
                 }
             }
         }
     }
+
+
+    .container2 {
+        width: 100%;
+        background-color: white;
+
+
+        .footer_icons {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer_icons > div {
+            margin-top: 20px;
+            margin-right: 40px;
+            margin-left: 0;
+        }
+    }
 }
 
-
-.container2 {
-    width: 100%;
-    background-color: aliceblue;
+.left {
+    background-color: white;
 
 
-    .footer_icons {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    .address {
+        background-color: white;
+        padding: 20px;
+        height: 40%;
+        margin-top: 20px;
+        margin-left: 45px;
+        margin-right: 45px;
+        border-radius: 25px;
+        box-shadow: 10px 10px 22px rgb(59, 58, 58);
+        -moz-box-shadow: 10px 10px 22px rgba(59, 58, 58);
+        -webkit-box-shadow: 10px 10px 22px rgba(59, 58, 58);
+        -khtml-box-shadow: 10px 10px 22px rgba(59, 58, 58);
+        background: radial-gradient(tranparent,black);
+
+
+        .saved_address {
+            margin-left: 30px;
+        }
     }
 
-    .footer_icons > div {
-        margin-top: 20px;
-        margin-right: 40px;
-        margin-left: 0;
+    .card {
+        background-color: white;
+        padding: 20px;
+        height: 40%;
+        margin-top: 30px;
+        margin-left: 45px;
+        margin-right: 45px;
+        border-radius: 25px;
+        box-shadow: 10px 10px 22px rgb(59, 58, 58);
+        -moz-box-shadow: 10px 10px 22px rgba(59, 58, 58);
+        -webkit-box-shadow: 10px 10px 22px rgba(59, 58, 58);
+        -khtml-box-shadow: 10px 10px 22px rgba(59, 58, 58);
+        background: radial-gradient(tranparent,black);
+
+        .saved_cards {
+            margin-left: 30px;
+        }
     }
 }

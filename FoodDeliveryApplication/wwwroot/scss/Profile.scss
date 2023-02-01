@@ -1,0 +1,91 @@
+﻿
+/*.btn-xl {
+    width: 40px;
+    height: 40px;
+    padding: 10px 10px;
+    line-height: 1.33;
+    border-radius: 50%;
+    background-color: #ffffff;
+    text-align: center;
+    font-size: 8px;
+    border-width: 2px;
+    border-color: #00ABE2;
+    display: inline-block;
+}
+
+.horizontal {
+    display: inline-block;
+    width: 150px;
+}
+*/
+
+
+
+.container {
+    //background-image: url(https://wallpapercave.com/dwp2x/wc1813161.jpg);
+    background-color: #c3bfbd;
+    //opacity:0.8;
+    width: 100%;
+    //position: absolute;
+    z-index: -3;
+    height: 100%;
+    max-width: 100%;
+    min-height: 100%;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    //flex-direction:row;
+
+    .box {
+        margin-top: 40px;
+        margin-bottom: 40px;
+        background-color: white;
+        min-width: 500px;
+        //min-height: 500px;
+        z-index: 3;
+        padding: 20px;
+        box-shadow: 10px 10px 22px rgb(59, 58, 58);
+        -moz-box-shadow: 10px 10px 22px rgba(59, 58, 58);
+        -webkit-box-shadow: 10px 10px 22px rgba(59, 58, 58);
+        -khtml-box-shadow: 10px 10px 22px rgba(59, 58, 58);
+        background: radial-gradient(tranparent,black);
+
+        ul {
+            margin-bottom: -1rem;
+
+            li {
+                align-items: center;
+                display: flex;
+                cursor: pointer;
+                justify-content: left;
+                list-style: none;
+                padding: 15px 0px;
+
+                .icons-size {
+                    color: orange;
+                    font-size: 20px;
+                }
+
+
+                a {
+                    display: inline-block;
+                    color: #555;
+                    font-size: 18px;
+                    font-weight: 600;
+                    padding-left: 10px;
+                    //padding-top: 20px;
+                    text-decoration: none;
+                    transition: 0.5s;
+                    //color:orange
+                }
+            }
+        }
+
+
+      /*  #myDiv {
+            padding-left: 80px;
+            padding-top: 20px;
+        }*/
+    }
+}
