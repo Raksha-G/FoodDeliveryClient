@@ -37,6 +37,8 @@ namespace FoodDeliveryApplication.Controllers
                 userList.Add(user);
             }
         }
+        
+
         public IActionResult Index()
         {
 
@@ -48,6 +50,7 @@ namespace FoodDeliveryApplication.Controllers
         {
             return View();
         }
+
 
         [HttpPost]
         public async Task<IActionResult> CreateAccount(SignUp signup)
@@ -81,11 +84,13 @@ namespace FoodDeliveryApplication.Controllers
 
         }
 
+
         public IActionResult Login()
         {
             _logger.LogInformation("Login Triggered");
             return View();
         }
+
 
         [HttpPost]
         public async Task<IActionResult> Login(LoginDetails login)
@@ -185,7 +190,6 @@ namespace FoodDeliveryApplication.Controllers
             }
 
         }
-
 
 
         public IActionResult Menu()
@@ -344,8 +348,6 @@ namespace FoodDeliveryApplication.Controllers
 
             }
         }
-
-
 
 
         public async Task<IActionResult> RestaurantMenu(int Id)
@@ -615,6 +617,7 @@ namespace FoodDeliveryApplication.Controllers
 
         }
 
+
         [HttpPost]
         public async Task<IActionResult> PlaceOrder(/*CustomerDetails details*/ IFormCollection col)
         {
@@ -686,6 +689,19 @@ namespace FoodDeliveryApplication.Controllers
             {
                 if (apiRespoce.StatusCode == System.Net.HttpStatusCode.OK)
                 {
+
+                    SqlConnection conn2 = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");
+                    SqlCommand cmd = new SqlCommand(String.Format("insert into User_Address values('{0}','{1}','{2}','{3}','{4}')", _httpContextAccessor.HttpContext.Session.GetString("UserName"), address, order.City, order.State, order.Zipcode), conn2);
+                    conn2.Open();
+                    cmd.ExecuteNonQuery();
+                    conn2.Close();
+
+                    SqlConnection conn3 = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");
+                    SqlCommand cmd1 = new SqlCommand(String.Format("insert into User_Cards values('{0}','{1}','{2}','{3}')", _httpContextAccessor.HttpContext.Session.GetString("UserName"), order.CardNo,order.ExpMonth,order.ExpYear), conn3);
+                    conn3.Open();
+                    cmd1.ExecuteNonQuery();
+                    conn3.Close();
+
                     if (order.CVV == 0)
                     {
                         TempData["success"] = "Order placed";
@@ -781,8 +797,6 @@ namespace FoodDeliveryApplication.Controllers
         }
 
 
-
-
         public IActionResult CustomerDetails()
         {
             if (_httpContextAccessor.HttpContext.Session.GetString("UserName") == null)
@@ -793,26 +807,45 @@ namespace FoodDeliveryApplication.Controllers
             }
 
             string name = _httpContextAccessor.HttpContext.Session.GetString("UserName");
+            /* SqlConnection conn4 = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");
+             SqlCommand cmd4 = new SqlCommand(String.Format("select U.Email, O.Address, O.PhoneNo, O.City, O.State, O.ZipCode, O.CreditCardNo, O.ExpMonth, O.ExpYear, O.cvv from Users U , Orders O where O.UserName = U.UserName and O.UserName = '{0}'", _httpContextAccessor.HttpContext.Session.GetString("UserName")), conn4);
+             conn4.Open();
+             SqlDataReader sr = cmd4.ExecuteReader();
+             List<Profile> profile = new List<Profile>();
+             while (sr.Read())
+             {
+                 profile.Add(new Profile(name, sr["PhoneNo"].ToString(), sr["Email"].ToString(), sr["Address"].ToString(), sr["City"].ToString(), sr["State"].ToString(), sr["ZipCode"].ToString(), sr["CreditCardNo"].ToString(), sr["ExpMonth"].ToString(), sr["ExpYear"].ToString(), (int)sr["cvv"]));
+             }
+             Console.WriteLine("count " + profile.Count());
+
+
+             conn4.Close();
+ */
+
+
+
+
             SqlConnection conn4 = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");
-            SqlCommand cmd4 = new SqlCommand(String.Format("select U.Email, O.Address, O.PhoneNo, O.City, O.State, O.ZipCode, O.CreditCardNo, O.ExpMonth, O.ExpYear, O.cvv from Users U , Orders O where O.UserName = U.UserName and O.UserName = '{0}'", _httpContextAccessor.HttpContext.Session.GetString("UserName")), conn4);
+            SqlCommand cmd4 = new SqlCommand(String.Format("select A.UserName, A.Address, A.City, A.State, A.ZipCode, C.CardNo, C.ExpMonth, C.ExpYear from User_Address A , User_Cards C where A.UserName=C.UserName and A.UserName = '{0}'", _httpContextAccessor.HttpContext.Session.GetString("UserName")), conn4);
             conn4.Open();
             SqlDataReader sr = cmd4.ExecuteReader();
             List<Profile> profile = new List<Profile>();
+
             while (sr.Read())
             {
-                profile.Add(new Profile(name, sr["PhoneNo"].ToString(), sr["Email"].ToString(), sr["Address"].ToString(), sr["City"].ToString(), sr["State"].ToString(), sr["ZipCode"].ToString(), sr["CreditCardNo"].ToString(), sr["ExpMonth"].ToString(), sr["ExpYear"].ToString(), (int)sr["cvv"]));
+                profile.Add(new Profile(name, sr["Address"].ToString(), sr["City"].ToString(), sr["State"].ToString(), sr["ZipCode"].ToString(), sr["CardNo"].ToString(), sr["ExpMonth"].ToString(), sr["ExpYear"].ToString()));
+
+
             }
             Console.WriteLine("count " + profile.Count());
 
 
             conn4.Close();
-
             //return View(profile);
 
             return View("Payment",profile);
         }
 
-        
 
         public IActionResult OrderStatus()
         {
@@ -981,6 +1014,7 @@ namespace FoodDeliveryApplication.Controllers
             ViewBag.cancel = id.ToString();
             return View(orderlist);
         }
+        
         public IActionResult CancelOrder(int id)
         {
             if (HttpContext.Session.GetString("UserName") == null)
@@ -1033,25 +1067,38 @@ namespace FoodDeliveryApplication.Controllers
             }
 
             string name = _httpContextAccessor.HttpContext.Session.GetString("UserName");
+
+            SqlConnection conn = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");
+            SqlCommand cmd = new SqlCommand(String.Format("select Email from Users where UserName = '{0}'",_httpContextAccessor.HttpContext.Session.GetString("UserName")), conn);
+            conn.Open();
+            SqlDataReader sr1 = cmd.ExecuteReader();
+            string Email="";
+            while(sr1.Read())
+            {
+                Email = sr1["Email"].ToString();
+            }
+
             SqlConnection conn4 = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");
-            SqlCommand cmd4 = new SqlCommand(String.Format("select U.Email, O.Address, O.PhoneNo, O.City, O.State, O.ZipCode, O.CreditCardNo, O.ExpMonth, O.ExpYear, O.cvv from Users U , Orders O where O.UserName = U.UserName and O.UserName = '{0}'",_httpContextAccessor.HttpContext.Session.GetString("UserName")), conn4);
+            SqlCommand cmd4 = new SqlCommand(String.Format("select A.UserName, A.Address, A.City, A.State, A.ZipCode, C.CardNo, C.ExpMonth, C.ExpYear from User_Address A , User_Cards C where A.UserName=C.UserName and A.UserName = '{0}'",_httpContextAccessor.HttpContext.Session.GetString("UserName")), conn4);
             conn4.Open();
             SqlDataReader sr = cmd4.ExecuteReader();
             List<Profile> profile = new List<Profile>();
-            while(sr.Read())
-            {
-                profile.Add(new Profile(name, sr["PhoneNo"].ToString(), sr["Email"].ToString(), sr["Address"].ToString(), sr["City"].ToString(), sr["State"].ToString(), sr["ZipCode"].ToString(), sr["CreditCardNo"].ToString(), sr["ExpMonth"].ToString(), sr["ExpYear"].ToString(), (int)sr["cvv"]  ));
-            }
-            Console.WriteLine("count " + profile.Count());
+
+                while(sr.Read())
+                {
+                        profile.Add(new Profile(name, sr["Address"].ToString(), sr["City"].ToString(), sr["State"].ToString(), sr["ZipCode"].ToString(), sr["CardNo"].ToString(), sr["ExpMonth"].ToString(), sr["ExpYear"].ToString()));
+                        
+  
+                }
+                Console.WriteLine("count " + profile.Count());
 
 
-            conn4.Close();
-
-
+                conn4.Close();
+            ViewBag.Email = Email;
 
             return View(profile);
+           
         }
-
 
         public IActionResult Dummy()
         {
@@ -1071,7 +1118,50 @@ namespace FoodDeliveryApplication.Controllers
             conn4.Close();
 
             return View(profile);
-            }
+        }
+
+        public IActionResult AddAddress()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddAddress(IFormCollection col)
+        {
+            string address = col["Address"];
+            string city = col["City"];
+            string state = col["State"];
+            string zipcode = col["Zipcode"];
+            SqlConnection conn = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");
+            SqlCommand cmd = new SqlCommand(String.Format("insert into User_Address values('{0}','{1}','{2}','{3}','{4}')",_httpContextAccessor.HttpContext.Session.GetString("UserName"),address,city,state,zipcode),conn);
+            
+            conn.Open();
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            TempData["success"] = "Address added successfully";
+            return RedirectToAction("Profile");
+        }
+
+        public IActionResult AddCards()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddCards(IFormCollection col)
+        {
+            string card = col["Card"];
+            string month = col["Month"];
+            string year = col["Year"];
+            SqlConnection conn = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");
+            SqlCommand cmd = new SqlCommand(String.Format("insert into User_Cards values('{0}','{1}','{2}','{3}')", _httpContextAccessor.HttpContext.Session.GetString("UserName"), card, month, year), conn);
+
+            conn.Open();
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            TempData["success"] = "Card added successfully";
+            return RedirectToAction("Profile");
+        }
 
 
 

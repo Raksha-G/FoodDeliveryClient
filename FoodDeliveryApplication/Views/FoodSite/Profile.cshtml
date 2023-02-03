@@ -7,54 +7,43 @@
  
 
 
-@*<div class="d-flex">
-    <div>
-            <button type="button" uncheckable class="btn  btn-xl" ng-click="selected(0)">1</button>
-            <p style="font-size:5px">Shopping Cart</p>
-    </div>
-    
-        <hr class="horizontal"/>
-    <div>
-
-         <button type="button" uncheckable class="btn  btn-xl" ng-click="selected(0)">1</button>
-         <p style="font-size:5px">Shopping Cart</p>
-    </div>
-    <hr class="horizontal"/>
-     <div>
-          <button type="button" uncheckable class="btn  btn-xl" ng-click="selected(0)">1</button>
-          <p style="font-size:5px">Shopping Cart</p>
-    </div>
-</div>
-*@
-
 
 @{
     var list = Model.FirstOrDefault();
-    string phone = list.Phone;
-    string email = list.Email;
-    //string address = "";
+    string email = ViewBag.Email;
+    string phone="";
     List<string> addresses = new List<string>();
-    foreach(var obj in Model)
-    {
-        string add = (obj.Address + " " + obj.City + " " + obj.State + " " + obj.Zipcode);
-        if (!addresses.Contains(add))
-        {
-            string address = obj.Address + " " + obj.City + " " + obj.State + " " + obj.Zipcode;
-            addresses.Add(address);
-        }
-    }
-
     List<string> cards = new List<string>();
-    foreach(var obj in Model)
-    {
-        string c = (obj.CreditCard + " " + obj.ExpMonth + " " + obj.ExpYear);
-        if (!cards.Contains(c))
+
+        //phone = list.Phone;
+        //string address = "";
+        foreach(var obj in Model)
         {
-            string card = (obj.CreditCard + " " + obj.ExpMonth + " " + obj.ExpYear);
-            cards.Add(card);
+            string add = (obj.Address + " " + obj.City + " " + obj.State + " " + obj.Zipcode);
+            if (!addresses.Contains(add))
+            {
+                string address = obj.Address + " " + obj.City + " " + obj.State + " " + obj.Zipcode;
+                addresses.Add(address);
+            }
         }
-    }
+
+        foreach(var obj in Model)
+        {
+            string c = (obj.CreditCard + " " + obj.ExpMonth + " " + obj.ExpYear);
+            if (!cards.Contains(c))
+            {
+                string card = (obj.CreditCard + " " + obj.ExpMonth + " " + obj.ExpYear);
+                cards.Add(card);
+            }
+        }
+
+
+
 }
+
+
+
+
 
 
 
@@ -65,7 +54,7 @@
 
                 <div>
                     <h2>@_httpContextAccessor.HttpContext.Session.GetString("UserName")</h2>
-                    <p style="color:#7e808c">@phone    @email</p>
+                    <p style="color:#7e808c">@*@phone*@    @email</p>
                 </div>
                 <span class="material-icons" style="font-size:80px;color:orange;padding-left:120px;display:inline-block">account_circle</span>
         </div>
@@ -76,27 +65,43 @@
                                                 <a onclick="myFunction()">Address Book</a>
                                             </li>
                                         </ul>
-                                        <div id="myDIV" style="display:none;padding-left:80px;padding-top:20px;padding-bottom:10px">
+                                    
+                                            <div id="myDIV" style="display:none;padding-left:80px;padding-top:0px;padding-bottom:10px">
+                                                <ul style="padding-left:0px !important">
+                                                    <li style="margin-bottom:10px">
+                                                        <span class="material-icons" style="font-size:20px">add_circle</span>
+                                                        <a asp-controller="FoodSite" asp-action="AddAddress" style="margin-left:0px;margin-top:0rem">Add Address</a>
+                                                    </li>
+                                                </ul>
                                             @foreach(var i in addresses)
-                                                    {
-                                                        <p>@i</p>;
-                                                    }
-                                        <hr style="width:40px;color:orange;height:3px;margin-bottom:20px;align-content:center"/>
-                                        </div>
+                                            {
+                                                 <p>@i</p>;
+                                            }
+                                            <hr style="width:40px;color:orange;height:3px;margin-bottom:20px;align-content:center"/>
+                                            </div>
 
                                         <ul>
-                                            <li>
+                                            <li >
                                                 <span class="material-icons icons-size">credit_card</span>
                                                 <a onclick="myFunction1()">Payment Methods</a>
                                             </li>
                                         </ul>
-                                         <div id="myDIV1" style="display:none;padding-left:80px;padding-top:20px;padding-bottom:10px">
-                                            @foreach(var i in cards)
-                                                    {
-                                                        <p>@i</p>;
-                                                    }
-                                            <hr style="width:40px;color:orange;height:3px;margin-bottom:20px;align-content:center"/>
-                                        </div>
+                                       
+            
+                                        <div id="myDIV1" style="display:none;padding-left:80px;padding-top:0px;padding-bottom:10px">
+                                            <ul style="padding-left:0px !important">
+                                                    <li style="margin-bottom:10px">
+                                                        <span class="material-icons" style="font-size:20px">add_circle</span>
+                                                        <a asp-controller="FoodSite" asp-action="AddCards" style="margin-left:0px;margin-top:0rem">Add Cards</a>
+                                                    </li>
+                                                </ul>
+                                             @foreach(var i in cards)
+                                             {
+                                                  <p>@i</p>;
+                                             }
+                                             <hr style="width:40px;color:orange;height:3px;margin-bottom:20px;align-content:center"/>
+                                         </div>
+                               
 
                                           <ul>
                                             <li>

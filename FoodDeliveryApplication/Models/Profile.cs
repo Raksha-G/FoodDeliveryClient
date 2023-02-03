@@ -29,6 +29,41 @@
             Cvv = cvv;
         }
 
-        
+
+        public Profile(string name,string address, string city, string state, string zipcode, string creditCard, string expMonth, string expYear)
+        {
+            Name = name;
+            Address = address;
+            City = city;
+            State = state;
+            Zipcode = zipcode;
+            CreditCard = creditCard;
+            ExpMonth = expMonth;
+            ExpYear = expYear;
+ 
+        }
+
+
+        public Profile(string address, string city, string state, string zipcode)
+        {
+            Address = address;
+            City = city;
+            State = state;
+            Zipcode = zipcode;
+        }
+
+        public Profile(string card,string expMonth, string expYear)
+        {
+            CreditCard = card;
+            ExpMonth=expMonth;
+            ExpYear=expYear;
+        }
+
+        public Profile()
+        {
+
+        }
+
+
     }
 }

@@ -1,6 +1,6 @@
 ﻿@model LoginDetails 
 
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="~/scss/Login.css"/>
 
 <div class="container">
@@ -43,16 +43,18 @@
                                    
                                     <div class="mb-3">
 
+                                        <i style="position:absolute;right: 0px;margin-right: 30px;margin-top: 8px;color: orange;font-size:23px" class="fa fa-user icon"></i>
                                         <input asp-for="UserName" placeholder="User Name" class="form-control" style="width:100%"/>
                                         <span asp-validation-for="UserName" class="text-danger"></span>
                                     </div>
 
                                      <div class="mb-3">
                                         @*<label asp-for="Password"></label>*@
+                                        <i style="position:absolute;right: 0px;margin-right: 30px;margin-top: 8px;color: orange;font-size:23px" class="fa fa-lock icon"></i>
                                         <input required asp-for="Password" placeholder="Password" class="form-control" type="password" style="width:100%"/>
                                     </div>
             
-                                    <button type="submit" class="btn" style="width : 100%; background-color:crimson;color:white" >Log in</button>
+                                    <button type="submit" class="btn" style="width : 100%; background-color:orange;color:white" >Log in</button>
 
                                     <p>New to JustEat? <a asp-controller="FoodSite" asp-action="CreateAccount" style="color:crimson">Sign up</a></p>
 
