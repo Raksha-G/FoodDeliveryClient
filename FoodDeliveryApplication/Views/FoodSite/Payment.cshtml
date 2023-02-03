@@ -46,7 +46,7 @@
                @foreach(var i in addresses)
                 {
                       @*<p class="btn-use-address" >@i</p>;*@
-                      <p style="font-size:10px;color:#535665" data="addresss-@i" class="btn-use-address">
+                      <p style="font-size:10px;color:#535665; cursor:pointer;" data="addresss-@i" class="btn-use-address">
                            @i
                       </p>
 
@@ -66,7 +66,7 @@
          <div class="saved_cards">
               @foreach(var i in cards)
               {
-                        <p data="cards-@i" class="btn-use-card" style="font-size:10px;color::#535665">
+                        <p data="cards-@i" class="btn-use-card" style="font-size:10px;color:#535665; cursor:pointer;">
                            @i
                       </p>
               }
