@@ -1163,6 +1163,49 @@ namespace FoodDeliveryApplication.Controllers
             return RedirectToAction("Profile");
         }
 
+        public async Task<IActionResult> SearchByImage(string id)
+        {
+            string? AccessToken = _httpContextAccessor.HttpContext.Session.GetString("AccessToken");
+
+            if (_httpContextAccessor.HttpContext.Session.GetString("UserName") == null)
+            {
+                _logger.LogInformation("{0} Logged Out", CurrUser);
+                Console.WriteLine("Logout");
+                ViewBag.NoUser = "NoUser";
+                return RedirectToAction("Login");
+            }
+
+            HttpClient httpClient = new HttpClient();
+            JsonContent content = JsonContent.Create(new TokenDto()
+            {
+                Token = AccessToken,
+            });
+
+
+
+            httpClient.DefaultRequestHeaders.Authorization =
+                new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", AccessToken);
+      
+            List<Menu> res = new List<Menu>();
+            //HttpClient httpClient = new HttpClient();
+            var apiResponce = await httpClient.GetAsync("http://15.206.79.229:8081/api/Food/SearchMenuByName/" + id);
+
+            if (apiResponce.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                string res1 = await apiResponce.Content.ReadAsStringAsync();
+                res = JsonConvert.DeserializeObject<List<Menu>>(res1);
+                return View("Menu", res);
+            }
+            else if (apiResponce.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+            {
+                return RedirectToAction("Login");
+            }
+            else
+            {
+                return Content("Api error" + apiResponce.StatusCode);
+            }
+        }
+
 
 
     }
