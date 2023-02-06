@@ -643,8 +643,11 @@ namespace FoodDeliveryApplication.Controllers
 
             Random rnd = new Random();
             int inVoiceNo = rnd.Next(10000, 10000000);
+            DateTime utc = DateTime.UtcNow;
 
-            DateTime OrderTime = DateTime.Now;
+            DateTime temp = new DateTime(utc.Ticks, DateTimeKind.Utc);
+            DateTime OrderTime = TimeZoneInfo.ConvertTimeFromUtc(temp, TimeZoneInfo.FindSystemTimeZoneById("India Standard Time"));
+            //DateTime OrderTime = DateTime.Now;
 
 
             /*   string address = details.Address;
@@ -1026,16 +1029,20 @@ namespace FoodDeliveryApplication.Controllers
             SqlCommand cmd = new SqlCommand(String.Format("select * from PlacedOrderDetail where InVoiceNo='{0}'", id), conn);
             conn.Open();
             SqlDataReader sr = cmd.ExecuteReader();
-            while(sr.Read())
+            DateTime utc = DateTime.UtcNow;
+
+            DateTime temp = new DateTime(utc.Ticks, DateTimeKind.Utc);
+            DateTime ist = TimeZoneInfo.ConvertTimeFromUtc(temp, TimeZoneInfo.FindSystemTimeZoneById("India Standard Time"));
+            while (sr.Read())
             {
-                details.Add(new OrderDetails((int)sr["InVoiceNo"],sr["UserName"].ToString(),(int)sr["RestaurantId"],sr["FoodItem"].ToString(),(int)sr["Quantity"],(int)sr["Price"],DateTime.Now,sr["status"].ToString()));
+                details.Add(new OrderDetails((int)sr["InVoiceNo"],sr["UserName"].ToString(),(int)sr["RestaurantId"],sr["FoodItem"].ToString(),(int)sr["Quantity"],(int)sr["Price"],ist,sr["status"].ToString()));
             }
             conn.Close();
 
             foreach (var obj in details)
             {
                 SqlConnection conn1 = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");
-                SqlCommand cmd1 = new SqlCommand(String.Format("insert into CompletedOrder values('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')", obj.InVoiceNo, obj.UserName, obj.FoodItem, obj.Quantity, obj.Price, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), obj.RestaurantId, "Cancelled"), conn1);
+                SqlCommand cmd1 = new SqlCommand(String.Format("insert into CompletedOrder values('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')", obj.InVoiceNo, obj.UserName, obj.FoodItem, obj.Quantity, obj.Price, ist.ToString("yyyy-MM-dd HH:mm:ss"), obj.RestaurantId, "Cancelled"), conn1);
                 conn1.Open();
 
                 cmd1.ExecuteNonQuery();
