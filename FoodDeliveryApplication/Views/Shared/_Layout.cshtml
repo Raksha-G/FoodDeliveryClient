@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="~/scss/HomePage.css"/>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
      
                              
 </head>
@@ -71,12 +72,13 @@
 
                             @if (String.IsNullOrEmpty(_httpContextAccessor.HttpContext.Session.GetString("UserName")))
                             {
-
+                                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
                                 <link rel="stylesheet" href="~/css/style.css">
                                 <div class="action-1">
                                     <li class="nav-item">
                                         @using (@Html.BeginForm("Search", "FoodSite", FormMethod.Post))
                                         {
+                                            <i style="position:absolute;right: 0px;margin-right: 15px;margin-top: 8px;color: orange;font-size:18px" class="fa fa-search icon"></i>
                                             <input name="SearchedfoodItem"  placeholder="Search by dish" class="form-control" style="width:200px; height:35px;border-color:orange" id="fooditem"/>
                                             <input type="submit" style="position:absolute; left:-9999px;width:1px;height:1px;" tabindex="-1"/>
 
@@ -88,10 +90,12 @@
                             {
 
                                 <link rel="stylesheet" href="~/css/style.css">
+                                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
                                 <div class="action-2">
                                     <li class="nav-item">
                                         @using (@Html.BeginForm("Search", "FoodSite", FormMethod.Post))
                                         {
+                                            <i style="position:absolute;right: 0px;margin-right: 15px;margin-top: 8px;color: orange;font-size:18px" class="fa fa-search icon"></i>
                                             <input name="SearchedfoodItem"  placeholder="Search by dish" class="form-control" style="width:200px; height:35px;border-color:orange" id="fooditem"/>
                                             <input type="submit" style="position:absolute; left:-9999px;width:1px;height:1px;" tabindex="-1"/>
 

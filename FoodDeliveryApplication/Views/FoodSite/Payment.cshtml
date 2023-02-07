@@ -91,16 +91,16 @@
                                 <div class="form1">
 
                                 Full name
-                                <input required type="text" @*asp-for="UserName"*@ placeholder="Enter name" id="Name" name="Name"/>
+                                <input required type="text" @*asp-for="UserName"*@ placeholder="Enter name*" id="Name" name="Name"/>
                                 Phone No
-                                <input required type="text"  @*asp-for="PhoneNo"*@ placeholder="Enter Phone No" id="PhoneNo" name="PhoneNo" />
+                                <input required type="text"  @*asp-for="PhoneNo"*@ placeholder="Enter Phone No*" id="PhoneNo" name="PhoneNo" />
                                 Address
-                                <input required type="text" @*asp-for="Address"*@ placeholder="Enter Address" id="add" name="add"/>
+                                <input required type="text" @*asp-for="Address"*@ placeholder="Enter Address*" id="add" name="add"/>
                                 @*<span asp-validation-for="Address" class="text-danger"></span>*@
                                 <div class="d-flex">
 
                                 <label value="City"/>
-                                <input required type="text"  @*asp-for="City"*@ placeholder="City" id="city" name="city"/>
+                                <input required type="text"  @*asp-for="City"*@ placeholder="City*" id="city" name="city"/>
                                 </div>
                                 <div id="states">
                                     <label>
@@ -153,7 +153,7 @@
                                 </label>*@
 @*
                                  Zipcode*@
-                                <input required type="text" @*asp-for="Address"*@ name="zip" placeholder="Enter Zipcode" id="zip"/>
+                                <input required type="text" @*asp-for="Address"*@ name="zip" placeholder="Enter Zipcode*" id="zip"/>
            
                                 </div>
 
@@ -198,9 +198,29 @@
                                             <br/>
                                             <br/>
                                             Credit card number
-                                            <input type="text" @*asp-for="CardNo"*@  name="card" id="card" placeholder="Enter Credit Card"/>
-                                            Exp month
-                                            <input type="text"  @*asp-for="ExpMonth"*@ id="expmonth" name="expmonth" placeholder="Enter Expiry Month"/>
+                                            <input type="text" @*asp-for="CardNo"*@  name="card" id="card" placeholder="Enter Credit Card*"/>
+                                           @* Exp month
+                                            <input type="text"  @*asp-for="ExpMonth" id="expmonth" name="expmonth" placeholder="Enter Expiry Month"/>*@
+                                            <div id="states">
+                                                <label>
+                                                    Exp Month
+                                                    <select name="expmonth" id="expmonth">
+                                                        <option>Janurary</option>
+                                                        <option>February</option>
+                                                        <option>March</option>
+                                                        <option>April</option>
+                                                        <option>May</option>
+                                                        <option>June</option>
+                                                        <option>July</option>
+                                                        <option>August</option>
+                                                        <option>September</option>
+                                                        <option>October</option>
+                                                        <option>November</option>
+                                                        <option>December</option>
+
+                                                    </select>
+                                                </label>
+                                            </div>
 
                                             <div id="states">
                                                 <label>
@@ -217,8 +237,8 @@
                                                 </label>
 
                                             <label>
-                                                CVV
-                                                <input type="number" @* asp-for="CVV"*@ name="cvv" id="cvv" placeholder="Enter CVV" value="0"  />
+                                                CVV*
+                                                <input type="number" @* asp-for="CVV"*@ name="cvv" id="cvv" placeholder="Enter CVV*" value="0"  />
                                             </label>
                                             </div>
 
@@ -249,7 +269,7 @@
                                                
                                                             <label>
                                                                 Enter Your UPI ID
-                                                                <input type="text" name=""  id="upiid" placeholder="Enter UPI ID" value="xxx" />
+                                                                <input type="text" name=""  id="upiid" placeholder="Enter UPI ID*" value="xxx" />
                                                             </label>
                                                             </div>
                                </div>

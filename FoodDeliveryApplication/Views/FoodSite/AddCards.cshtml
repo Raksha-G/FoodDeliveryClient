@@ -1,28 +1,58 @@
 ﻿@*@model Profile*@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+ 
                         <form method="post">
                             <div class="border p-3 mt-4 container  align-self-center align-items-center" style="width:450px;background-color:white;border-color:orange;">
 
                                 <div style="vertical-align:middle" class="align-items-center">
+                                    <div class="d-flex justify-content-between">
+                                        <p style="font-weight:bold; font-size:20px">Add Cards</p>
+                                       <a asp-controller="FoodSite" asp-action="Profile" class="material-icons icons-size" style="text-decoration:none">cancel</a>
+
+                                    </div>
+
 
 
                                      <div class="mb-3">
                                          @* <i style="position:absolute;right: 0px;margin-right: 30px;margin-top: 8px;color: orange;font-size:23px" class="fa fa-credit-card icon"></i>*@
-                                        <input  placeholder="Credit Card No" class="form-control" style="width:100%" name="Card"/>
+                                        <input required  placeholder="Credit Card No*" class="form-control" style="width:100%" name="Card"/>
                                         @*<span asp-validation-for="Address" class="text-danger"></span>*@
                                     </div>
 
                                      <div class="mb-3">
                                          @* <i style="position:absolute;right: 0px;margin-right: 30px;margin-top: 8px;color: orange;font-size:23px" class="fa fa-calender icon"></i>*@
-                                        <input  placeholder="Exp Month" class="form-control" style="width:100%"name="Month"/>
+                                       @* <input  placeholder="Exp Month*" class="form-control" style="width:100%"name="Month"/>*@
                                         @*<span asp-validation-for="City" class="text-danger"></span>*@
+                                        <div >
+
+                                         <label>
+                                                    Exp Month*
+                                                    <select required name="month" id="month" style="padding: 0.5rem 0.7rem">
+                                                        <option>Janurary</option>
+                                                        <option>February</option>
+                                                        <option>March</option>
+                                                        <option>April</option>
+                                                        <option>May</option>
+                                                        <option>June</option>
+                                                        <option>July</option>
+                                                        <option>August</option>
+                                                        <option>September</option>
+                                                        <option>October</option>
+                                                        <option>November</option>
+                                                        <option>December</option>
+
+                                                    </select>
+                                         </label>
+                                        </div>
+
                                     </div>
 
                                      <div class="mb-3">
 
                                         <label >
                                                     Exp year
-                                                    <select @*asp-for="ExpYear"*@ name="Year" id="expyear"  style="padding: 0.5rem 0.7rem;">
+                                                    <select required @*asp-for="ExpYear"*@ name="Year" id="expyear"  style="padding: 0.5rem 0.7rem;">
                                                         <option>Choose year</option>
                                                         <option>2023</option>
                                                         <option>2024</option>

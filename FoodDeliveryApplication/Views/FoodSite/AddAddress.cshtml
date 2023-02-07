@@ -4,17 +4,22 @@
                             <div class="border p-3 mt-4 container  align-self-center align-items-center" style="width:450px;background-color:white;border-color:orange;">
 
                                 <div style="vertical-align:middle" class="align-items-center">
+                                     <div class="d-flex justify-content-between">
+                                        <p style="font-weight:bold; font-size:20px">Add Address</p>
+                                       <a asp-controller="FoodSite" asp-action="Profile" class="material-icons icons-size" style="text-decoration:none">cancel</a>
+
+                                    </div>
 
 
                                      <div class="mb-3">
                                          @* <i style="position:absolute;right: 0px;margin-right: 30px;margin-top: 8px;color: orange;font-size:23px" class="fa fa-address-card icon"></i>*@
-                                        <input  placeholder="Address" class="form-control" style="width:100%" name="Address"/>
+                                        <input required  placeholder="Address*" class="form-control" style="width:100%" name="Address"/>
                                         @*<span asp-validation-for="Address" class="text-danger"></span>*@
                                     </div>
 
                                      <div class="mb-3">
                                           @*<i style="position:absolute;right: 0px;margin-right: 30px;margin-top: 8px;color: orange;font-size:23px" class="fa fa-map-marker icon"></i>*@
-                                        <input  placeholder="City" class="form-control" style="width:100%"name="City"/>
+                                        <input required  placeholder="City*" class="form-control" style="width:100%"name="City"/>
                                         @*<span asp-validation-for="City" class="text-danger"></span>*@
                                     </div>
 
@@ -22,7 +27,7 @@
 
                                             <label>
                                                 State
-                                                <select @*asp-for="State"*@ id="state" name="State" style="padding: 0.5rem 0.7rem;">
+                                                <select required @*asp-for="State"*@ id="state" name="State" style="padding: 0.5rem 0.7rem;">
                                                     <option value="AN">Andaman and Nicobar Islands</option>
                                                     <option value="AP">Andhra Pradesh</option>
                                                     <option value="AR">Arunachal Pradesh</option>
@@ -69,7 +74,7 @@
 
                                      <div class="mb-3">
                                          @* <i style="position:absolute;right: 0px;margin-right: 30px;margin-top: 8px;color: orange;font-size:23px" class="fa fa-location-arrow icon"></i>*@
-                                        <input placeholder="Zipcode" class="form-control" style="width:100%" name="Zipcode"/>
+                                        <input required placeholder="Zipcode*" class="form-control" style="width:100%" name="Zipcode"/>
                                         @*<span asp-validation-for="Zipcode" class="text-danger"></span>*@
                                     </div>
 
