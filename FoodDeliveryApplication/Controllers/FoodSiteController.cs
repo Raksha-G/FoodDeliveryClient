@@ -5,6 +5,8 @@ using Newtonsoft.Json;
 using Serilog;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 
 namespace FoodDeliveryApplication.Controllers
 {
@@ -619,7 +621,7 @@ namespace FoodDeliveryApplication.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> PlaceOrder(/*CustomerDetails details*/ IFormCollection col)
+        public async Task<IActionResult> PlaceOrder(IFormCollection col)
         {
             string? UserName = _httpContextAccessor.HttpContext.Session.GetString("UserName");
             string? AccessToken = _httpContextAccessor.HttpContext.Session.GetString("AccessToken");
@@ -693,17 +695,21 @@ namespace FoodDeliveryApplication.Controllers
                 if (apiRespoce.StatusCode == System.Net.HttpStatusCode.OK)
                 {
 
+
                     SqlConnection conn2 = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");
                     SqlCommand cmd = new SqlCommand(String.Format("insert into User_Address values('{0}','{1}','{2}','{3}','{4}')", _httpContextAccessor.HttpContext.Session.GetString("UserName"), address, order.City, order.State, order.Zipcode), conn2);
                     conn2.Open();
                     cmd.ExecuteNonQuery();
                     conn2.Close();
-
-                    SqlConnection conn3 = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");
-                    SqlCommand cmd1 = new SqlCommand(String.Format("insert into User_Cards values('{0}','{1}','{2}','{3}')", _httpContextAccessor.HttpContext.Session.GetString("UserName"), order.CardNo,order.ExpMonth,order.ExpYear), conn3);
-                    conn3.Open();
-                    cmd1.ExecuteNonQuery();
-                    conn3.Close();
+                    if(order.CVV != 0)
+                    {
+                        SqlConnection conn3 = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");
+                        SqlCommand cmd1 = new SqlCommand(String.Format("insert into User_Cards values('{0}','{1}','{2}','{3}')", _httpContextAccessor.HttpContext.Session.GetString("UserName"), order.CardNo, order.ExpMonth, order.ExpYear), conn3);
+                        conn3.Open();
+                        cmd1.ExecuteNonQuery();
+                        conn3.Close();
+                    }
+                    
 
                     if (order.CVV == 0)
                     {
@@ -738,15 +744,84 @@ namespace FoodDeliveryApplication.Controllers
             SqlDataReader sr = sqlcmd.ExecuteReader();
 
             var orderList = new List<OrderDetails>();
+            string item = "";
+            string resId = "";
+            string userName = "";
+            HashSet<int> ResIds = new HashSet<int>();
             while (sr.Read())
             {
                 OrderDetails orderDetails = new OrderDetails(inVoiceNo, sr["UserName"].ToString(), (int)sr["RestaurantId"], sr["FoodItem"].ToString(), (int)sr["Quantity"], (int)sr["Price"], OrderTime,"Placed");
                 orderList.Add(orderDetails);
+                ResIds.Add(orderDetails.RestaurantId);
+                userName = orderDetails.UserName;
             }
             conn.Close();
+            foreach(var r in ResIds)
+            {
+                List<OrderedItems> items = new List<OrderedItems>();
+                foreach (var o in orderList)
+                {
+                    if (o.RestaurantId == r)
+                    {
+                        items.Add(new OrderedItems(o.FoodItem, o.Quantity, o.Price));
+                    }
+                }
+                SqlConnection conn2 = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");
+                SqlCommand cmd2 = new SqlCommand(string.Format("select Restaurant_Name from restaurants where Restaurant_Id='{0}'",r),conn2);
+                conn2.Open();
+                string RestaurantName = "";
+                SqlDataReader sr2 = cmd2.ExecuteReader();
+                while (sr2.Read())
+                {
+                    RestaurantName = sr2["Restaurant_Name"].ToString();
+                }
+               
+                conn2.Close();
 
-            string items = "";
-            string resId = "";
+                SqlConnection conn3 = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");
+                SqlCommand cmd3 = new SqlCommand(string.Format("select Email from RestaurantLoginDetails where RestaurantName='{0}'", RestaurantName), conn3);
+                conn3.Open();
+                SqlDataReader sr3 = cmd3.ExecuteReader();
+                string RestaurantMail = "";
+                while (sr3.Read())
+                {
+                    RestaurantMail = sr3["Email"].ToString();
+                }
+             
+                     conn3.Close();
+
+                string fromMail = "update.justeat@gmail.com";
+                string fromPassword = "vswveeeasgbytbyi";
+                
+                string fp = string.Format("<h2 style=\"color:orange; text-align:center; font-size:25px;\">JustEat</h2><hr/><p>Dear <span style=\"font-weight:bold;\">{0}</span>,</p><p>This is to inform you that we have received an order.</p><p>Order Summary:</p><p>Invoice No: <span style=\"font-weight:bold;\">{1}</span></p><p>Order Placed at: <span style=\"font-weight:bold;\">{2}</span></p><p>Ordered By:</p><p><span style=\"font-weight:bold; text-transform: uppercase;\">{3}</span></p><p>{4}, {5}<br/> {6} {7}, India</p> </body></html>", RestaurantName, inVoiceNo, OrderTime, userName, address, col["city"], col["state"], col["zip"]);
+                string lp1 = "<table style=\"border-collapse: collapse; width:65vw;\"><tr ><th style=\"background: #eee; border: 1px solid #777; padding: 0.5rem; text-align: center;\">Item Name</th><th style=\"background: #eee; border: 1px solid #777; padding: 0.5rem; text-align: center;\">Quantity</th><th style=\"background: #eee; border: 1px solid #777; padding: 0.5rem; text-align: center;\">Price</th></tr>";
+                int totalPrice = 0;
+                foreach(var i in items)
+                {
+                    totalPrice+=i.Price*i.Quantity;
+                    lp1+=string.Format("<tr ><td style=\" border: 1px solid #777; padding: 0.5rem; text-align: center;\">{0}</td><td style=\" border: 1px solid #777; padding: 0.5rem; text-align: center;\">{1}</td><td style=\" border: 1px solid #777; padding: 0.5rem; text-align: center;\">₹ {2}</td></tr>", i.Item,i.Quantity,i.Price);
+                }
+                string lp2 = "</table>";
+                string lp3 = string.Format("<p style=\"width:65vw; color:#3c9961; text-align:end; background-color:#f0f5f1; padding:7px; font-weight:bold;\">Order Total :  <span style=\"padding-left:10px;\">₹ {0}</span></p><hr/><p style=\"padding:10px;\">Request you to take necessary action for the order above by login to the application. Thankyou</p><hr/>", totalPrice);
+                MailMessage message = new MailMessage();
+                message.From = new MailAddress(fromMail);
+                string n = "j\"fdf\"";
+                message.Subject = String.Format("You Received an Order #{0}", inVoiceNo);
+                message.To.Add(new MailAddress(RestaurantMail));
+                message.Body = string.Format("<html><body>{0}{1}{2}{3} </body></html>", fp,lp1,lp2,lp3);
+                message.IsBodyHtml = true;
+                
+                var smtpClient = new SmtpClient("smtp.gmail.com")
+                {
+                    Port = 587,
+                    Credentials = new NetworkCredential(fromMail, fromPassword),
+                    EnableSsl = true,
+                };
+
+                smtpClient.Send(message);
+
+            }
+
 
             var httpClient1 = new HttpClient();
             httpClient1.DefaultRequestHeaders.Authorization =
@@ -771,7 +846,9 @@ namespace FoodDeliveryApplication.Controllers
 
             }
 
-            _logger.LogDebug(String.Format("Order placed by user {0} of Items: {1} from restaurant Id : {2}", _httpContextAccessor.HttpContext.Session.GetString("UserName"), items, resId));
+            _logger.LogDebug(String.Format("Order placed by user {0} of Items: {1} from restaurant Id : {2}", _httpContextAccessor.HttpContext.Session.GetString("UserName"), item, resId));
+
+            
 
             HttpClient httpClient2 = new HttpClient();
             httpClient2.DefaultRequestHeaders.Authorization =
@@ -1038,9 +1115,10 @@ namespace FoodDeliveryApplication.Controllers
                 details.Add(new OrderDetails((int)sr["InVoiceNo"],sr["UserName"].ToString(),(int)sr["RestaurantId"],sr["FoodItem"].ToString(),(int)sr["Quantity"],(int)sr["Price"],ist,sr["status"].ToString()));
             }
             conn.Close();
-
+            HashSet<int> resId = new HashSet<int>();
             foreach (var obj in details)
             {
+                resId.Add(obj.RestaurantId);
                 SqlConnection conn1 = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");
                 SqlCommand cmd1 = new SqlCommand(String.Format("insert into CompletedOrder values('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')", obj.InVoiceNo, obj.UserName, obj.FoodItem, obj.Quantity, obj.Price, ist.ToString("yyyy-MM-dd HH:mm:ss"), obj.RestaurantId, "Cancelled"), conn1);
                 conn1.Open();
@@ -1054,7 +1132,96 @@ namespace FoodDeliveryApplication.Controllers
                 conn.Close();
             }
 
-            SqlConnection conn4 = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");
+            foreach (var r in resId)
+            {
+                string userName = "";
+                int inVoiceNo = 0;
+                DateTime orderPlaced = DateTime.Now;
+                List<OrderedItems> items = new List<OrderedItems>();
+                foreach (var o in details)
+                {
+                    if (o.RestaurantId == r)
+                    {
+                        userName=o.UserName;
+                        orderPlaced = o.OrderTime;
+                        inVoiceNo=o.InVoiceNo;
+                        items.Add(new OrderedItems(o.FoodItem, o.Quantity, o.Price));
+                    }
+                }
+                SqlConnection conn2 = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");
+                SqlCommand cmd2 = new SqlCommand(string.Format("select Restaurant_Name from restaurants where Restaurant_Id='{0}'", r), conn2);
+                conn2.Open();
+                string RestaurantName = "";
+                SqlDataReader sr2 = cmd2.ExecuteReader();
+                while (sr2.Read())
+                {
+                    RestaurantName = sr2["Restaurant_Name"].ToString();
+                }
+
+                conn2.Close();
+
+                SqlConnection conn3 = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");
+                SqlCommand cmd3 = new SqlCommand(string.Format("select Email from RestaurantLoginDetails where RestaurantName='{0}'", RestaurantName), conn3);
+                conn3.Open();
+                SqlDataReader sr3 = cmd3.ExecuteReader();
+                string RestaurantMail = "";
+                while (sr3.Read())
+                {
+                    RestaurantMail = sr3["Email"].ToString();
+                }
+
+                conn3.Close();
+
+                SqlCommand cmd7 = new SqlCommand(string.Format("select * from Orders where InVoiceNo ='{0}'", inVoiceNo), conn3);
+                conn3.Open();
+                SqlDataReader sr5 = cmd7.ExecuteReader();
+                string address = "";
+                string city = "";
+                string state = "";
+                string zipcode = "";
+                string orderTime = "";
+                while (sr5.Read())
+                {
+                    orderTime = sr5["OrderTime"].ToString();
+                    address = sr5["Address"].ToString();
+                    city = sr5["City"].ToString();
+                    state = sr5["State"].ToString();
+                    zipcode = sr5["ZipCode"].ToString();
+                }
+                conn3.Close();
+
+                string fromMail = "update.justeat@gmail.com";
+                string fromPassword = "vswveeeasgbytbyi";
+
+                string fp = string.Format("<h2 style=\"color:orange; text-align:center; font-size:25px;\">JustEat</h2><hr/><p>Dear <span style=\"font-weight:bold;\">{0}</span>,</p><p>This is to inform you that the customer cancelled the order.</p><p>Order Summary:</p><p>Invoice No: <span style=\"font-weight:bold;\">{1}</span></p><p>Order Placed at: <span style=\"font-weight:bold;\">{2}</span></p><p>Order Cancelled at: <span style=\"font-weight:bold;\">{3}</span></p><p>Order Status: <span style=\"font-weight:bold; color:red;\">Cancelled</span></p><p>Ordered By:</p><p><span style=\"font-weight:bold; text-transform: uppercase;\">{4}</span></p><p>{5}, {6}<br/> {7} {8}, India</p> </body></html>", RestaurantName, inVoiceNo, orderPlaced, ist.ToString("dd-MM-yyyy HH:mm:ss"), userName, address, city, state, zipcode);
+                string lp1 = "<table style=\"border-collapse: collapse; width:65vw;\"><tr ><th style=\"background: #eee; border: 1px solid #777; padding: 0.5rem; text-align: center;\">Item Name</th><th style=\"background: #eee; border: 1px solid #777; padding: 0.5rem; text-align: center;\">Quantity</th><th style=\"background: #eee; border: 1px solid #777; padding: 0.5rem; text-align: center;\">Price</th></tr>";
+                int totalPrice = 0;
+                foreach (var i in items)
+                {
+                    totalPrice += i.Price * i.Quantity;
+                    lp1 += string.Format("<tr ><td style=\" border: 1px solid #777; padding: 0.5rem; text-align: center;\">{0}</td><td style=\" border: 1px solid #777; padding: 0.5rem; text-align: center;\">{1}</td><td style=\" border: 1px solid #777; padding: 0.5rem; text-align: center;\">₹ {2}</td></tr>", i.Item, i.Quantity, i.Price);
+                }
+                string lp2 = "</table>";
+                string lp3 = string.Format("<p style=\"width:65vw; color:#3c9961; text-align:end; background-color:#f0f5f1; padding:7px; font-weight:bold;\">Order Total :  <span style=\"padding-left:10px;\">₹ {0}</span></p><hr/><p style=\"padding:10px;\">Thankyou for choosing JustEat. Have a nice day.</p><hr/>", totalPrice);
+                MailMessage message = new MailMessage();
+                message.From = new MailAddress(fromMail);
+                string n = "j\"fdf\"";
+                message.Subject = String.Format("Order #{0} was cancelled", inVoiceNo);
+                message.To.Add(new MailAddress(RestaurantMail));
+                message.Body = string.Format("<html><body>{0}{1}{2}{3} </body></html>", fp, lp1, lp2, lp3);
+                message.IsBodyHtml = true;
+
+                var smtpClient = new SmtpClient("smtp.gmail.com")
+                {
+                    Port = 587,
+                    Credentials = new NetworkCredential(fromMail, fromPassword),
+                    EnableSsl = true,
+                };
+
+                smtpClient.Send(message);
+            }
+
+                SqlConnection conn4 = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");
             SqlCommand cmd4 = new SqlCommand(String.Format("update Orders set status='Cancelled' where OrderId = '{0}'", id), conn4);
             conn4.Open();
             cmd4.ExecuteNonQuery();
