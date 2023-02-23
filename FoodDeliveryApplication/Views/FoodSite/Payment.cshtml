@@ -3,6 +3,9 @@
  @inject IHttpContextAccessor _httpContextAccessor;
  @model List<Profile>
 @*<link rel="stylesheet" href="~/scss/Payment.css">*@
+@{
+    int total = ViewBag.total*100;
+}
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 
 
@@ -35,7 +38,7 @@
     }
 }
 
-<div>
+<div id="sectionHome">
 
 
  <div class="split1 left">
@@ -61,7 +64,7 @@
      </div>
 
 
-     <div class="card">
+     @*<div class="card">
          <p style="font-size:20px;color:#535665;font-weight: 600;">Cards</p>
          <div class="saved_cards">
               @foreach(var i in cards)
@@ -71,7 +74,7 @@
                       </p>
               }
          </div>
-     </div>
+     </div>*@
             
  </div>
 
@@ -89,23 +92,25 @@
                             <h3 style="color:#535665;font-weight: 600;">BILLING ADDRESS</h3>
                             
                                 <div class="form1">
-
-                                Full name
+                                    <input class="d-none" value="" type="text" id="stripeToken" name="stripeToken"/>
+                                    <input class="d-none" value="" type="text" id="stripeEmail" name="stripeEmail"/>
+                                    <input class="d-none" value="payment"  type="text" id="mail" name="mail"/>
+                                    Full name
                                 <input required type="text" @*asp-for="UserName"*@ placeholder="Enter name*" id="Name" name="Name"/>
                                 Phone No
-                                <input required type="text"  @*asp-for="PhoneNo"*@ placeholder="Enter Phone No*" id="PhoneNo" name="PhoneNo" />
+                                <input class="phone" required type="text"  @*asp-for="PhoneNo"*@ placeholder="Enter Phone No*" id="PhoneNo" name="PhoneNo" />
                                 Address
-                                <input required type="text" @*asp-for="Address"*@ placeholder="Enter Address*" id="add" name="add"/>
+                                <input required class="add" type="text" @*asp-for="Address"*@ placeholder="Enter Address*" id="add" name="add"/>
                                 @*<span asp-validation-for="Address" class="text-danger"></span>*@
                                 <div class="d-flex">
 
                                 <label value="City"/>
-                                <input required type="text"  @*asp-for="City"*@ placeholder="City*" id="city" name="city"/>
+                                <input class="city" required type="text"  @*asp-for="City"*@ placeholder="City*" id="city" name="city"/>
                                 </div>
                                 <div id="states">
                                     <label>
                                         State
-                                        <select @*asp-for="State"*@ id="state" name="state">
+                                        <select class="state"  id="state" name="state">
                                             <option value="AN">Andaman and Nicobar Islands</option>
                                             <option value="AP">Andhra Pradesh</option>
                                             <option value="AR">Arunachal Pradesh</option>
@@ -153,27 +158,64 @@
                                 </label>*@
 @*
                                  Zipcode*@
-                                <input required type="text" @*asp-for="Address"*@ name="zip" placeholder="Enter Zipcode*" id="zip"/>
+                                <input class="zip" required type="text" @*asp-for="Address"*@ name="zip" placeholder="Enter Zipcode*" id="zip"/>
            
                                 </div>
 
                         </div>
                         <div class="right1">
                             <h3 style="color:#535665;font-weight: 600;">PAYMENT</h3>
-            
+                            
                                 <div class="form1">
-                                <label> Cash on Delivery: </label> <input id="check" type="radio" name="radiob" value="cod"/>
+                                    <div class="mb-2">
+                               
+            <label  style="font-weight:bold; font-size:15px;">Amount INR: <span class="text-success">₹@ViewBag.Total</span></label>
+            
+      
+        </div>
+                                <label> Cash on Delivery: </label> <input required id="check" type="radio" name="radiob" value="cod"/>
                                 ‎ ‎ ‎ 
-                                <label> UPI: </label> <input id="Upi" type="radio" name="radiob" value="Upi"/>
+                                <label> UPI: </label> <input id="Upi" required type="radio" name="radiob" value="Upi"/>
                                 ‎ ‎ ‎ 
-                                <label> Card:  </label> <input id="cod" type="radio" name="radiob" value="cardd"/>
+                                <label> Card:  </label> <input required class="paywithcard" id="cod" type="radio" name="radiob" value="cardd"/>
                                 <br/>
                     
                                 <div class="cod sselect">
                                 </div>
 
+                                <div class="cardd sselect " style="margin-top:10px">
+                                    Accepted Cards
+                                           @* <div class="images" style="margin-bottom:10px;margin-top:0;top:0">*@
+                                               @* <div>
+                                                    <img src="https://th.bing.com/th/id/R.667d4af4cdfd88547b9a6cbae6bcae40?rik=I6rG21QJ7ZkkbQ&riu=http%3a%2f%2f1.bp.blogspot.com%2f-F-LmQgPZBGI%2fT3bd3hdr1uI%2fAAAAAAAAGb0%2f5SLx-LcwI0A%2fs1600%2frupay%2blogo%27.jpg&ehk=WsoKMV6ZZSKlhghT%2fAFxeLOdvmXakD%2bqjgTmfpyABmw%3d&risl=&pid=ImgRaw&r=0" style="height:30px; min-width:60px;" />
 
-                                <div class="cardd sselect" style="margin-top:10px">
+                                                </div>
+                                                <div>
+                                                    <img src="https://tse2.mm.bing.net/th/id/OIP.lQ866KEouNrd7YujZhGIUAAAAA?pid=ImgDet&w=445&h=100&rs=1" style="height:30px; min-width:60px"/>
+
+                                                </div>*@
+
+                                                  <div class="footer_icons">
+                                                                                          <div><a href="#"><img src="https://img.icons8.com/color/2x/mastercard.png" style=" height:40px; min-width:40px;position:absolute;"/></a></div>
+                                                                                          <div><a href="#"><img src="https://img.icons8.com/color/512/rupay.png" style="height:40px; min-width:40px;position:absolute;"/></a></div>
+                                                                                          <div><a href="#"><img src="https://img.icons8.com/color/2x/visa.png" style=" height:40px; min-width:40px;position:absolute;"/></a></div>
+                                                                                          @*<div><a href="#"><img src="https://img.icons8.com/color/2x/phone-pe.png" style=" height:40px; min-width:40px;position:absolute;"/></a></div>*@
+                          
+                                                                     </div>
+
+                                            @*</div>*@
+                                            <br/>
+                                            <br/>
+                                    <a class="btn btn-primary mt-2 text-center " id="button1">Pay With Card</a>
+                                    
+       @* <script>
+        // Hide default stripe button, be careful there if you
+        // have more than 1 button of that class
+        document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';
+    </script>
+    <button type="submit" class="yourCustomClass">Pay with Card</button>*@
+                                </div >
+                                <div class="cardd sselect d-none" style="margin-top:10px">
 
                                             Accepted Cards
                                            @* <div class="images" style="margin-bottom:10px;margin-top:0;top:0">*@
@@ -197,10 +239,11 @@
                                             @*</div>*@
                                             <br/>
                                             <br/>
+
+                                           
                                             Credit card number
-                                            <input type="text" @*asp-for="CardNo"*@  name="card" id="card" placeholder="Enter Credit Card*"/>
-                                           @* Exp month
-                                            <input type="text"  @*asp-for="ExpMonth" id="expmonth" name="expmonth" placeholder="Enter Expiry Month"/>*@
+                                            <input type="text" name="card" id="card" placeholder="Enter Credit Card*"/>
+                                          
                                             <div id="states">
                                                 <label>
                                                     Exp Month
@@ -225,7 +268,7 @@
                                             <div id="states">
                                                 <label>
                                                     Exp year
-                                                    <select @*asp-for="ExpYear"*@ name="expyear" id="expyear">
+                                                    <select  name="expyear" id="expyear">
                                                         <option>Choose year</option>
                                                         <option>2023</option>
                                                         <option>2024</option>
@@ -238,7 +281,7 @@
 
                                             <label>
                                                 CVV*
-                                                <input type="number" @* asp-for="CVV"*@ name="cvv" id="cvv" placeholder="Enter CVV*" value="0"  />
+                                                <input type="number" name="cvv" id="cvv" placeholder="Enter CVV*" value="0"  />
                                             </label>
                                             </div>
 
@@ -278,8 +321,9 @@
 
 
 
-                                <button class="btn btn-primary" type="submit" asp-controller="FoodSite" asp-action="PlaceOrder" style="background-color:orange;color:white;font-weight:bold;border-color:orange;margin-left:20px">Proceed to Checkout</button>
-            
+                                <button id="checkoutBtn" class="btn btn-primary" type="submit" asp-controller="FoodSite" asp-action="PlaceOrder" style="background-color:orange;color:white;font-weight:bold;border-color:orange;margin-left:20px">Place Order</button>
+                                 
+
                         </div>
 
                     </div>
@@ -289,12 +333,59 @@
                 *@
                 }
       @*      </form>*@
+       
 
             
  </div>
  </div>
-     
+     <div id="">
+         <form asp-action="PlaceOrder" asp-controller="FoodSite" method="post">
+             <div class="d-none">
+           
+                                <input value="" required type="text" @*asp-for="UserName"*@ placeholder="Enter name*" id="Names" name="Name"/>
+                         
+                                <input class="phones" value="" required type="text"  @*asp-for="PhoneNo"*@ placeholder="Enter Phone No*" id="PhoneNos" name="PhoneNo" />
+                               
+                                <input class="adds" value="" required type="text" @*asp-for="Address"*@ placeholder="Enter Address*" id="adds" name="add"/>
+                                
+                                <input class="d-none" value="cardpayment"  type="text" id="mails" name="mail"/>
 
+                                <input class="citys" value="" required type="text"  @*asp-for="City"*@ placeholder="City*" id="citys" name="city"/>
+                                <input class="statess" value="" required type="text" name="state" placeholder="Enter Zipcode*" id="statess"/>
+
+                          <input class="zips" value="" required type="text" @*asp-for="Address"*@ name="zip" placeholder="Enter Zipcode*" id="zips"/>
+                          <input value="4242 4242 4242 4242" type="text" name="card" id="cards" placeholder="Enter Credit Card*"/>
+                          <input value="July" type="text" name="expmonth" id="expmonths" placeholder="Enter Credit Card*"/>
+                          <input value="2028" type="text" name="expyear" id="expyears" placeholder="Enter Credit Card*"/>
+                          <input value="343" type="text" name="cvv" id="cvvs" placeholder="Enter Credit Card*"/>
+</div>
+        @*<article>
+            <label>Amount INR ₹ :499</label>
+            
+        </article>*@
+        <div class="d-none">
+        <script src="//checkout.stripe.com/v3/checkout.js"
+                
+                class="stripe-button"
+                data-key="pk_test_51McNZISCWI76a6DvQG1bxKXNLhWNfCCa7yEpSnUGABApIKri7meFFSwrkOx4WAcQq5wC2EqiJi7VLdUbVTXR1wIC00zzyfkIym"
+                data-amount="@total"
+                data-name="Stripe Payment Gateway"
+                data-locale="en"
+                data-currency="inr"
+    
+              
+                data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                data-zip-code="true">
+        </script>
+          
+        </div>
+        
+        
+    </form>
+    
+     </div>
+     
+ <script type="text/javascript" src="https://d1tgh8fmlzexmh.cloudfront.net/ccbp-static-website/js/ccbp-ui-kit.js"></script>
 
  <script type="text/javascript">
  
@@ -315,8 +406,44 @@
                 });
             });
 
+            $("#Upi").click(function(fe){
+                $("#checkoutBtn").removeClass("d-none");
+             
 
-            
+            });
+
+            $("#check").click(function(fe){
+                $("#checkoutBtn").removeClass("d-none");
+              
+            });
+
+            $("#button1").click(function(){
+   $(".stripe-button-el").click();
+});
+            $(".paywithcard").click(function(fe){
+                $("#checkoutBtn").addClass("d-none");
+                var city_name = $('input[class=city]').val();
+                var add_name=$('input[class=add]').val();
+                var state_name=$( "#state option:selected" ).val();
+                var zip_name=$('input[class=zip]').val();
+                var phone_name=$('input[class=phone]').val();
+                console.log("initiated");
+                console.log(city_name);
+                console.log(state_name)
+                $(".citys").val(city_name);
+                $(".adds").val(add_name);
+                $(".statess").val(state_name);
+                $(".zips").val(zip_name);
+                $(".phones").val(phone_name);
+                
+                
+                console.log($('input[class=citys]').val());
+                console.log($('input[class=statess]').val());
+                console.log($('input[class=zips]').val());
+                console.log($('input[class=adds]').val());
+                console.log($('input[class=phones]').val());
+
+            });
   
         $(".btn-use-address").click(function(fe){
  
@@ -351,7 +478,7 @@
  
         });
 
-
+ 
         
         $(".btn-use-card").click(function(fe){
  

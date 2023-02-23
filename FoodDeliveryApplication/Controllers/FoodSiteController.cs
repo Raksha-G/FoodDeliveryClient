@@ -3,6 +3,7 @@ using FoodDeliveryApplication.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Serilog;
+using Stripe;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
@@ -621,7 +622,7 @@ namespace FoodDeliveryApplication.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> PlaceOrder(IFormCollection col)
+        public async Task<IActionResult> PlaceOrder(IFormCollection col,string stripeEmail, string stripeToken,string mail)
         {
             string? UserName = _httpContextAccessor.HttpContext.Session.GetString("UserName");
             string? AccessToken = _httpContextAccessor.HttpContext.Session.GetString("AccessToken");
@@ -642,6 +643,120 @@ namespace FoodDeliveryApplication.Controllers
 
             httpClient.DefaultRequestHeaders.Authorization =
                 new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", AccessToken);
+            System.Diagnostics.Debug.WriteLine(mail);
+
+            if (mail == "cardpayment")
+            {
+                StripeConfiguration.ApiKey = "sk_test_51McNZISCWI76a6DvS3FGhnCqMuvID4bIg4RgVwY2R3nCxmcCi5uAsbEPDW9mzaRYPehAM4lKAB4pLe4wWEqXfPSM00hJONI73E";
+                SqlConnection con = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");
+                SqlCommand sq = new SqlCommand(String.Format(
+                    "select * from AddItemToCart where UserName = '{0}'",
+                    _httpContextAccessor.HttpContext.Session.GetString("UserName")), con);
+                con.Open();
+                SqlDataReader s = sq.ExecuteReader();
+
+
+                int totalPrice = 0;
+                while (s.Read())
+                {
+                    totalPrice += Convert.ToInt32(s["Price"]) * Convert.ToInt32(s["Quantity"]);
+
+                }
+                con.Close();
+                TokenService tokenService = new TokenService();
+                Token token = tokenService.Get(stripeToken);
+                string four = token.Card.Last4;
+                string method="";
+                switch (four)
+                {
+                    case "4242": 
+                        method = "pm_card_visa";
+                        break;
+                    case "5556":
+                        method = "pm_card_visa_debit";
+                        break;
+                    case "4444":
+                        method = "pm_card_mastercard";
+                        break;
+                    case "8210":
+                        method = "pm_card_mastercard_debit";
+                        break;
+                    case "5100":
+                        method = "pm_card_mastercard_prepaid";
+                        break;
+                    case "0005":
+                        method = "pm_card_amex";
+                        break;
+                    case "8431":
+                        method = "pm_card_amex";
+                        break;
+                    case "1117":
+                        method = "pm_card_discover";
+                        break;
+                    case "9424":
+                        method = "pm_card_discover";
+                        break;
+                    case "0004":
+                        method = "pm_card_diners";
+                        break;
+                    case "0505":
+                        method = "pm_card_jcb";
+                        break;
+                   
+                    default:
+                        method = "pm_card_visa";
+                        break;
+                }
+
+                var options1 = new CustomerListOptions
+                {
+                    Limit = 20,
+                };
+                var service1 = new CustomerService();
+                StripeList<Customer> customers = service1.List(
+                  options1);
+                bool value = true;
+                Customer customer1 = null;
+                foreach (var i in customers)
+                {
+                    if (i.Name == _httpContextAccessor.HttpContext.Session.GetString("UserName") && i.Email == stripeEmail)
+                    {
+                        customer1 = i;
+                        value = false;
+                    }
+                }
+                if (value)
+                {
+
+
+                    var optionCust = new CustomerCreateOptions
+                    {
+                        Email = stripeEmail,
+                        Name = _httpContextAccessor.HttpContext.Session.GetString("UserName"),
+                        Phone= col["PhoneNo"]
+
+
+                    };
+                    var serviceCust = new CustomerService();
+                    customer1 = serviceCust.Create(optionCust);
+                    
+                }
+                var options = new PaymentIntentCreateOptions
+                {
+                    Customer = customer1.Id,
+                    PaymentMethod =method,
+                    PaymentMethodTypes = new List<string> { "card" },  
+                    Amount = Convert.ToInt64(totalPrice*100),
+                    Currency = "inr",
+                    Description = "Stripe transaction",
+                    Confirm = true,
+                    OffSession = true,        
+                    ReceiptEmail = stripeEmail
+                };
+                var service = new PaymentIntentService();
+                
+                var paymentIntent = service.Create(options);
+            }
 
             Random rnd = new Random();
             int inVoiceNo = rnd.Next(10000, 10000000);
@@ -664,7 +779,9 @@ namespace FoodDeliveryApplication.Controllers
 
             SqlConnection conn = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");
 
-
+            System.Diagnostics.Debug.WriteLine(col["city"]);
+            System.Diagnostics.Debug.WriteLine(col["state"]);
+            System.Diagnostics.Debug.WriteLine(col["zip"]);
             OrderPlaced order = new OrderPlaced();
             order.Address = address;
             order.InVoiceNo = inVoiceNo;
@@ -685,11 +802,11 @@ namespace FoodDeliveryApplication.Controllers
             order.CardNo = col["card"];
             order.ExpMonth = col["expmonth"];
             order.ExpYear = col["expyear"];
-            order.CVV = Convert.ToInt32(col["cvv"]);
-
+            order.CVV = Convert.ToInt32(col["cvv"].ToString());
             order.status = "Placed";
-
+            
             JsonContent content1 = JsonContent.Create(order);
+           
             using (var apiRespoce = await httpClient.PostAsync("http://15.206.79.229:8081/api/Food/Orders", content1))
             {
                 if (apiRespoce.StatusCode == System.Net.HttpStatusCode.OK)
@@ -790,8 +907,8 @@ namespace FoodDeliveryApplication.Controllers
              
                      conn3.Close();
 
-                string fromMail = "update.justeat@gmail.com";
-                string fromPassword = "vswveeeasgbytbyi";
+                string fromMail = "notify.justeat@gmail.com";
+                string fromPassword = "rtezlcgmuwkossoz";
                 
                 string fp = string.Format("<h2 style=\"color:orange; text-align:center; font-size:25px;\">JustEat</h2><hr/><p>Dear <span style=\"font-weight:bold;\">{0}</span>,</p><p>This is to inform you that we have received an order.</p><p>Order Summary:</p><p>Invoice No: <span style=\"font-weight:bold;\">{1}</span></p><p>Order Placed at: <span style=\"font-weight:bold;\">{2}</span></p><p>Ordered By:</p><p><span style=\"font-weight:bold; text-transform: uppercase;\">{3}</span></p><p>{4}, {5}<br/> {6} {7}, India</p> </body></html>", RestaurantName, inVoiceNo, OrderTime, userName, address, col["city"], col["state"], col["zip"]);
                 string lp1 = "<table style=\"border-collapse: collapse; width:65vw;\"><tr ><th style=\"background: #eee; border: 1px solid #777; padding: 0.5rem; text-align: center;\">Item Name</th><th style=\"background: #eee; border: 1px solid #777; padding: 0.5rem; text-align: center;\">Quantity</th><th style=\"background: #eee; border: 1px solid #777; padding: 0.5rem; text-align: center;\">Price</th></tr>";
@@ -901,7 +1018,22 @@ namespace FoodDeliveryApplication.Controllers
 
              conn4.Close();
  */
+            SqlConnection conn1 = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");
+            SqlCommand sqlcmd = new SqlCommand(String.Format(
+                "select * from AddItemToCart where UserName = '{0}'",
+                _httpContextAccessor.HttpContext.Session.GetString("UserName")), conn1);
+            conn1.Open();
+            SqlDataReader sr1 = sqlcmd.ExecuteReader();
 
+
+            int total = 0;
+            while (sr1.Read())
+            {
+                total += Convert.ToInt32(sr1["Price"]) * Convert.ToInt32(sr1["Quantity"]);
+
+            }
+            conn1.Close();
+            ViewBag.Total = total;
 
 
 
@@ -1190,8 +1322,8 @@ namespace FoodDeliveryApplication.Controllers
                 }
                 conn3.Close();
 
-                string fromMail = "update.justeat@gmail.com";
-                string fromPassword = "vswveeeasgbytbyi";
+                string fromMail = "notify.justeat@gmail.com";
+                string fromPassword = "rtezlcgmuwkossoz";
 
                 string fp = string.Format("<h2 style=\"color:orange; text-align:center; font-size:25px;\">JustEat</h2><hr/><p>Dear <span style=\"font-weight:bold;\">{0}</span>,</p><p>This is to inform you that the customer cancelled the order.</p><p>Order Summary:</p><p>Invoice No: <span style=\"font-weight:bold;\">{1}</span></p><p>Order Placed at: <span style=\"font-weight:bold;\">{2}</span></p><p>Order Cancelled at: <span style=\"font-weight:bold;\">{3}</span></p><p>Order Status: <span style=\"font-weight:bold; color:red;\">Cancelled</span></p><p>Ordered By:</p><p><span style=\"font-weight:bold; text-transform: uppercase;\">{4}</span></p><p>{5}, {6}<br/> {7} {8}, India</p> </body></html>", RestaurantName, inVoiceNo, orderPlaced, ist.ToString("dd-MM-yyyy HH:mm:ss"), userName, address, city, state, zipcode);
                 string lp1 = "<table style=\"border-collapse: collapse; width:65vw;\"><tr ><th style=\"background: #eee; border: 1px solid #777; padding: 0.5rem; text-align: center;\">Item Name</th><th style=\"background: #eee; border: 1px solid #777; padding: 0.5rem; text-align: center;\">Quantity</th><th style=\"background: #eee; border: 1px solid #777; padding: 0.5rem; text-align: center;\">Price</th></tr>";
