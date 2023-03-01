@@ -1,5 +1,6 @@
 using Serilog;
-
+using Serilog.Sinks.AwsCloudWatch;
+using Amazon.CloudWatchLogs;
 var builder = WebApplication.CreateBuilder(args);
 
 /*Log.Logger = new LoggerConfiguration()
@@ -8,15 +9,38 @@ var builder = WebApplication.CreateBuilder(args);
     .CreateLogger();
 */
 
-
+var client = new AmazonCloudWatchLogsClient();
 
 Log.Logger = new LoggerConfiguration()
     .ReadFrom.Configuration(builder.Configuration)
+    .WriteTo.AmazonCloudWatch(
+    logGroup: "/dotnet/logging-demo/serilog",
+    logStreamPrefix: DateTime.Now.ToString("yyyyMMddHHmmssfff"),
+    cloudWatchClient: client
+    )
+    .WriteTo.File(
+    path: "../logs/CustomerApp-.log",
+    rollingInterval: RollingInterval.Day,
+    outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} {CorrelationId} {Level:u3} {Username} {Message:lj}{Exception}{NewLine}"
+    )
     .Enrich.FromLogContext()
     .CreateLogger();
 
 var logger = new LoggerConfiguration()
     .ReadFrom.Configuration(builder.Configuration)
+    .WriteTo.AmazonCloudWatch(
+    logGroup: "/dotnet/logging-demo/serilog",
+
+
+    logStreamPrefix: DateTime.Now.ToString("yyyyMMddHHmmssfff"),
+
+    cloudWatchClient: client
+    )
+     .WriteTo.File(
+    path: "../logs/CustomerApp-.log",
+    rollingInterval: RollingInterval.Day,
+    outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} {CorrelationId} {Level:u3} {Username} {Message:lj}{Exception}{NewLine}"
+    )
     .Enrich.FromLogContext()
     .CreateLogger();
 builder.Logging.ClearProviders();
