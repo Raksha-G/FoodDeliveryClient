@@ -110,7 +110,7 @@ else
                                                  <div class="counter">
                                                         @*<span class="down" onClick='decreaseCount(event, this)'>-</span>*@
                                                         <span class="down" onclick='decreaseCount(event, this)' style="width:25px !important;border:none;background-color:lightgrey !important;display:inline-block;cursor:pointer">-</span>
-                                                        <input type="text" readonly value="@obj1.Quantity" style="width:50px" class="text-center" name="Quantity">
+                                                        <input type="text"  value="@obj1.Quantity" style="width:50px" class="text-center" name="Quantity">
                                                         @*<span class="up" onClick='increaseCount(event, this)'>+</span>*@
                                                         <span class="up" onclick='increaseCount(event, this)' style="width:25px !important;border:none;background-color:lightgrey !important;display:inline-block;cursor:pointer">+</span>
                                                  </div>
@@ -120,7 +120,7 @@ else
                                             </div>
                                             <br/>
 
-                                            <button class="btn btn-primary" style="background-color:orange;border-color:orange" id="update">update</button>
+                                            <button class="btn btn-primary d-none" style="background-color:orange;border-color:orange" id="update">update</button>
                                        
 
                                         @* <input type="submit" style="position:absolute; left:-9999px;width:1px;height:1px;" tabindex="-1"/>*@
