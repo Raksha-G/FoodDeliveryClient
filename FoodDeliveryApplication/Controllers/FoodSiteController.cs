@@ -1513,6 +1513,20 @@ namespace FoodDeliveryApplication.Controllers
         }
 
 
+        public IActionResult UpdateCart(IFormCollection col)
+        {
+            int quantity = Convert.ToInt32(col["Quantity"]);
+            int itemNo = Convert.ToInt32(col["ItemNo"]);
+          
+            SqlConnection conn = new SqlConnection("Data Source = fooddeliverydatabase.ctzhubalbjxo.ap-south-1.rds.amazonaws.com,1433 ; Initial Catalog = FoodDeliveryApplication ; Integrated Security=False; User ID=admin; Password=surya1997;");
+            SqlCommand cmd = new SqlCommand(String.Format("update AddItemToCart set Quantity ='{0}' where ItemNo = '{1}' and UserName = '{2}'", quantity,itemNo, _httpContextAccessor.HttpContext.Session.GetString("UserName")), conn);
+            conn.Open();
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            return RedirectToAction("Cart");
+        }
+
+
 
     }
 }

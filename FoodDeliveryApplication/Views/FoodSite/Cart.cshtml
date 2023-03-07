@@ -11,6 +11,40 @@
 }
 
 
+
+<script>
+    function increaseCount(a, b) {
+        var input = b.previousElementSibling;
+        var value = parseInt(input.value, 10);
+        value = isNaN(value) ? 0 : value;
+        value++;
+        input.value = value;
+    }
+
+    function decreaseCount(a, b) {
+        var input = b.nextElementSibling;
+        var value = parseInt(input.value, 10);
+        if (value > 1) {
+            value = isNaN(value) ? 0 : value;
+            value--;
+            input.value = value;
+        }
+    }
+
+    var input = document.getElementById("div");
+    if (input) {
+        input.addEventListener("keypress", function(event) {
+          if (event.key === "Enter") {
+            event.preventDefault();
+            document.getElementById("update").click();
+          }
+        });
+
+    }
+
+</script>
+
+
 @{
     int Total_Price = 0;
     int Id = 0;
@@ -64,7 +98,36 @@ else
                                         <div class="text-container">
                                             <h6>@obj1.FoodItem</h6>
                                             <p>Price : @obj1.Price</p>
-                                            <p>Quantity : @obj1.Quantity</p>
+                                           @* <p>Quantity : @obj1.Quantity</p>*@
+                                           @* v*/////////////////////////////////////*@
+
+                                           <br/>
+                                          
+
+                                        @using (@Html.BeginForm("UpdateCart", "FoodSite", FormMethod.Post))
+                                        {
+                                            <div id="div">
+                                                 <div class="counter">
+                                                        @*<span class="down" onClick='decreaseCount(event, this)'>-</span>*@
+                                                        <span class="down" onclick='decreaseCount(event, this)' style="width:25px !important;border:none;background-color:lightgrey !important;display:inline-block;cursor:pointer">-</span>
+                                                        <input type="text" readonly value="@obj1.Quantity" style="width:50px" class="text-center" name="Quantity">
+                                                        @*<span class="up" onClick='increaseCount(event, this)'>+</span>*@
+                                                        <span class="up" onclick='increaseCount(event, this)' style="width:25px !important;border:none;background-color:lightgrey !important;display:inline-block;cursor:pointer">+</span>
+                                                 </div>
+                                                 <div class="d-none">
+                                                    <input name="ItemNo" value="@obj1.ItemNo"/>
+                                                 </div>
+                                            </div>
+                                            <br/>
+
+                                            <button class="btn btn-primary" style="background-color:orange;border-color:orange" id="update">update</button>
+                                       
+
+                                        @* <input type="submit" style="position:absolute; left:-9999px;width:1px;height:1px;" tabindex="-1"/>*@
+
+                                        }
+
+
                                             <a class="btn btn-primary" asp-controller="FoodSite" asp-action="DeleteItemFromCart" asp-route-Id="@obj1.ItemNo" style="background-color:orange;border-color:orange">Remove</a>
                                             
                                             @{
